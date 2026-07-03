@@ -1,0 +1,3889 @@
+[
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:34:11.458Z",
+    "timestamp": "2026-07-02T20:34:11.457Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:34:11.462Z",
+    "timestamp": "2026-07-02T20:34:11.461Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 17,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "39",
+          "offsetStartMs": "7"
+        },
+        {
+          "kind": "zf",
+          "offsetEndMs": "83",
+          "offsetStartMs": "63"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_START",
+          "offsetEndMs": "594666",
+          "offsetStartMs": "330100"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "30",
+          "offsetStartMs": "65"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "86",
+          "offsetStartMs": "56"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "13",
+          "offsetStartMs": "25"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "84",
+          "offsetStartMs": "47"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "87",
+          "offsetStartMs": "14"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "12",
+          "offsetStartMs": "34"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "35",
+          "offsetStartMs": "66"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "8",
+          "offsetStartMs": "59"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "90",
+          "offsetStartMs": "84"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "67",
+          "offsetStartMs": "50"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "2",
+          "offsetStartMs": "13"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "64",
+          "offsetStartMs": "73"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "zo",
+          "offsetStartMs": "10"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "zf",
+        "AD_PLACEMENT_KIND_START",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_SELF_START"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 1,
+      "items": [
+        {
+          "slotType": "SLOT_TYPE_PLAYER_BYTES"
+        }
+      ],
+      "present": true,
+      "types": [
+        "SLOT_TYPE_PLAYER_BYTES"
+      ]
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 90,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "by",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:34:11.465Z",
+    "timestamp": "2026-07-02T20:34:11.464Z",
+    "type": "player_response",
+    "videoId": "ux"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:34:11.467Z",
+    "timestamp": "2026-07-02T20:34:11.467Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 10,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_START",
+          "offsetEndMs": "99958",
+          "offsetStartMs": "6"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "600427",
+          "offsetStartMs": "99958"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "600427",
+          "offsetStartMs": "600427"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "600427",
+          "offsetStartMs": "600427"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "600427",
+          "offsetStartMs": "600427"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "93",
+          "offsetStartMs": "600427"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "93",
+          "offsetStartMs": "93"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_START",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END",
+        "AD_PLACEMENT_KIND_SELF_START",
+        "AD_PLACEMENT_KIND_SELF_START",
+        "AD_PLACEMENT_KIND_SELF_START"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1155,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:34:11.468Z",
+    "timestamp": "2026-07-02T20:34:11.468Z",
+    "type": "player_response",
+    "videoId": "hQUUT8qHIxJ"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "initial",
+    "durationSeconds": 2104,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": null,
+    "storedAt": "2026-07-02T20:34:11.491Z",
+    "timestamp": "2026-07-02T20:34:11.490Z",
+    "type": "player_response",
+    "videoId": "iYlODtkyw_I"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "getPlayerResponse",
+    "durationSeconds": 2104,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": null,
+    "storedAt": "2026-07-02T20:34:15.657Z",
+    "timestamp": "2026-07-02T20:34:15.656Z",
+    "type": "player_response",
+    "videoId": "iYlODtkyw_I"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1570,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:05.815Z",
+    "timestamp": "2026-07-02T20:35:05.777Z",
+    "type": "player_response",
+    "videoId": "U_LlX4t0A9I"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1174,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:06.454Z",
+    "timestamp": "2026-07-02T20:35:06.449Z",
+    "type": "player_response",
+    "videoId": "BBuifhInz7A"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 4999,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:13.949Z",
+    "timestamp": "2026-07-02T20:35:13.943Z",
+    "type": "player_response",
+    "videoId": "4EofabMH41M"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 13,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:14.382Z",
+    "timestamp": "2026-07-02T20:35:14.379Z",
+    "type": "player_response",
+    "videoId": "kNLr-cduzuo"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 601,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:15.412Z",
+    "timestamp": "2026-07-02T20:35:15.406Z",
+    "type": "player_response",
+    "videoId": "h-9f7A3EjH0"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 60,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:17.649Z",
+    "timestamp": "2026-07-02T20:35:17.648Z",
+    "type": "player_response",
+    "videoId": "AYe18xaf50s"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 270,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:18.102Z",
+    "timestamp": "2026-07-02T20:35:18.102Z",
+    "type": "player_response",
+    "videoId": "2UK4dPhDd34"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1939,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:18.187Z",
+    "timestamp": "2026-07-02T20:35:18.181Z",
+    "type": "player_response",
+    "videoId": "l6DKRf-fAAM"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 506,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:40.409Z",
+    "timestamp": "2026-07-02T20:35:40.409Z",
+    "type": "player_response",
+    "videoId": "f9ZBzEdB_N8"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1649,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:35:54.640Z",
+    "timestamp": "2026-07-02T20:35:54.634Z",
+    "type": "player_response",
+    "videoId": "YRkf0v3aF7s"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 7527,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:36:24.436Z",
+    "timestamp": "2026-07-02T20:36:24.436Z",
+    "type": "player_response",
+    "videoId": "dflqyI2KXp0"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 51,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:36:24.482Z",
+    "timestamp": "2026-07-02T20:36:24.482Z",
+    "type": "player_response",
+    "videoId": "bQPshc1XeQU"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 39,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:36:24.538Z",
+    "timestamp": "2026-07-02T20:36:24.538Z",
+    "type": "player_response",
+    "videoId": "l6SxSmkhbqU"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 2233,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:36:24.667Z",
+    "timestamp": "2026-07-02T20:36:24.660Z",
+    "type": "player_response",
+    "videoId": "tiES7Y2J4IE"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 31728,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "pageVideoId": null,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:37:17.817Z",
+    "timestamp": "2026-07-02T20:37:17.771Z",
+    "type": "player_response",
+    "videoId": "g_3IKHG-rfA"
+  },
+  {
+    "adPlacements": {
+      "count": 1,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_START",
+          "offsetEndMs": "-1",
+          "offsetStartMs": "0"
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_START"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "initial",
+    "durationSeconds": 2104,
+    "isLiveContent": false,
+    "loggedIn": false,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": null,
+    "storedAt": "2026-07-02T20:38:00.135Z",
+    "timestamp": "2026-07-02T20:38:00.097Z",
+    "type": "player_response",
+    "videoId": "iYlODtkyw_I"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:00.301Z",
+    "timestamp": "2026-07-02T20:38:00.300Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:00.302Z",
+    "timestamp": "2026-07-02T20:38:00.301Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 17,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "39",
+          "offsetStartMs": "7"
+        },
+        {
+          "kind": "zf",
+          "offsetEndMs": "83",
+          "offsetStartMs": "63"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_START",
+          "offsetEndMs": "594666",
+          "offsetStartMs": "330100"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "30",
+          "offsetStartMs": "65"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "86",
+          "offsetStartMs": "56"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "13",
+          "offsetStartMs": "25"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "84",
+          "offsetStartMs": "47"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "87",
+          "offsetStartMs": "14"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "12",
+          "offsetStartMs": "34"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "35",
+          "offsetStartMs": "66"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "8",
+          "offsetStartMs": "59"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "90",
+          "offsetStartMs": "84"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "67",
+          "offsetStartMs": "50"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "2",
+          "offsetStartMs": "13"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "64",
+          "offsetStartMs": "73"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "zo",
+          "offsetStartMs": "10"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "zf",
+        "AD_PLACEMENT_KIND_START",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_SELF_START"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 1,
+      "items": [
+        {
+          "slotType": "SLOT_TYPE_PLAYER_BYTES"
+        }
+      ],
+      "present": true,
+      "types": [
+        "SLOT_TYPE_PLAYER_BYTES"
+      ]
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 90,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "by",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:00.304Z",
+    "timestamp": "2026-07-02T20:38:00.303Z",
+    "type": "player_response",
+    "videoId": "ux"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:00.307Z",
+    "timestamp": "2026-07-02T20:38:00.306Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 10,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_START",
+          "offsetEndMs": "05371",
+          "offsetStartMs": "9"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "401206",
+          "offsetStartMs": "05371"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "401206",
+          "offsetStartMs": "401206"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "401206",
+          "offsetStartMs": "401206"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "401206",
+          "offsetStartMs": "401206"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "21",
+          "offsetStartMs": "401206"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "21",
+          "offsetStartMs": "21"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_START",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END",
+        "AD_PLACEMENT_KIND_SELF_START",
+        "AD_PLACEMENT_KIND_SELF_START",
+        "AD_PLACEMENT_KIND_SELF_START"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1155,
+    "isLiveContent": false,
+    "loggedIn": false,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:00.312Z",
+    "timestamp": "2026-07-02T20:38:00.312Z",
+    "type": "player_response",
+    "videoId": "chANMd0ZAuU"
+  },
+  {
+    "adPlacements": {
+      "count": 19,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "223666",
+          "offsetStartMs": "94469"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "297925",
+          "offsetStartMs": "223666"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "423354",
+          "offsetStartMs": "297925"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "524533",
+          "offsetStartMs": "423354"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "601267",
+          "offsetStartMs": "524533"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "728078",
+          "offsetStartMs": "601267"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "857393",
+          "offsetStartMs": "728078"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "956500",
+          "offsetStartMs": "857393"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1050863",
+          "offsetStartMs": "956500"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1113149",
+          "offsetStartMs": "1050863"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1208533",
+          "offsetStartMs": "1113149"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1388000",
+          "offsetStartMs": "1208533"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1500459",
+          "offsetStartMs": "1388000"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1572684",
+          "offsetStartMs": "1500459"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1649422",
+          "offsetStartMs": "1572684"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1803801",
+          "offsetStartMs": "1649422"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1918629",
+          "offsetStartMs": "1803801"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "-1",
+          "offsetStartMs": "1918629"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "-1",
+          "offsetStartMs": "-1"
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 6,
+      "items": [
+        {
+          "slotType": "SLOT_TYPE_PLAYER_BYTES"
+        },
+        {
+          "slotType": "SLOT_TYPE_ABOVE_FEED"
+        },
+        {
+          "slotType": "SLOT_TYPE_ABOVE_FEED"
+        },
+        {
+          "slotType": "SLOT_TYPE_ABOVE_FEED"
+        },
+        {
+          "slotType": "SLOT_TYPE_IN_PLAYER"
+        },
+        {
+          "slotType": "SLOT_TYPE_IN_PLAYER"
+        }
+      ],
+      "present": true,
+      "types": [
+        "SLOT_TYPE_PLAYER_BYTES",
+        "SLOT_TYPE_ABOVE_FEED",
+        "SLOT_TYPE_ABOVE_FEED",
+        "SLOT_TYPE_ABOVE_FEED",
+        "SLOT_TYPE_IN_PLAYER",
+        "SLOT_TYPE_IN_PLAYER"
+      ]
+    },
+    "capturePath": "initial",
+    "durationSeconds": 2104,
+    "isLiveContent": false,
+    "loggedIn": false,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": null,
+    "storedAt": "2026-07-02T20:38:01.680Z",
+    "timestamp": "2026-07-02T20:38:01.639Z",
+    "type": "player_response",
+    "videoId": "iYlODtkyw_I"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:01.695Z",
+    "timestamp": "2026-07-02T20:38:01.694Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:01.698Z",
+    "timestamp": "2026-07-02T20:38:01.697Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 17,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "39",
+          "offsetStartMs": "7"
+        },
+        {
+          "kind": "zf",
+          "offsetEndMs": "83",
+          "offsetStartMs": "63"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_START",
+          "offsetEndMs": "594666",
+          "offsetStartMs": "330100"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "30",
+          "offsetStartMs": "65"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "86",
+          "offsetStartMs": "56"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "13",
+          "offsetStartMs": "25"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "84",
+          "offsetStartMs": "47"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "87",
+          "offsetStartMs": "14"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "12",
+          "offsetStartMs": "34"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "35",
+          "offsetStartMs": "66"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "8",
+          "offsetStartMs": "59"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "90",
+          "offsetStartMs": "84"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "67",
+          "offsetStartMs": "50"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "2",
+          "offsetStartMs": "13"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "64",
+          "offsetStartMs": "73"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "zo",
+          "offsetStartMs": "10"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "zf",
+        "AD_PLACEMENT_KIND_START",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_SELF_START"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 1,
+      "items": [
+        {
+          "slotType": "SLOT_TYPE_PLAYER_BYTES"
+        }
+      ],
+      "present": true,
+      "types": [
+        "SLOT_TYPE_PLAYER_BYTES"
+      ]
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 90,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "by",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:01.700Z",
+    "timestamp": "2026-07-02T20:38:01.699Z",
+    "type": "player_response",
+    "videoId": "ux"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": false,
+    "note": "no videoDetails",
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:01.701Z",
+    "timestamp": "2026-07-02T20:38:01.701Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 10,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_START",
+          "offsetEndMs": "72092",
+          "offsetStartMs": "0"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "473455",
+          "offsetStartMs": "72092"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "473455",
+          "offsetStartMs": "473455"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "473455",
+          "offsetStartMs": "473455"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "473455",
+          "offsetStartMs": "473455"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "38",
+          "offsetStartMs": "473455"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "38",
+          "offsetStartMs": "38"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_SELF_START",
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_START",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END",
+        "AD_PLACEMENT_KIND_SELF_START",
+        "AD_PLACEMENT_KIND_SELF_START",
+        "AD_PLACEMENT_KIND_SELF_START"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1155,
+    "isLiveContent": false,
+    "loggedIn": false,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": "/youtubei/v1/player",
+    "storedAt": "2026-07-02T20:38:01.708Z",
+    "timestamp": "2026-07-02T20:38:01.707Z",
+    "type": "player_response",
+    "videoId": "4Kz4rkOV8CU"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.721Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.721Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.721Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card--inactive ytp-ad-avatar-lockup-card ytp-ad-component--clickable",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar ytp-ad-avatar--size-m ytp-ad-avatar--circular",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__avatar_and_text_container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__text_container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__headline",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__description",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm ytp-ad-component--clickable ytp-ad-button-vm--style-filled-white ytp-ad-button-vm--size-default",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm__text",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.722Z",
+    "timestamp": "2026-07-02T20:38:01.719Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--autohide ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.723Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.724Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "4Kz4rkOV8CU",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:01.724Z",
+    "timestamp": "2026-07-02T20:38:01.720Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "adPlacements": {
+      "count": 19,
+      "items": [
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "223666",
+          "offsetStartMs": "94469"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "297925",
+          "offsetStartMs": "223666"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "423354",
+          "offsetStartMs": "297925"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "524533",
+          "offsetStartMs": "423354"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "601267",
+          "offsetStartMs": "524533"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "728078",
+          "offsetStartMs": "601267"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "857393",
+          "offsetStartMs": "728078"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "956500",
+          "offsetStartMs": "857393"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1050863",
+          "offsetStartMs": "956500"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1113149",
+          "offsetStartMs": "1050863"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1208533",
+          "offsetStartMs": "1113149"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1388000",
+          "offsetStartMs": "1208533"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1500459",
+          "offsetStartMs": "1388000"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1572684",
+          "offsetStartMs": "1500459"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1649422",
+          "offsetStartMs": "1572684"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1803801",
+          "offsetStartMs": "1649422"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "1918629",
+          "offsetStartMs": "1803801"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetEndMs": "-1",
+          "offsetStartMs": "1918629"
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_END",
+          "offsetEndMs": "-1",
+          "offsetStartMs": "-1"
+        }
+      ],
+      "kinds": [
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_MILLISECONDS",
+        "AD_PLACEMENT_KIND_END"
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 6,
+      "items": [
+        {
+          "slotType": "SLOT_TYPE_PLAYER_BYTES"
+        },
+        {
+          "slotType": "SLOT_TYPE_ABOVE_FEED"
+        },
+        {
+          "slotType": "SLOT_TYPE_ABOVE_FEED"
+        },
+        {
+          "slotType": "SLOT_TYPE_ABOVE_FEED"
+        },
+        {
+          "slotType": "SLOT_TYPE_IN_PLAYER"
+        },
+        {
+          "slotType": "SLOT_TYPE_IN_PLAYER"
+        }
+      ],
+      "present": true,
+      "types": [
+        "SLOT_TYPE_PLAYER_BYTES",
+        "SLOT_TYPE_ABOVE_FEED",
+        "SLOT_TYPE_ABOVE_FEED",
+        "SLOT_TYPE_ABOVE_FEED",
+        "SLOT_TYPE_IN_PLAYER",
+        "SLOT_TYPE_IN_PLAYER"
+      ]
+    },
+    "capturePath": "getPlayerResponse",
+    "durationSeconds": 2104,
+    "isLiveContent": false,
+    "loggedIn": false,
+    "pageVideoId": "iYlODtkyw_I",
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "requestPath": null,
+    "storedAt": "2026-07-02T20:38:05.887Z",
+    "timestamp": "2026-07-02T20:38:05.885Z",
+    "type": "player_response",
+    "videoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.593Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card--inactive ytp-ad-avatar-lockup-card ytp-ad-component--clickable",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar ytp-ad-avatar--size-m ytp-ad-avatar--circular",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__avatar_and_text_container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__text_container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__headline",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__description ytp-ad-avatar-lockup-card__description--hidden--in--small--player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm ytp-ad-component--clickable ytp-ad-button-vm--style-filled-white ytp-ad-button-vm--size-default",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm__text",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.594Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--autohide ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 0,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:13.595Z",
+    "timestamp": "2026-07-02T20:38:13.588Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 0,
+    "event": "ad-showing-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:33.695Z",
+    "timestamp": "2026-07-02T20:38:33.682Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 0,
+    "event": "ad-interrupting-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:38:33.695Z",
+    "timestamp": "2026-07-02T20:38:33.682Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 775.0046364494807,
+    "event": "ad-showing-start",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.243Z",
+    "timestamp": "2026-07-02T20:39:45.190Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 775.0046364494807,
+    "event": "ad-interrupting-start",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.243Z",
+    "timestamp": "2026-07-02T20:39:45.191Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:39:45.315Z",
+    "timestamp": "2026-07-02T20:39:45.312Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.504Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.504Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.504Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card--inactive ytp-ad-avatar-lockup-card ytp-ad-component--clickable",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar ytp-ad-avatar--size-m ytp-ad-avatar--circular",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__avatar_and_text_container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__text_container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__headline",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__description",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm ytp-ad-component--clickable ytp-ad-button-vm--style-filled-white ytp-ad-button-vm--size-default",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm__text",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.505Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.506Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.506Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.506Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.506Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:00.506Z",
+    "timestamp": "2026-07-02T20:40:00.498Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-showing-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:07.706Z",
+    "timestamp": "2026-07-02T20:40:07.692Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 775.353889,
+    "event": "ad-interrupting-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:40:07.706Z",
+    "timestamp": "2026-07-02T20:40:07.692Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 857.219487,
+    "event": "ad-showing-start",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.921Z",
+    "timestamp": "2026-07-02T20:41:29.876Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 857.219487,
+    "event": "ad-interrupting-start",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.921Z",
+    "timestamp": "2026-07-02T20:41:29.876Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.968Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.968Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.968Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.968Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card--inactive ytp-ad-avatar-lockup-card ytp-ad-component--clickable",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.968Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar ytp-ad-avatar--size-m ytp-ad-avatar--circular",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.968Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__avatar_and_text_container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__text_container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__headline",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__description",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm ytp-ad-component--clickable ytp-ad-button-vm--style-filled-white ytp-ad-button-vm--size-default",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm__text",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.969Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--autohide ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.970Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.970Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.970Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:29.970Z",
+    "timestamp": "2026-07-02T20:41:29.957Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.172Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--autohide ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:36.173Z",
+    "timestamp": "2026-07-02T20:41:36.169Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-showing-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:42.317Z",
+    "timestamp": "2026-07-02T20:41:42.296Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 857.395599,
+    "event": "ad-interrupting-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:42.317Z",
+    "timestamp": "2026-07-02T20:41:42.296Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 1198.2763994334277,
+    "event": "ad-showing-start",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.563Z",
+    "timestamp": "2026-07-02T20:41:48.545Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 1198.2763994334277,
+    "event": "ad-interrupting-start",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.563Z",
+    "timestamp": "2026-07-02T20:41:48.545Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.676Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.677Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.677Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.677Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.677Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.677Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.677Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.677Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:41:48.678Z",
+    "timestamp": "2026-07-02T20:41:48.668Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar-container ytp-ad-persistent-progress-bar-container--clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-persistent-progress-bar",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__player-card-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card--inactive ytp-ad-avatar-lockup-card ytp-ad-component--clickable",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar ytp-ad-avatar--size-m ytp-ad-avatar--circular",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__avatar_and_text_container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-avatar-lockup-card__text_container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__headline",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-avatar-lockup-card__description",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm ytp-ad-component--clickable ytp-ad-button-vm--style-filled-white ytp-ad-button-vm--size-default",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-vm__text",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.276Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-info-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-badge--clean-player ytp-ad-badge--stark-clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ad-simple-attributed-string ytp-ad-badge__text--clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.282Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-button ytp-ad-info-hover-text-button",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button ytp-ad-button-link ytp-ad-clickable ytp-ad-hover-text-button--clean-player",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-button-icon",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-container ytp-ad-info-hover-text-short",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-hover-text-callout",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-pod-index ytp-ad-pod-index--stark",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-visit-advertiser-link ytp-ad-component--clickable",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__skip-or-preview-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "className": "ytp-ad-player-overlay-layout__ad-disclosure-banner-container",
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-badge-element-seen",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:04.283Z",
+    "timestamp": "2026-07-02T20:42:04.277Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-showing-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:10.766Z",
+    "timestamp": "2026-07-02T20:42:10.752Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  },
+  {
+    "currentTimeSeconds": 1198.566835,
+    "event": "ad-interrupting-end",
+    "lastSourceAVideoId": "iYlODtkyw_I",
+    "playerReportedVideoId": "iYlODtkyw_I",
+    "storedAt": "2026-07-02T20:42:10.766Z",
+    "timestamp": "2026-07-02T20:42:10.752Z",
+    "type": "dom_ad_event",
+    "watchUrlVideoId": "iYlODtkyw_I"
+  }
+]

@@ -1,0 +1,378 @@
+[
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "initial",
+    "durationSeconds": 2104,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "storedAt": "2026-07-02T20:29:38.202Z",
+    "timestamp": "2026-07-02T20:29:38.199Z",
+    "type": "player_response",
+    "videoId": "iYlODtkyw_I"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "storedAt": "2026-07-02T20:29:38.370Z",
+    "timestamp": "2026-07-02T20:29:38.369Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "storedAt": "2026-07-02T20:29:38.371Z",
+    "timestamp": "2026-07-02T20:29:38.370Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 17,
+      "items": [
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 1,
+      "items": [
+        {
+          "slotType": "SLOT_TYPE_PLAYER_BYTES"
+        }
+      ],
+      "present": true,
+      "types": [
+        "SLOT_TYPE_PLAYER_BYTES"
+      ]
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 90,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "playabilityStatusValue": "by",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "storedAt": "2026-07-02T20:29:38.374Z",
+    "timestamp": "2026-07-02T20:29:38.373Z",
+    "type": "player_response",
+    "videoId": "ux"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": null,
+    "isLiveContent": null,
+    "loggedIn": true,
+    "playabilityStatusValue": null,
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "storedAt": "2026-07-02T20:29:38.376Z",
+    "timestamp": "2026-07-02T20:29:38.376Z",
+    "type": "player_response",
+    "videoId": null
+  },
+  {
+    "adPlacements": {
+      "count": 10,
+      "items": [
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        },
+        {
+          "kind": null,
+          "offsetEndMs": null,
+          "offsetStartMs": null
+        }
+      ],
+      "kinds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "present": true
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "fetch",
+    "durationSeconds": 1155,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 1,
+      "items": [
+        {
+          "type": "playerLegacyDesktopWatchAdsRenderer"
+        }
+      ],
+      "present": true
+    },
+    "storedAt": "2026-07-02T20:29:38.377Z",
+    "timestamp": "2026-07-02T20:29:38.377Z",
+    "type": "player_response",
+    "videoId": "wH1bDaFCil2"
+  },
+  {
+    "adPlacements": {
+      "count": 0,
+      "items": [],
+      "kinds": [],
+      "present": false
+    },
+    "adSlots": {
+      "count": 0,
+      "items": [],
+      "present": false,
+      "types": []
+    },
+    "capturePath": "getPlayerResponse",
+    "durationSeconds": 2104,
+    "isLiveContent": false,
+    "loggedIn": true,
+    "playabilityStatusValue": "OK",
+    "playerAds": {
+      "count": 0,
+      "items": [],
+      "present": false
+    },
+    "storedAt": "2026-07-02T20:29:42.584Z",
+    "timestamp": "2026-07-02T20:29:42.582Z",
+    "type": "player_response",
+    "videoId": "iYlODtkyw_I"
+  }
+]

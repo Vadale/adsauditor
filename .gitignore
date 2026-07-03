@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+dist/
+.output/
+.env
+.env.*
+
+# personal working notes, not project artifacts
+riassunto.rtf
+gemini_conversazione.md

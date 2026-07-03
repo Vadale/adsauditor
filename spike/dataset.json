@@ -1,0 +1,351 @@
+{
+  "createdAt": "2026-07-02",
+  "methodologyNotes": [
+    "Labels reflect public evidence available on 2026-07-02. Ad-delivery status drifts over time; re-check evidence links if collection happens more than ~2 weeks later.",
+    "Pre-spike probe finding: a server-side (logged-out, datacenter-IP) fetch of the watch page returns a player response with exactly one generic preroll adPlacement and empty adSlots for EVERY video tested (including certain-green MrBeast and made-for-kids Cocomelon). The full ad decision (midrolls, adSlots) only materializes in a real browser context - which is exactly what this spike measures.",
+    "confidence=high labels are backed by direct public statements or externally verifiable facts. confidence=medium/low entries are discovery cases: include them in collection, but EXCLUDE them from threshold calibration in RESULTS.md unless corroborated by the measurements themselves.",
+    "yellow does NOT mean zero ads (SPEC 1.1): expect sporadic/reduced delivery, possibly missing midrolls on midroll-eligible durations.",
+    "If the project owner has own videos with a known Studio icon, add them to ownVideos below: they are the only ground-truth-grade labels available."
+  ],
+  "ownVideos": [],
+  "videos": [
+    {
+      "videoId": "iYlODtkyw_I",
+      "expected": "green",
+      "channel": "MrBeast",
+      "title": "Survive 30 Days Chained To A Stranger, Win $250,000",
+      "durationS": 2104,
+      "published": "2026-06-27",
+      "confidence": "high",
+      "note": "Flagship brand-safe channel, 35 min, midrolls near-certain.",
+      "evidence": ["https://www.youtube.com/watch?v=iYlODtkyw_I"]
+    },
+    {
+      "videoId": "__fmDj0ZJ1Q",
+      "expected": "green",
+      "channel": "MrBeast",
+      "title": "50 YouTube Legends Fight For $1,000,000",
+      "durationS": 1927,
+      "published": "2026-06-13",
+      "confidence": "high",
+      "note": "Brand-safe major, 32 min.",
+      "evidence": ["https://www.youtube.com/watch?v=__fmDj0ZJ1Q"]
+    },
+    {
+      "videoId": "GpQSUjNsNm0",
+      "expected": "green",
+      "channel": "MrBeast",
+      "title": "7 Days Stranded in The Arctic",
+      "durationS": 1935,
+      "published": "2026-05-30",
+      "confidence": "high",
+      "note": "Brand-safe major, 32 min.",
+      "evidence": ["https://www.youtube.com/watch?v=GpQSUjNsNm0"]
+    },
+    {
+      "videoId": "mvcesPWvUIc",
+      "expected": "green",
+      "channel": "Veritasium",
+      "title": "We've Been Using The Wrong Science In Court For 50 years",
+      "durationS": 1402,
+      "published": "2026-06-22",
+      "confidence": "high",
+      "note": "Educational brand-safe major, 23 min.",
+      "evidence": ["https://www.youtube.com/watch?v=mvcesPWvUIc"]
+    },
+    {
+      "videoId": "8HBDE-msUjw",
+      "expected": "green",
+      "channel": "Veritasium",
+      "title": "We're 99.9% sure this pattern is true, but no one can prove it",
+      "durationS": 2490,
+      "published": "2026-06-14",
+      "confidence": "high",
+      "note": "Educational brand-safe major, 41 min.",
+      "evidence": ["https://www.youtube.com/watch?v=8HBDE-msUjw"]
+    },
+    {
+      "videoId": "tz23G_UXCGA",
+      "expected": "green",
+      "channel": "Veritasium",
+      "title": "Something is jamming GPS over Europe. Here's what we found",
+      "durationS": 2057,
+      "published": "2026-06-05",
+      "confidence": "high",
+      "note": "Educational, mild geopolitical angle but green channel track record.",
+      "evidence": ["https://www.youtube.com/watch?v=tz23G_UXCGA"]
+    },
+    {
+      "videoId": "ZpF6IE0rdxA",
+      "expected": "green",
+      "channel": "Marques Brownlee",
+      "title": "Antigravity A1: A New Take on Drones!",
+      "durationS": 609,
+      "published": "2026-06-29",
+      "confidence": "high",
+      "note": "Tech brand-safe major, 10:09 - just over midroll eligibility.",
+      "evidence": ["https://www.youtube.com/watch?v=ZpF6IE0rdxA"]
+    },
+    {
+      "videoId": "QrT4S9i3agE",
+      "expected": "green",
+      "channel": "Marques Brownlee",
+      "title": "Top 5 Android 17 Features: I Swear It's New!",
+      "durationS": 563,
+      "published": "2026-06-24",
+      "confidence": "high",
+      "note": "Tech brand-safe major, 9:23.",
+      "evidence": ["https://www.youtube.com/watch?v=QrT4S9i3agE"]
+    },
+    {
+      "videoId": "WOzcFkld6_g",
+      "expected": "green",
+      "channel": "Marques Brownlee",
+      "title": "The Most Interesting Displays In The World!",
+      "durationS": 957,
+      "published": "2026-06-16",
+      "confidence": "high",
+      "note": "Tech brand-safe major, 16 min.",
+      "evidence": ["https://www.youtube.com/watch?v=WOzcFkld6_g"]
+    },
+    {
+      "videoId": "h0EGCnBjTVk",
+      "expected": "green",
+      "channel": "Mark Rober",
+      "title": "I Outsmarted Pro Car Thieves",
+      "durationS": 1519,
+      "published": "2026-06-20",
+      "confidence": "high",
+      "note": "Family-friendly engineering major, 25 min.",
+      "evidence": ["https://www.youtube.com/watch?v=h0EGCnBjTVk"]
+    },
+    {
+      "videoId": "PqtggjVAi8M",
+      "expected": "green",
+      "channel": "Kurzgesagt",
+      "title": "How Are Memories Stored Inside Your Brain?",
+      "durationS": 836,
+      "published": "2026-06-16",
+      "confidence": "high",
+      "note": "Educational brand-safe major, 14 min.",
+      "evidence": ["https://www.youtube.com/watch?v=PqtggjVAi8M"]
+    },
+    {
+      "videoId": "8qQW4LTWgtc",
+      "expected": "green",
+      "channel": "Kurzgesagt",
+      "title": "Why Earth Sucks Compared to the Planet Hestia",
+      "durationS": 892,
+      "published": "2026-05-26",
+      "confidence": "high",
+      "note": "Educational brand-safe major, 15 min.",
+      "evidence": ["https://www.youtube.com/watch?v=8qQW4LTWgtc"]
+    },
+    {
+      "videoId": "Yquveld-AKI",
+      "expected": "green",
+      "channel": "Geopop",
+      "title": "Bunker dei miliardari: da cosa vogliono salvarsi?",
+      "durationS": 1172,
+      "published": "2026-07-02",
+      "confidence": "high",
+      "note": "Italian brand-safe science major (relevant for the IT ad market). Published the day the dataset was built - if visited within 24h of upload, ad review may not have settled.",
+      "evidence": ["https://www.youtube.com/watch?v=Yquveld-AKI"]
+    },
+    {
+      "videoId": "y6cYgyQlDHE",
+      "expected": "green",
+      "channel": "Geopop",
+      "title": "La famiglia che non sapevi di avere: donazione di gameti e DNA",
+      "durationS": 1136,
+      "published": "2026-06-26",
+      "confidence": "high",
+      "note": "Italian brand-safe science major, 19 min.",
+      "evidence": ["https://www.youtube.com/watch?v=y6cYgyQlDHE"]
+    },
+    {
+      "videoId": "l_UwsECR6cE",
+      "expected": "green",
+      "channel": "BBC Earth",
+      "title": "Uncovering the Secret Lives of Forest Elephants",
+      "durationS": 1260,
+      "published": "2026-06-28",
+      "confidence": "high",
+      "note": "Nature documentary major, 21 min.",
+      "evidence": ["https://www.youtube.com/watch?v=l_UwsECR6cE"]
+    },
+    {
+      "videoId": "pBpUC4Z-ZAY",
+      "expected": "yellow",
+      "channel": "Soft White Underbelly",
+      "title": "Heroin and Crack Addict-Cassandra",
+      "durationS": 4224,
+      "published": "2026-07-01",
+      "confidence": "high",
+      "note": "Addiction-topic interview. Creator Mark Laita has publicly and repeatedly stated that addiction/sex-work interviews on this channel are systematically demonetized (drove him to paywall content).",
+      "evidence": [
+        "https://www.change.org/p/youtube-stop-demonitizing-mark-laita-s-channel-soft-white-underbelly",
+        "https://en.wikipedia.org/wiki/Soft_White_Underbelly_(YouTube_channel)"
+      ]
+    },
+    {
+      "videoId": "7L5OgPRt4Jc",
+      "expected": "yellow",
+      "channel": "Soft White Underbelly",
+      "title": "Straight Guy Doing Gay Porn-Cole Church",
+      "durationS": 3944,
+      "published": "2026-06-29",
+      "confidence": "high",
+      "note": "Sex-work-topic interview - the exact category the public petition describes as demonetized en masse (453 videos in the playlist).",
+      "evidence": [
+        "https://www.change.org/p/youtube-stop-demonitizing-mark-laita-s-channel-soft-white-underbelly",
+        "https://en.wikipedia.org/wiki/Soft_White_Underbelly_(YouTube_channel)"
+      ]
+    },
+    {
+      "videoId": "CRBa6t7u_lE",
+      "expected": "yellow",
+      "channel": "Soft White Underbelly",
+      "title": "Sellin' Dope-Laquita",
+      "durationS": 501,
+      "published": "2026-07-01",
+      "confidence": "high",
+      "note": "Drug-topic interview, 8:21 - just over the 8-min midroll threshold, useful boundary case.",
+      "evidence": [
+        "https://www.change.org/p/youtube-stop-demonitizing-mark-laita-s-channel-soft-white-underbelly"
+      ]
+    },
+    {
+      "videoId": "eEeIwGOhi-M",
+      "expected": "yellow",
+      "channel": "Soft White Underbelly",
+      "title": "Groomed-A Male Model's Story-Buddy Krueger",
+      "durationS": 3825,
+      "published": "2026-07-02",
+      "confidence": "medium",
+      "note": "Abuse-topic interview; same channel-level evidence, but topic slightly outside the explicitly named demonetized playlists.",
+      "evidence": [
+        "https://www.change.org/p/youtube-stop-demonitizing-mark-laita-s-channel-soft-white-underbelly"
+      ]
+    },
+    {
+      "videoId": "NCC6LGRHuR8",
+      "expected": "yellow",
+      "channel": "FUNKER530",
+      "title": "US CENTCOM Commander Provides Updates on EPIC FURY - Iran",
+      "durationS": 532,
+      "published": "2026-07-01",
+      "confidence": "medium",
+      "note": "War/combat-footage channel with long-documented monetization restrictions on YouTube (the channel built funker530.com largely in response). 8:52, midroll-eligible. Current-conflict coverage (Iran strikes) also hits the 'sensitive events' advertiser guideline.",
+      "evidence": [
+        "https://grokipedia.com/page/Funker530",
+        "https://funker530.com/"
+      ]
+    },
+    {
+      "videoId": "MSerFkLe5PI",
+      "expected": "yellow",
+      "channel": "FUNKER530",
+      "title": "US Strike Compilation vs Iran: Operation Epic Fury",
+      "durationS": 349,
+      "published": "2026-06-30",
+      "confidence": "medium",
+      "note": "Graphic combat footage of an ongoing conflict, 5:50 (below midroll eligibility - expect preroll-only even if monetized).",
+      "evidence": [
+        "https://grokipedia.com/page/Funker530"
+      ]
+    },
+    {
+      "videoId": "7CwHU_RVO7s",
+      "expected": "yellow",
+      "channel": "Elisa True Crime",
+      "title": "IL FIENILE DEGLI ORRORI",
+      "durationS": 3382,
+      "published": "2026-06-22",
+      "confidence": "low",
+      "note": "Italian true-crime major (brutal murder case, 56 min). Topic category is advertiser-unfriendly per YouTube's guidelines and the creator has discussed monetization limits in interviews, but no per-video public confirmation found. Discovery case: EXCLUDE from calibration unless measurements corroborate.",
+      "evidence": [
+        "https://support.google.com/youtube/answer/6162278"
+      ]
+    },
+    {
+      "videoId": "JM1G0BXHQyU",
+      "expected": "special",
+      "subtype": "age_restricted",
+      "channel": "Paramount Pictures Australia",
+      "title": "Scary Movie | Official Red Band Trailer (2026)",
+      "durationS": 120,
+      "confidence": "high",
+      "note": "Verified age-restricted (playabilityStatus=LOGIN_REQUIRED, 'Sign in to confirm your age', isFamilySafe=false). Logged-out pass should yield UNAVAILABLE; logged-in adult pass tests limited delivery on age-restricted content.",
+      "evidence": ["https://www.youtube.com/watch?v=JM1G0BXHQyU"]
+    },
+    {
+      "videoId": "IOB7iTsG1G0",
+      "expected": "special",
+      "subtype": "made_for_kids",
+      "channel": "Cocomelon - Nursery Rhymes",
+      "title": "Baby Shark Rainbow - Learn Colors and Sea Creatures",
+      "durationS": 296,
+      "published": "2026-07-01",
+      "confidence": "high",
+      "note": "Made-for-kids designation: ads limited by design (no personalized ads), not by content review.",
+      "evidence": ["https://www.youtube.com/watch?v=IOB7iTsG1G0"]
+    },
+    {
+      "videoId": "Vqbv3szYO8U",
+      "expected": "special",
+      "subtype": "non_ypp_small_channel",
+      "channel": "Vlogging with Me",
+      "title": "My First Vlog 2026",
+      "durationS": 465,
+      "confidence": "high",
+      "note": "Channel has 82 subscribers (verified 2026-07-02) - far below YPP thresholds, so certainly not in the Partner Program. Tests whether YouTube serves ads on non-YPP content (SPEC 1.1 says it may, keeping all revenue).",
+      "evidence": ["https://www.youtube.com/channel/UCfgT-wCeiru_n_iehROMe5w"]
+    },
+    {
+      "videoId": "AwMw_8ukKrA",
+      "expected": "special",
+      "subtype": "live_vod",
+      "channel": "CNN",
+      "title": "SpaceX Starship test flight: full stream",
+      "durationS": 5813,
+      "confidence": "high",
+      "note": "Live-stream VOD (isLiveContent=true) from a major news channel, ~97 min. Tests placement structure on live VODs. No need to watch it all: preroll + a few midroll seeks.",
+      "evidence": ["https://www.youtube.com/watch?v=AwMw_8ukKrA"]
+    },
+    {
+      "videoId": "MzjOYCuXZ9s",
+      "expected": "special",
+      "subtype": "green_under_8min",
+      "channel": "BBC Earth",
+      "title": "Baby Iguana vs Racer Snakes | 20 Years of Planet Earth",
+      "durationS": 268,
+      "confidence": "high",
+      "note": "Certain-green content BELOW the 8-min midroll threshold (4:28): the classifier must not penalize missing midrolls here.",
+      "evidence": ["https://www.youtube.com/watch?v=MzjOYCuXZ9s"]
+    },
+    {
+      "videoId": "Kq7UmKzogTs",
+      "expected": "special",
+      "subtype": "channel_demonetized",
+      "channel": "Steven Song",
+      "title": "I Got Demonetized. This Is The End.",
+      "durationS": 954,
+      "published": "2026-04-15",
+      "confidence": "medium",
+      "note": "Creator states in this very video (2026-04-15) that the channel was demonetized. Channel-level YPP removal, not a per-video yellow icon; status may have been restored since April. Discovery case for 'channel outside YPP' delivery.",
+      "evidence": ["https://www.youtube.com/watch?v=Kq7UmKzogTs"]
+    },
+    {
+      "videoId": "iwW3qjvkFZE",
+      "expected": "special",
+      "subtype": "channel_demonetized",
+      "channel": "ZGN",
+      "title": "My cat channel got demonetized",
+      "durationS": 154,
+      "confidence": "high",
+      "note": "Video description states: channel demonetized April 2026 for 'inauthentic content', appeal rejected. Confirmed channel-level removal, recent, unresolved. 2:34 long.",
+      "evidence": ["https://www.youtube.com/watch?v=iwW3qjvkFZE"]
+    }
+  ]
+}
