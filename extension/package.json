@@ -1,0 +1,35 @@
+{
+  "name": "adsauditor-extension",
+  "description": "AdsAuditor browser extension — observes YouTube ad delivery. MV3, Chrome + Firefox.",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "npm run build:chrome && npm run build:firefox",
+    "build:chrome": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "npm run zip:chrome && npm run zip:firefox",
+    "zip:chrome": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "postinstall": "wxt prepare"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.62.1",
+    "vitest": "^4.1.9",
+    "wxt": "^0.20.27"
+  }
+}
