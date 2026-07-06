@@ -1,10 +1,11 @@
 # AdsAuditor
 
 > **Status: Phase 1 (extension MVP) — work in progress.** Nothing is published to a
-> store yet, there is no tagged release, and the detection engine itself is not
-> implemented (that's `docs/ROADMAP.md` §1.2, tracked separately from this repository
-> scaffold). This README documents what exists today and how to build it, not a
-> finished product.
+> store yet and there is no tagged release. The three-source detection engine
+> (`docs/ROADMAP.md` §1.2) is implemented and unit-tested; NO_SIGNAL calibration (§1.3),
+> the popup UI (§1.4), and fixture-driven hardening (§1.5) are still to come — the
+> extension observes and records locally but has no user-facing surface yet. This README
+> documents what exists today and how to build it, not a finished product.
 
 Open source observatory of YouTube ad delivery: a browser extension (Chrome, Edge,
 Firefox — Manifest V3) that detects whether a video is actually serving ads, plus an
