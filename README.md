@@ -1,11 +1,14 @@
 # AdsAuditor
 
-> **Status: Phase 1 (extension MVP) — work in progress.** Nothing is published to a
-> store yet and there is no tagged release. The three-source detection engine
-> (`docs/ROADMAP.md` §1.2) is implemented and unit-tested; NO_SIGNAL calibration (§1.3),
-> the popup UI (§1.4), and fixture-driven hardening (§1.5) are still to come — the
-> extension observes and records locally but has no user-facing surface yet. This README
-> documents what exists today and how to build it, not a finished product.
+> **Status: Phase 1 (extension MVP) — code-complete, not yet released.** The
+> three-source detection engine (`docs/ROADMAP.md` §1.2), NO_SIGNAL self-calibration
+> (§1.3), and the popup/badge/options UI in English and Italian (§1.4) are implemented,
+> reviewed, and covered by 102 unit tests, including fixtures captured from real
+> player-response data in the Phase 0 spike (§1.5). What is still outstanding is the
+> §1.5 **manual** release checklist on Chrome and Firefox — the gate for tagging
+> `v0.1.0`. Nothing is published to a store yet, there is no tagged release, and no data
+> leaves the browser except the two calibration probes described below and in
+> [`docs/PRIVACY.md`](docs/PRIVACY.md).
 
 Open source observatory of YouTube ad delivery: a browser extension (Chrome, Edge,
 Firefox — Manifest V3) that detects whether a video is actually serving ads, plus an
@@ -22,8 +25,13 @@ trends across YouTube.
   become the most accurate existing map of real monetization on YouTube.
 - The tool never reads the YouTube Studio icon (impossible for other people's videos):
   it measures **ad delivery**, a strong but explicitly imperfect proxy for it.
-- The extension is 100% useful with telemetry off: local diagnosis of the video you're
-  watching, zero network calls, zero account required.
+- The extension is 100% useful with telemetry off: local-first diagnosis of the video
+  you're watching, zero account required, and zero telemetry — no data about you or
+  what you watch ever leaves the browser. The only network requests the extension makes
+  are two small, payload-free self-calibration probes (an ad-bait fetch and a
+  connectivity control, at most once a day) needed to tell "this browser can't see ads"
+  apart from "this video has no ads" — see [`docs/PRIVACY.md`](docs/PRIVACY.md) for the
+  exact URLs and cadence.
 - Sending observations to the shared database is opt-in, off by default, and revocable.
 - The aggregated database and dashboard are public and downloadable, like SponsorBlock's.
 - All project communication uses honest language — "ad delivery status", confidence
@@ -52,7 +60,7 @@ trends across YouTube.
 | `server/` | Supabase project (schema migrations, Edge Functions). Empty placeholder — arrives in Phase 2. |
 | `dashboard/` | Public Next.js dashboard. Empty placeholder — arrives in Phase 3. |
 | `spike/` | Phase 0 throwaway measurement extension + collected dataset. Results in `spike/RESULTS.md`. |
-| `docs/` | `SPEC.md` (source of truth for design decisions) and `ROADMAP.md` (phases, gates, build prompts). |
+| `docs/` | `SPEC.md` (source of truth for design decisions), `ROADMAP.md` (phases, gates, build prompts), and `PRIVACY.md` (what the extension collects, today and in Phase 2). |
 | `.github/workflows/` | CI (lint/test/build on pushes to `main` and on pull requests) and Release (build + GitHub Release on `v*` tags). |
 
 Phase 0's validation results — the measured signal thresholds that feed the classifier
@@ -66,7 +74,7 @@ with Node v26.0.0; CI is pinned to Node 22 for reproducibility — both satisfy 
 
 ```bash
 git clone <this-repo>
-cd adsauditor/extension
+cd <cloned-directory>/extension
 npm install
 
 # Development (hot-reloading, opens a temp browser profile)

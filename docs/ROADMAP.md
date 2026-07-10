@@ -169,9 +169,18 @@ Manual end-of-phase checklist (repeat on every release):
 - [ ] private/removed video → red
 - [ ] with uBlock active → NO_SIGNAL (adblock), no false yellow
 - [ ] SPA navigation across 5 videos in a row → state correctly reset every time
-- [ ] no outgoing network requests from the extension (verify in DevTools)
+- [ ] no outgoing requests except the two documented calibration probes
+      (googlesyndication ad-bait + youtube.com/generate_204 connectivity control, each
+      ≤ 1×/day, 6 h retry when inconclusive, cookieless, no payload, no observation
+      data); zero requests to any other origin; zero requests carrying observation data
+      (verify in DevTools)
+- [ ] open one control video from `utils/control-videos.ts` and confirm it still serves
+      ads (static list freshness check until §2.4 moves it server-side)
 
-**Phase 1 gate**: all 6 items pass on Chrome and Firefox. → tag `v0.1.0`.
+*Item 6 was reworded when §1.3 shipped the SPEC §3.4 calibration probes; the original
+"no outgoing requests" phrasing predates them.*
+
+**Phase 1 gate**: all 7 items pass on Chrome and Firefox. → tag `v0.1.0`.
 
 ---
 
