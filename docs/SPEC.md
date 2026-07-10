@@ -151,6 +151,16 @@ everything server-side (SSAI), the interface must still show the user they're wa
 ad (countdown, Skip button, badge) — so the DOM signal survives. CSS selectors change
 over time: they must be kept in an updatable configuration module and covered by tests.
 
+**Strong vs. weak B evidence** (field-verified 2026-07-11): the two kinds of B signal
+are not equally trustworthy. The `ad-showing`/`ad-interrupting` class transitions toggle
+only while a real spot plays — they are **strong** evidence. Sightings of `.ytp-ad-*`
+elements are **weak**: YouTube ships empty `ytp-ad-*` scaffolding in the player even on
+videos that serve no ads at all (observed on non-monetized channels), so an element
+sighting alone cannot distinguish real ad UI from inert scaffolding. Only strong B
+evidence satisfies "B seen" in the cross-reference table below; weak-only B evidence
+yields NO_SIGNAL (`anomalous-ad-ui-only`) — it proves neither ad presence nor absence,
+so it blocks both the ADS_SERVED and the NO_ADS verdict.
+
 #### Source C — Network beacons (impression tracking) · *independent confirmation*
 
 With the `webRequest` permission in **observation-only** mode (allowed in MV3 without

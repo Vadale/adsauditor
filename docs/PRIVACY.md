@@ -56,6 +56,13 @@ this section leaves your browser today.
 None of the above is sent anywhere. Uninstalling the extension deletes all of it, since
 it lives only in the browser's extension storage.
 
+**Manual export**: the popup has an "Export JSON" button that writes the stored history
+and calibration state (exactly the data described above, in a versioned schema:
+`adsauditor-local-export`) to a file on your device. Nothing is transmitted — the
+download is triggered by you, the file stays where you save it, and sharing it (for
+example with the project's developers during beta testing) is entirely manual and
+voluntary.
+
 ## 3. What leaves the browser today: two calibration probes, nothing else
 
 The extension makes exactly two outgoing network requests, and only these two. Both are
