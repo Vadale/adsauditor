@@ -44,6 +44,21 @@ function isDomAdEvent(event: DetectionEvent): event is DomAdEvent {
   return event.source === 'DOM';
 }
 
+/**
+ * "Strong" DOM evidence (field bug 2026-07-11): any DomAdEventKind OTHER than
+ * 'ad-badge-seen'. The ad-showing/ad-interrupting class transitions only toggle during
+ * a REAL ad break; 'ad-badge-seen' alone is weak/ambient — YouTube ships empty
+ * `ytp-ad-*` DOM scaffolding even on non-monetized videos where no ad ever plays, and a
+ * badge sighting alone cannot tell that scaffolding apart from a real ad UI. Badge
+ * sightings used to also cover "an ad was already showing when the observer attached"
+ * (no start transition to react to), but bridge.content.ts's attach-time classList
+ * priming now synthesizes a real start event for that case directly, so badges are no
+ * longer needed to close that gap.
+ */
+function isStrongDomEvent(event: DomAdEvent): boolean {
+  return event.kind !== 'ad-badge-seen';
+}
+
 function isBeaconEvent(event: DetectionEvent): boolean {
   return event.source === 'BEACON';
 }
@@ -76,8 +91,15 @@ function summarizePlacementCounts(placements: AdPlacementItem[]): PlacementCount
 }
 
 /**
- * Anomaly path (SPEC §3.2 table row 4): source A gave us nothing, so type each DOM
- * ad-start event as preroll/midroll/postroll using its content-time sample instead.
+ * Anomaly path (SPEC §3.2 table row 4): source A gave us nothing, so type each strong
+ * DOM ad-start event as preroll/midroll/postroll using its content-time sample instead.
+ * Callers only ever pass STRONG DOM events here (isStrongDomEvent) — 'ad-badge-seen'
+ * sightings never reach this function (field bug 2026-07-11: a badge-only fallback used
+ * to treat any badge-with-no-start as a preroll, which is exactly what misread YouTube's
+ * empty `ytp-ad-*` scaffolding on non-monetized videos as a real ad; that fallback has
+ * been removed rather than special-cased, since strong events are real ad-state class
+ * transitions and bridge.content.ts's attach-time priming already synthesizes a start
+ * for an ad already showing when the observer attaches).
  *
  * ad-showing and ad-interrupting toggle as a PAIR for the same ad break (spike exports
  * show millisecond-identical start timestamps), so counting both classes would double
@@ -106,16 +128,6 @@ function typeDomEventsByContentTime(domAdEvents: DomAdEvent[], durationS: number
       // conservatively counted as a mid-roll.
       midrolls += 1;
     }
-  }
-
-  if (starts.length === 0 && domAdEvents.length > 0) {
-    // Badge sightings with no start transition: the "ad already showing when the
-    // observer attached" gap the Phase 0 spike documented (bridge.content.ts's
-    // attach-time classList read closes this going forward, but this defends against
-    // any session that still hits it — e.g. a dropped start message). Attach happens
-    // early in the page/session lifecycle, so an already-showing ad at that moment is
-    // overwhelmingly likely to be the preroll.
-    preroll = true;
   }
 
   return { preroll, midrolls, postroll };
@@ -150,15 +162,31 @@ function finalize(
  * | absent | seen | seen | Anomaly (SSAI suspected) -> ADS_SERVED, B/C take precedence |
  * | — | — | blocked/failed | Suspected adblock -> NO_SIGNAL (observerValidity.valid=false upstream) |
  *
+ * "B (DOM) seen" in this table means STRONG DOM evidence only (isStrongDomEvent — any
+ * DomAdEventKind other than 'ad-badge-seen': the ad-showing/ad-interrupting class
+ * transitions, which only toggle during a real ad break). Field bug 2026-07-11: badge
+ * sightings alone are weak/ambient — YouTube ships empty `ytp-ad-*` DOM scaffolding even
+ * on non-monetized videos where no ad ever plays, so a badge-only sighting used to
+ * falsely satisfy "B seen" and flip a truthful zero-placement response to ADS_SERVED via
+ * the anomaly row. Now: badge-only sightings (source A absent, no strong B) neither
+ * satisfy "B seen" in row 2/4's `sources` list nor the anomaly row's ADS_SERVED trigger
+ * — they produce NO_SIGNAL('anomalous-ad-ui-only') instead (see that cause's own doc
+ * comment in utils/types.ts), which OUTRANKS both the beacon-only NO_SIGNAL below and
+ * the observer-validity/rewatch/NO_ADS fall-through: an ambiguous ambient DOM signal
+ * proves neither presence nor absence of an ad, so a confident verdict either way would
+ * be as dishonest as the original bug.
+ *
  * "A absent, B not seen, C seen" is NOT a row in the table: a beacon alone (no
  * placement, no ad UI) cannot distinguish an in-player impression from unrelated ad
  * traffic, so it never produces ADS_SERVED — it becomes NO_SIGNAL
  * ('anomalous-beacon-only'), preserved for diagnostics.
  *
  * Observer validity (SPEC §3.2 row 3) gates ONLY the NO_ADS verdict: positive
- * placement/DOM evidence is trustworthy regardless of calibration — an observed
+ * placement/strong-DOM evidence is trustworthy regardless of calibration — an observed
  * placement cannot be an adblock artifact (invariant 5 concerns false NO_ADS, not
- * false ADS_SERVED).
+ * false ADS_SERVED). Badge-only ambient evidence is the one exception: it is never
+ * trustworthy enough to produce EITHER a positive or a negative verdict, regardless of
+ * observer validity.
  */
 export function classify(
   events: DetectionEvent[],
@@ -202,7 +230,12 @@ export function classify(
   const placementsPresent = perEventCounts.length > 0;
 
   const domAdEvents = events.filter(isDomAdEvent);
+  const strongDomEvents = domAdEvents.filter(isStrongDomEvent);
+  // domAdSeen counts ANY DOM event including badge-only sightings — needed below to
+  // distinguish "no DOM signal at all" (falls through to the beacon-only/NO_ADS checks)
+  // from "only weak/ambient badge sightings" (field bug 2026-07-11: its own branch).
   const domAdSeen = domAdEvents.length > 0;
+  const strongDomSeen = strongDomEvents.length > 0;
   const beaconSeen = events.some(isBeaconEvent);
 
   if (placementsPresent) {
@@ -211,7 +244,10 @@ export function classify(
     const midrolls = latestCounts.midrolls;
     const postroll = perEventCounts.some((counts) => counts.postroll);
     const sources: EvidenceSource[] = ['PLAYER_RESPONSE'];
-    if (domAdSeen) sources.push('DOM');
+    // Field bug 2026-07-11: only STRONG DOM evidence contributes the 'DOM' source —
+    // badge-only sightings must not inflate confidence or the §1.6 popup's "playback
+    // observed" headline (utils/evidence-summary.ts's adPlaybackObserved).
+    if (strongDomSeen) sources.push('DOM');
     if (beaconSeen) sources.push('BEACON');
     return finalize(
       {
@@ -223,12 +259,13 @@ export function classify(
     );
   }
 
-  if (domAdSeen) {
-    // SPEC §3.2 table row 4: placements absent but the ad UI was observed — likely
+  if (strongDomSeen) {
+    // SPEC §3.2 table row 4: placements absent but STRONG ad UI was observed — likely
     // SSAI or a player-response format change. B evidence takes precedence over A's
-    // silence (C may corroborate).
+    // silence (C may corroborate). Badge-only sightings never reach this branch (field
+    // bug 2026-07-11) — see the branch below for that case.
     const { preroll, midrolls, postroll } = typeDomEventsByContentTime(
-      domAdEvents,
+      strongDomEvents,
       context.durationS,
     );
     const sources: EvidenceSource[] = ['DOM'];
@@ -241,6 +278,17 @@ export function classify(
       midrolls,
       context,
     );
+  }
+
+  if (domAdSeen) {
+    // Field bug 2026-07-11: placements absent, only WEAK (badge-only) DOM evidence —
+    // YouTube's empty `ytp-ad-*` scaffolding on non-monetized videos matches
+    // 'ad-badge-seen' with no ad ever playing. This ambiguous ambient signal proves
+    // neither presence nor absence of an ad, so it must win over BOTH the beacon-only
+    // NO_SIGNAL below and the observer-validity/rewatch/NO_ADS fall-through further down
+    // — regardless of whether a beacon also fired, and regardless of observer validity
+    // (a confident NO_ADS here would be exactly as dishonest as the ADS_SERVED bug was).
+    return finalize({ state: 'NO_SIGNAL', noSignalCause: 'anomalous-ad-ui-only' }, 0, context);
   }
 
   if (beaconSeen) {

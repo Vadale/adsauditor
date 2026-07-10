@@ -91,6 +91,10 @@
     "message": "È stato rilevato solo traffico di rete pubblicitaria, senza una decisione sugli annunci né interfaccia pubblicitaria — non sufficiente per trarre conclusioni.",
     "description": "NO_SIGNAL cause: anomalous-beacon-only"
   },
+  "causeAnomalousAdUiOnly": {
+    "message": "Sono stati rilevati elementi dell'interfaccia pubblicitaria, ma nessuna decisione sugli annunci e nessuna riproduzione — non sufficiente per trarre conclusioni.",
+    "description": "NO_SIGNAL cause: anomalous-ad-ui-only (field bug 2026-07-11, badge-only ambient DOM scaffolding)"
+  },
   "causeGeneric": {
     "message": "Osservatore non calibrato.",
     "description": "Fallback for an unrecognized/future NO_SIGNAL cause value"

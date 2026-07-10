@@ -319,6 +319,16 @@ export type NoSignalCause =
    * Rewatch frequency capping strips ad placements server-side (spike/RESULTS.md §3.5,
    * §5), so an absence of evidence here is NOT NO_ADS evidence. */
   | 'recent-rewatch'
+  /** Ad-UI element sightings ('ad-badge-seen') were observed with no ad decision
+   * (source A absent) and no ad-state class transition (no "strong" source B —
+   * ad-showing/ad-interrupting start/end). Field-verified false-positive source
+   * (2026-07-11): YouTube ships empty `ytp-ad-*` DOM scaffolding even on non-monetized
+   * videos where no ad ever plays, and badge sightings alone matched it, flipping a
+   * truthful zero-placement player response into a false ADS_SERVED. This is an
+   * ambiguous ambient signal — it proves neither the presence nor the absence of an ad —
+   * so classify() blocks BOTH ADS_SERVED (SPEC §3.2 row 4's anomaly path) and NO_ADS on
+   * it, regardless of beacons or observer validity. */
+  | 'anomalous-ad-ui-only'
   /** Context says this observer failed adblock/Premium/control-video calibration
    * (SPEC §3.4, ROADMAP §1.3) — see ObserverInvalidCause for which specific check. */
   | ObserverInvalidCause;

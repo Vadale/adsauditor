@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "PROVENANCE": "RECONSTRUCTED — NOT a spike/exports/*.json capture. This fixture does not come from spike/RESULTS.md or any raw spike export; it is hand-built from the owner's field bug report (2026-07-11) to reproduce the reported evidence pattern for regression testing. Every field below that is not directly quoted from the report is a PLAUSIBLE placeholder, called out explicitly.",
+    "bugReport": {
+      "date": "2026-07-11",
+      "reportedVideos": [
+        "I3oUjpmda7g (this fixture)",
+        "j61hDDHfphM (same report, same pattern, not built as a separate fixture — the coordinator's task named only I3oUjpmda7g for a new fixture file)"
+      ],
+      "channel": "Elisa True Crime 'uncensored' playlist — the channel publicly states it is non-monetized, and the owner did not see an ad play.",
+      "quotedPopupEvidence": "ADS_SERVED, 'Preroll: yes · 0 mid-roll(s)', SSAI-anomaly note shown, evidence A: absent / B (DOM): present / C: absent.",
+      "diagnosis": "A player response WAS captured (playability OK, zero placements — truthful for a non-monetized video). YouTube's player DOM contains empty ytp-ad-* scaffolding elements even when no ad is playing; bridge.content.ts's 'ad-badge-seen' sightings matched that scaffolding with no ad ever actually shown. classifier.ts's badge-only-at-attach rule (source A absent + any DOM event with no matching *-start -> treat as a preroll) then flipped the verdict to ADS_SERVED via SPEC §3.2 row 4 ('B takes precedence when A is absent'), even though B here was never a REAL ad sighting.",
+      "agreedFixSpec": "Badge-only DOM evidence ('ad-badge-seen' with no 'ad-showing-start'/'ad-showing-end'/'ad-interrupting-start'/'ad-interrupting-end' — i.e. no 'strong' DOM evidence) must never produce ADS_SERVED on its own. With source A absent, badge-only (with or without a beacon) must classify NO_SIGNAL with a NEW noSignalCause 'anomalous-ad-ui-only', and this must BLOCK the NO_ADS fall-through even for a valid, fresh, non-rewatch observer — an ambiguous ambient DOM signal proves neither presence nor absence of an ad. This fixture is the regression fixture for that fix; it is expected to FAIL against the CURRENT (unfixed) classifier.ts, which still returns ADS_SERVED here — see test/fixtures.test.ts's 'field bug 2026-07-11' describe block for the failing assertion."
+    },
+    "placeholderFieldsNotFromTheReport": [
+      "durationSeconds: 2700 (45 min) — plausible for this channel's long-form true-crime content (other Elisa True Crime videos in spike/RESULTS.md §2 ran 56-138 min); the owner's report did not state an exact duration, and none is needed for this bug (the bug reproduces regardless of duration).",
+      "isLoggedIn: true — plausible default matching the other Elisa fixtures' logged-in sessions in this suite; not stated in the report.",
+      "capturedAt / DOM event timestamps below — synthetic, evenly-spaced fixed epoch-ms values (NOT real capture timestamps), chosen only to be deterministic and internally ordered; the report contains no raw timestamps.",
+      "The exact NUMBER of badge sightings (4 below) — the report describes the phenomenon ('our ad-badge-seen sightings matched them') without an exact count; 3-4 was requested by the coordinator, 4 used here to also exercise a throttled-but-repeated badge pattern like the real spike captures showed (spike/exports's 'ad-badge-element-seen' sightings repeat many times per ad break in genuine captures)."
+    ],
+    "quotedFromTheReport": [
+      "'Preroll: yes · 0 mid-roll(s)' popup text",
+      "SSAI-anomaly note shown",
+      "evidence A: absent / B (DOM): present / C: absent",
+      "playability OK, zero placements",
+      "channel publicly non-monetized, no ad played"
+    ],
+    "expectedClassification": "Under the AGREED FIX (not yet shipped): state NO_SIGNAL, noSignalCause 'anomalous-ad-ui-only' — never ADS_SERVED, never NO_ADS, even for a valid fresh (non-rewatch) observer. Under CURRENT classifier.ts (as of this fixture's authoring): state ADS_SERVED, evidence {preroll: true, midrolls: 0, postroll: false, sources: ['DOM'], ssaiAnomalySuspected: true} — this is the bug being reproduced; the fixtures.test.ts assertion below is written against the FIX and is expected to FAIL until the coder ships it."
+  },
+  "events": [
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "initial",
+      "pageVideoId": "I3oUjpmda7g",
+      "videoId": "I3oUjpmda7g",
+      "durationSeconds": 2700,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [],
+      "adSlots": [],
+      "playerAds": [],
+      "capturedAt": 1789000000000
+    },
+    {
+      "source": "DOM",
+      "kind": "ad-badge-seen",
+      "watchUrlVideoId": "I3oUjpmda7g",
+      "contentTimeSeconds": 0,
+      "capturedAt": 1789000001000
+    },
+    {
+      "source": "DOM",
+      "kind": "ad-badge-seen",
+      "watchUrlVideoId": "I3oUjpmda7g",
+      "contentTimeSeconds": 0,
+      "capturedAt": 1789000001500
+    },
+    {
+      "source": "DOM",
+      "kind": "ad-badge-seen",
+      "watchUrlVideoId": "I3oUjpmda7g",
+      "contentTimeSeconds": null,
+      "capturedAt": 1789000002000
+    },
+    {
+      "source": "DOM",
+      "kind": "ad-badge-seen",
+      "watchUrlVideoId": "I3oUjpmda7g",
+      "contentTimeSeconds": null,
+      "capturedAt": 1789000002500
+    }
+  ]
+}

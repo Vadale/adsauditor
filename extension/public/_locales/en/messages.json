@@ -91,6 +91,10 @@
     "message": "Only ad-network traffic was seen, with no ad decision or ad UI — not enough to conclude anything.",
     "description": "NO_SIGNAL cause: anomalous-beacon-only"
   },
+  "causeAnomalousAdUiOnly": {
+    "message": "Ad-related interface elements were seen, but no ad decision and no ad playback — not enough to conclude anything.",
+    "description": "NO_SIGNAL cause: anomalous-ad-ui-only (field bug 2026-07-11, badge-only ambient DOM scaffolding)"
+  },
   "causeGeneric": {
     "message": "Observer not calibrated.",
     "description": "Fallback for an unrecognized/future NO_SIGNAL cause value"

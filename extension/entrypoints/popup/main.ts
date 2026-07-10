@@ -85,8 +85,9 @@ function applyStateChip(chipEl: HTMLElement, state: ObservedState, extraClass?: 
 }
 
 /** Exhaustive over the current NoSignalCause union (SPEC §3.4 / ROADMAP §1.3's four
- * ObserverInvalidCause values plus the three classifier-level causes). A value read
- * back from LocalHistoryEntry storage is only *typed* as NoSignalCause — it isn't
+ * ObserverInvalidCause values plus the four classifier-level causes, including
+ * 'anomalous-ad-ui-only' — field bug 2026-07-11). A value read back from
+ * LocalHistoryEntry storage is only *typed* as NoSignalCause — it isn't
  * runtime-validated at that boundary — so noSignalCauseMessageKey() below still falls
  * back to the generic message for anything not in this map (e.g. a cause retired by a
  * future extension version). */
@@ -98,6 +99,7 @@ const NO_SIGNAL_CAUSE_MESSAGE_KEY: Record<NoSignalCause, I18nMessageKey> = {
   'recent-rewatch': 'causeRecentRewatch',
   'no-player-response': 'causeNoPlayerResponse',
   'anomalous-beacon-only': 'causeAnomalousBeaconOnly',
+  'anomalous-ad-ui-only': 'causeAnomalousAdUiOnly',
 };
 
 function noSignalCauseMessageKey(cause: NoSignalCause | undefined): I18nMessageKey {

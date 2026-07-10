@@ -8,6 +8,10 @@
  * these tests must fail.
  *
  * Fixture-driven tests against the raw spike exports land in ROADMAP §1.5.
+ *
+ * The last describe block ("field bug 2026-07-11") encodes the AGREED FIX for an
+ * owner-reported bug and is EXPECTED TO FAIL against the current classifier.ts — see
+ * that block's own comment and test/fixtures/field-badge-scaffolding-I3oUjpmda7g.json.
  */
 import { describe, expect, it } from 'vitest';
 import { classify } from '../utils/classifier';
@@ -249,10 +253,90 @@ describe('classify — §1.2 review regressions', () => {
     );
     expect(result.state).toBe('NO_ADS'); // creative's placements filtered out, absence stands
   });
+});
 
-  it('badge-only DOM evidence (ad already showing at attach) → anomaly preroll', () => {
+/**
+ * FIELD BUG (owner report, 2026-07-11): on two non-monetized videos (I3oUjpmda7g,
+ * j61hDDHfphM — Elisa True Crime "uncensored" playlist; channel publicly states no
+ * monetization, no ad played), the popup showed ADS_SERVED "Preroll: yes · 0
+ * mid-roll(s)" with the SSAI-anomaly note. Diagnosis: a player response WAS captured
+ * (playability OK, zero placements — truthful for a non-monetized video), but YouTube's
+ * player DOM contains empty ytp-ad-* scaffolding elements even with no ad playing;
+ * bridge.content.ts's 'ad-badge-seen' sightings matched that scaffolding, and the OLD
+ * badge-only→preroll rule in classifier.ts's typeDomEventsByContentTime (source A
+ * absent + any DOM event with no matching *-start ⇒ treat as a preroll) flipped the
+ * verdict to ADS_SERVED via SPEC §3.2 row 4 — even though nothing was ever actually
+ * shown to the viewer.
+ *
+ * AGREED FIX encoded below (NOT YET SHIPPED — see CLAUDE.md: every field bug becomes a
+ * test fixture before it is fixed):
+ *   1. "Strong" DOM evidence = any DomAdEventKind OTHER than 'ad-badge-seen' (the
+ *      ad-showing/ad-interrupting class transitions, which only toggle during a real
+ *      ad break). 'ad-badge-seen' alone is weak/ambient.
+ *   2. Placements present → ADS_SERVED as before, but `sources` includes 'DOM' ONLY
+ *      when strong DOM evidence exists — badge-only no longer contributes the DOM
+ *      source (it was also silently inflating the §1.6 "playback observed" headline).
+ *   3. A absent + strong DOM → ADS_SERVED with ssaiAnomalySuspected, unchanged (SPEC
+ *      §3.2 row 4). The badge-only→preroll rule is REMOVED entirely: bridge.content.ts's
+ *      attach-time classList priming already covers "ad already showing when the
+ *      observer attached" with a synthesized real start event.
+ *   4. A absent + badge sightings ONLY (no strong DOM), with or without a beacon → a
+ *      NEW NoSignalCause, 'anomalous-ad-ui-only' — NEVER ADS_SERVED. Critically, this
+ *      BLOCKS the NO_ADS fall-through even for an otherwise valid, fresh (non-rewatch)
+ *      observer: an ambiguous ambient DOM signal proves neither presence nor absence of
+ *      an ad, so a confident NO_ADS would be just as dishonest as the ADS_SERVED bug was.
+ *   5. A absent + beacons only, no DOM at all → NO_SIGNAL 'anomalous-beacon-only',
+ *      unchanged (already covered above in "NO_SIGNAL discipline").
+ *
+ * 'anomalous-ad-ui-only' does not exist on the NoSignalCause union in utils/types.ts yet
+ * — deliberately not added here (production code is out of scope for a test-first field
+ * bug fixture). Referencing it as a plain string literal below is intentional: it may or
+ * may not satisfy `tsc --noEmit` depending on how strictly `toBe`'s generic narrows
+ * against `NoSignalCause | undefined`, but it does NOT block `vitest run` either way —
+ * Vitest transpiles test files via esbuild without type-checking them (the same
+ * reasoning test/storage-payload.test.ts's header comment documents for its `satisfies`
+ * gate), which is what lets these tests actually RUN and FAIL for the right reason
+ * (current classifier.ts still returns ADS_SERVED) instead of being silently skipped.
+ */
+describe('classify — FIELD BUG 2026-07-11: ad-badge-seen scaffolding must not flip ADS_SERVED', () => {
+  it('A absent + badge-only DOM, valid fresh observer → NO_SIGNAL anomalous-ad-ui-only (REPLACES the old "anomaly preroll" expectation — that was the bug)', () => {
     const result = classify([playerResponse(), domEvent('ad-badge-seen', 0)], context());
+    expect(result.noSignalCause).toBe('anomalous-ad-ui-only');
+    expect(result.state).toBe('NO_SIGNAL');
+    expect(result.state).not.toBe('ADS_SERVED');
+    expect(result.state).not.toBe('NO_ADS');
+  });
+
+  it('A absent + badge-only DOM + a beacon, valid fresh observer → still NO_SIGNAL anomalous-ad-ui-only (badge-only blocks the fall-through even with a beacon present)', () => {
+    const result = classify([playerResponse(), domEvent('ad-badge-seen', 0), beacon()], context());
+    expect(result.state).toBe('NO_SIGNAL');
+    expect(result.noSignalCause).toBe('anomalous-ad-ui-only');
+  });
+
+  it('placements present + badge-only DOM (no strong evidence) → ADS_SERVED, but sources EXCLUDE DOM', () => {
+    const result = classify(
+      [playerResponse({ adPlacements: greenPlacements(2) }), domEvent('ad-badge-seen', 0)],
+      context(),
+    );
     expect(result.state).toBe('ADS_SERVED');
-    expect(result.evidence).toMatchObject({ preroll: true, ssaiAnomalySuspected: true });
+    expect(result.evidence?.sources).toEqual(['PLAYER_RESPONSE']);
+  });
+
+  it('placements present + a real ad-showing-start → sources INCLUDE DOM (strong evidence still counts)', () => {
+    const result = classify(
+      [playerResponse({ adPlacements: greenPlacements(2) }), domEvent('ad-showing-start', 700)],
+      context(),
+    );
+    expect(result.state).toBe('ADS_SERVED');
+    expect(result.evidence?.sources).toEqual(['PLAYER_RESPONSE', 'DOM']);
+  });
+
+  it('A absent + a real ad-showing-start AND a badge sighting → still ADS_SERVED anomaly (strong evidence wins over ambient badge noise)', () => {
+    const result = classify(
+      [playerResponse(), domEvent('ad-showing-start', 700), domEvent('ad-badge-seen', 0)],
+      context(),
+    );
+    expect(result.state).toBe('ADS_SERVED');
+    expect(result.evidence?.ssaiAnomalySuspected).toBe(true);
   });
 });

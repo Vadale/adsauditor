@@ -24,6 +24,7 @@ import yellowElisaRaw from './fixtures/yellow-class-elisa-kZwWv_2SDgU.json';
 import rewatchStrippedRaw from './fixtures/rewatch-stripped-iYlODtkyw_I.json';
 import specialAgeRestrictedRaw from './fixtures/special-age-restricted-JM1G0BXHQyU.json';
 import specialNonYppRaw from './fixtures/special-nonypp-iwW3qjvkFZE.json';
+import fieldBadgeScaffoldingRaw from './fixtures/field-badge-scaffolding-I3oUjpmda7g.json';
 
 /**
  * Fixture JSON shape: a `_meta` documentation block (source export, record timestamps,
@@ -96,9 +97,14 @@ const specialAgeRestricted = toFixture(
   'special-age-restricted-JM1G0BXHQyU.json',
 );
 const specialNonYpp = toFixture(specialNonYppRaw, 'special-nonypp-iwW3qjvkFZE.json');
+// RECONSTRUCTED (not a spike capture) — see its _meta.PROVENANCE for the full disclosure.
+const fieldBadgeScaffolding = toFixture(
+  fieldBadgeScaffoldingRaw,
+  'field-badge-scaffolding-I3oUjpmda7g.json',
+);
 
 describe('fixtures — every real event validates against the real message-boundary shape guards', () => {
-  it('loaded without throwing (assertValidFixtureEvents ran for all 6 fixtures above)', () => {
+  it('loaded without throwing (assertValidFixtureEvents ran for all 7 fixtures above)', () => {
     // If any fixture's events failed isPlayerResponseEventShape/isDomAdEventShape, or
     // contained a BEACON event, toFixture() above would have thrown during module load
     // and this entire test file would fail to even start — this assertion just gives
@@ -111,6 +117,7 @@ describe('fixtures — every real event validates against the real message-bound
         rewatchStripped,
         specialAgeRestricted,
         specialNonYpp,
+        fieldBadgeScaffolding,
       ].every((fixture) => fixture.events.length > 0),
     ).toBe(true);
   });
@@ -228,5 +235,41 @@ describe('classify — real spike captures (specials)', () => {
   it('iwW3qjvkFZE (channel removed from YPP, real playabilityStatus OK): valid fresh observer → NO_ADS', () => {
     const result = classify(specialNonYpp.events, contextFromFixture(specialNonYpp));
     expect(result.state).toBe('NO_ADS');
+  });
+});
+
+describe('classify — FIELD BUG 2026-07-11: ad-badge-seen scaffolding falsely flips ADS_SERVED', () => {
+  // Fixture is RECONSTRUCTED from the owner's popup bug report, NOT a spike capture —
+  // see field-badge-scaffolding-I3oUjpmda7g.json's _meta.PROVENANCE. Two videos were
+  // reported (I3oUjpmda7g, j61hDDHfphM) with the identical evidence pattern; only the
+  // first was built as a fixture (coordinator's instruction).
+  //
+  // THIS TEST IS EXPECTED TO FAIL against the CURRENT, unfixed classifier.ts: today,
+  // source A absent + any DOM event with no matching *-start (badge-only) is treated as
+  // an ambient "preroll" and returns ADS_SERVED (classifier.ts's typeDomEventsByContentTime
+  // badge-only rule) — that is precisely the reported bug: a non-monetized channel's empty
+  // ytp-ad-* DOM scaffolding was misread as "ad playing". The assertions below encode the
+  // AGREED FIX (a new noSignalCause 'anomalous-ad-ui-only'), not current behavior — do not
+  // "fix" this test to match today's output; production is what must change (CLAUDE.md:
+  // every field bug becomes a test fixture before it is fixed).
+  //
+  // 'anomalous-ad-ui-only' does not exist on the NoSignalCause union in utils/types.ts yet
+  // (intentionally not added here — production code is out of scope for this fixture);
+  // referencing it as a plain string literal is deliberate so this file still type-checks
+  // as "no overlap" only on this one comparison, without blocking `vitest run` (Vitest
+  // transpiles via esbuild and does not type-check test files — the same reasoning
+  // test/storage-payload.test.ts's header comment documents for its `satisfies` gate).
+  it('I3oUjpmda7g: A absent + badge-only DOM, valid FRESH non-rewatch observer → NO_SIGNAL anomalous-ad-ui-only (never ADS_SERVED, never NO_ADS)', () => {
+    const result = classify(
+      fieldBadgeScaffolding.events,
+      contextFromFixture(fieldBadgeScaffolding, {
+        observerValidity: { valid: true },
+        recentlyWatched: false,
+      }),
+    );
+    expect(result.noSignalCause).toBe('anomalous-ad-ui-only');
+    expect(result.state).toBe('NO_SIGNAL');
+    expect(result.state).not.toBe('ADS_SERVED');
+    expect(result.state).not.toBe('NO_ADS');
   });
 });
