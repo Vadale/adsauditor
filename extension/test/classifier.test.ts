@@ -70,7 +70,7 @@ function context(overrides: Partial<ClassifierContext> = {}): ClassifierContext 
     isLoggedIn: true,
     countryHint: null,
     extensionVersion: '0.0.0-test',
-    observerValid: true,
+    observerValidity: { valid: true },
     recentlyWatched: false,
     ...overrides,
   };
@@ -146,16 +146,39 @@ describe('classify — NO_SIGNAL discipline (invariant 5)', () => {
     expect(result.noSignalCause).toBe('recent-rewatch');
   });
 
-  it('absence with an invalid observer → NO_SIGNAL observer-invalid, never NO_ADS', () => {
-    const result = classify([playerResponse()], context({ observerValid: false }));
+  it.each([
+    'adblock-suspected',
+    'premium-suspected',
+    'calibration-failed',
+    'uncalibrated',
+  ] as const)(
+    'absence with an invalid observer (%s) → NO_SIGNAL with that exact cause, never NO_ADS',
+    (cause) => {
+      const result = classify(
+        [playerResponse()],
+        context({ observerValidity: { valid: false, cause } }),
+      );
+      expect(result.state).toBe('NO_SIGNAL');
+      expect(result.noSignalCause).toBe(cause);
+    },
+  );
+
+  it('an invalid observer cause wins over recent-rewatch (invalidity is ranked first)', () => {
+    const result = classify(
+      [playerResponse()],
+      context({
+        observerValidity: { valid: false, cause: 'uncalibrated' },
+        recentlyWatched: true,
+      }),
+    );
     expect(result.state).toBe('NO_SIGNAL');
-    expect(result.noSignalCause).toBe('observer-invalid');
+    expect(result.noSignalCause).toBe('uncalibrated');
   });
 
   it('positive placements still classify ADS_SERVED even for an invalid observer', () => {
     const result = classify(
       [playerResponse({ adPlacements: greenPlacements(2) })],
-      context({ observerValid: false }),
+      context({ observerValidity: { valid: false, cause: 'uncalibrated' } }),
     );
     expect(result.state).toBe('ADS_SERVED');
   });

@@ -9,11 +9,18 @@
  * 2. Own a MutationObserver on `#movie_player` watching for the `ad-showing` /
  *    `ad-interrupting` classes and ad badge elements, emitting DomAdEvent (SPEC §3.2,
  *    source B) to background.ts.
+ * 3. Run the ROADMAP §1.3 calibration probes when background.ts says they're due: the
+ *    adblock bait-vs-control fetch and the Premium masthead-badge DOM check. Both need a
+ *    real tab/page context, which is why they live here rather than in the service
+ *    worker.
  *
  * All CSS selectors and JSON paths come from utils/selectors.ts — never inline here
  * (CLAUDE.md).
  */
+import { PROBE_TIMEOUT_MS, interpretAdblockProbe } from '../utils/calibration';
+import type { ProbeOutcome } from '../utils/calibration';
 import {
+  adblockProbe,
   bridgeChannel,
   bridgeMessageTypes,
   domAdStateClasses,
@@ -32,6 +39,9 @@ declare global {
 
 const MOVIE_PLAYER_ATTACH_RETRY_MS = 500;
 const MOVIE_PLAYER_ATTACH_MAX_RETRIES = 30; // ~15s window covering the initial load
+
+const PREMIUM_CHECK_RETRY_MS = 500;
+const PREMIUM_CHECK_MAX_RETRIES = 20; // ~10s window for the masthead to render
 
 function getWatchUrlVideoId(): string | null {
   try {
@@ -236,11 +246,89 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
         // Fire-and-forget, same as the event forwards above.
       });
   }
+
+  // ---------------------------------------------------------------------------------
+  // ROADMAP §1.3 calibration probes: background.ts is the source of truth for "is a
+  // check due" (cached timestamps + TTLs); this content script only runs the probes it
+  // is told to run and reports the raw result back.
+  // ---------------------------------------------------------------------------------
+  function sendCalibrationResult(payload: Record<string, unknown>): void {
+    browser.runtime
+      .sendMessage({ kind: runtimeMessageKinds.calibrationResult, ...payload })
+      .catch(() => {
+        // Fire-and-forget, same as the event forwards above.
+      });
+  }
+
+  /** GET, no-cors/no-credentials/no-cache (SPEC §3.4 adblock probe): we only care
+   * whether the request resolved, was rejected (blocked, DNS failure, ...), or hung past
+   * PROBE_TIMEOUT_MS — never the (opaque, unreadable in no-cors mode) response body. */
+  function runProbeFetch(url: string): Promise<ProbeOutcome> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
+    return fetch(url, {
+      method: 'GET',
+      mode: 'no-cors',
+      credentials: 'omit',
+      cache: 'no-store',
+      signal: controller.signal,
+    })
+      .then((): ProbeOutcome => 'resolved')
+      .catch((): ProbeOutcome => (controller.signal.aborted ? 'timeout' : 'rejected'))
+      .finally(() => clearTimeout(timeoutId));
+  }
+
+  function runAdblockProbe(): void {
+    Promise.all([runProbeFetch(adblockProbe.baitUrl), runProbeFetch(adblockProbe.controlUrl)])
+      .then(([bait, control]) => {
+        const status = interpretAdblockProbe(bait, control);
+        sendCalibrationResult({ adblock: { status, checkedAt: Date.now() } });
+      })
+      .catch((err) => {
+        console.warn('[AdsAuditor] Adblock probe failed unexpectedly', err);
+      });
+  }
+
+  /** Reuses the movie-player attach retry pattern (ctx.setTimeout, so pending retries
+   * are cleaned up automatically if the content script context is invalidated
+   * mid-retry). Stops as soon as the badge selector matches, or after
+   * PREMIUM_CHECK_MAX_RETRIES — whichever comes first; a non-match at that point is
+   * reported as `detected: false` (selectors.ts documents the false-negative tradeoff of
+   * the still-unverified selector; SPEC §3.4's control-video calibration is the
+   * backstop). No logged-in gating: logged-out browsing cannot be Premium ad-free
+   * browsing, so `detected: false` is truthful in that case too (deliberate
+   * simplification, ROADMAP §1.3).
+   */
+  function checkPremiumBadge(retriesLeft: number): void {
+    const detected = document.querySelector(selectors.mastheadPremiumBadge) !== null;
+    if (detected || retriesLeft <= 0) {
+      sendCalibrationResult({ premium: { detected, checkedAt: Date.now() } });
+      return;
+    }
+    ctx.setTimeout(() => checkPremiumBadge(retriesLeft - 1), PREMIUM_CHECK_RETRY_MS);
+  }
+
+  function requestCalibrationDue(): void {
+    browser.runtime
+      .sendMessage({ kind: runtimeMessageKinds.calibrationDueQuery })
+      .then((response: unknown) => {
+        if (!isRecord(response)) return;
+        if (response.runAdblockCheck === true) runAdblockProbe();
+        if (response.runPremiumCheck === true) checkPremiumBadge(PREMIUM_CHECK_MAX_RETRIES);
+      })
+      .catch(() => {
+        // background.ts may be waking from suspension / unreachable; nothing to recover
+        // here, and the next due-query (next navigation) will retry.
+      });
+  }
+
   notifyPageNavigated();
+  requestCalibrationDue();
 
   // --- SPA navigation: re-attempt attach (no-op once attached) + re-prime state --
   ctx.addEventListener(document, YT_NAVIGATE_FINISH_EVENT, () => {
     notifyPageNavigated();
+    requestCalibrationDue();
 
     // YouTube can tear down and recreate #movie_player across some navigations; an
     // observer bound to a disconnected element would go silent for the rest of the tab

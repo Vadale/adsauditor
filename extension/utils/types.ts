@@ -230,24 +230,49 @@ export function isDomAdEventShape(value: unknown): value is DomAdEvent {
 // classify() output (SPEC §3.2 cross-reference table, §3.3 taxonomy).
 // ---------------------------------------------------------------------------------
 
+/**
+ * Why this observer (this browser, right now) is not trusted for a NO_ADS verdict
+ * (SPEC §3.4, ROADMAP §1.3). Computed by utils/calibration.ts's resolveObserverValidity
+ * from local-only calibration state (adblock bait-fetch, Premium heuristic,
+ * control-video outcomes) — never derived from or sent as telemetry.
+ */
+export type ObserverInvalidCause =
+  /** The adblock bait-vs-control probe (utils/calibration.ts interpretAdblockProbe)
+   * came back 'blocked'. */
+  | 'adblock-suspected'
+  /** The YouTube Premium masthead badge was detected (utils/selectors.ts
+   * mastheadPremiumBadge) — Premium sessions can be genuinely ad-free. */
+  | 'premium-suspected'
+  /** A control video (utils/control-videos.ts) came back with zero ad evidence on a
+   * fresh (non-rewatch) watch — SPEC §3.4's calibration backstop. Automatically clears
+   * once a later ADS_SERVED observation advances lastPositiveEvidenceAt past it. */
+  | 'calibration-failed'
+  /** No recent positive control observation exists yet (or it aged out of
+   * POSITIVE_EVIDENCE_WINDOW_MS) — the default state for a browser that hasn't proven
+   * it can see ads at all. */
+  | 'uncalibrated';
+
+/** `{ valid: true }` — the observer is calibrated and a NO_ADS verdict is trustworthy —
+ * or `{ valid: false; cause }` naming which check failed (ROADMAP §1.3). */
+export type ObserverValidity = { valid: true } | { valid: false; cause: ObserverInvalidCause };
+
 /** Why classify() returned NO_SIGNAL (SPEC §3.4). */
 export type NoSignalCause =
   /** No player response was ever captured for this video (page not fully loaded, wrong
    * page, or the bridge never relayed one). */
   | 'no-player-response'
-  /** Context says this observer failed adblock/Premium/control-video calibration
-   * (SPEC §3.4). The specific checks are ROADMAP §1.3 — this cause is generic until
-   * they land. */
-  | 'observer-invalid'
-  /** No ad evidence was found, but this browser watched this exact video recently.
-   * Rewatch frequency capping strips ad placements server-side (spike/RESULTS.md §3.5,
-   * §5), so an absence of evidence here is NOT NO_ADS evidence. */
-  | 'recent-rewatch'
   /** A beacon fired with no placement and no ad UI — not a SPEC §3.2 table row. Cannot
    * distinguish an in-player impression from unrelated ad traffic, so it never counts
    * as ADS_SERVED; tracked separately because a systematic rise in beacon-only sessions
    * is an early SSAI-rollout / beacon-attribution warning. */
-  | 'anomalous-beacon-only';
+  | 'anomalous-beacon-only'
+  /** No ad evidence was found, but this browser watched this exact video recently.
+   * Rewatch frequency capping strips ad placements server-side (spike/RESULTS.md §3.5,
+   * §5), so an absence of evidence here is NOT NO_ADS evidence. */
+  | 'recent-rewatch'
+  /** Context says this observer failed adblock/Premium/control-video calibration
+   * (SPEC §3.4, ROADMAP §1.3) — see ObserverInvalidCause for which specific check. */
+  | ObserverInvalidCause;
 
 /**
  * ADS_SERVED detail (SPEC §3.3's `{preroll, midrolls, postroll, sources}`), extended
@@ -280,14 +305,15 @@ export interface ClassificationResult {
 
 /**
  * Local-only classifier input: extends the telemetry-safe VideoContext (SPEC §3.3) with
- * two flags the classifier needs to apply NO_SIGNAL discipline (SPEC §3.4) but that must
- * NEVER be part of any payload leaving the browser. The checks that compute these two
- * flags (adblock bait-fetch, Premium heuristic, control-video calibration, local rewatch
- * history) are ROADMAP §1.3 — out of scope here, which only types their shape.
+ * two fields the classifier needs to apply NO_SIGNAL discipline (SPEC §3.4) but that
+ * must NEVER be part of any payload leaving the browser. Both are computed by
+ * utils/calibration.ts (adblock bait-fetch, Premium heuristic, control-video
+ * calibration, local rewatch history — ROADMAP §1.3) and are local-only, never sent.
  */
 export interface ClassifierContext extends VideoContext {
-  /** False when this observer failed adblock/Premium/control-video calibration (SPEC §3.4). */
-  observerValid: boolean;
+  /** Computed by utils/calibration.ts's resolveObserverValidity; local-only, never
+   * leaves the browser (SPEC §3.4). */
+  observerValidity: ObserverValidity;
   /** True when this browser watched this exact video recently (spike/RESULTS.md §3.5). */
   recentlyWatched: boolean;
 }

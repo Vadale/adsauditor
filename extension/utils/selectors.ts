@@ -21,6 +21,18 @@ export const selectors = {
   /** Matches any of YouTube's `.ytp-ad-*` ad UI elements (badge, skip button, countdown,
    * overlay) — bridge.content.ts's badge-sighting MutationObserver callback. */
   adBadgeElements: '[class*="ytp-ad-"]',
+  /**
+   * YouTube Premium masthead badge (ROADMAP §1.3, SPEC §3.4 Premium heuristic).
+   *
+   * UNVERIFIED: there is no Premium account in the project yet, so this compound
+   * selector is a best-effort guess pending a Premium beta tester / the §1.5 manual
+   * checklist. A no-match degrades to `detected: false` BY DESIGN — false negatives here
+   * are caught by the control-video calibration backstop (SPEC §3.4), never silently
+   * trusted as "definitely not Premium". Do not tighten NO_SIGNAL discipline around this
+   * selector alone.
+   */
+  mastheadPremiumBadge:
+    'ytd-topbar-logo-renderer ytd-logo[is-premium-logo], ytd-masthead #logo [aria-label*="Premium"]',
 } as const;
 
 /** #movie_player classList values toggled while an ad is playing — bridge.content.ts's
@@ -68,6 +80,31 @@ export const runtimeMessageKinds = {
    * video's session (§1.2 review finding). The `tabs` permission (which would expose
    * tab URLs directly) stays out of the manifest — invariant 7. */
   pageNavigated: 'ADSAUDITOR_PAGE_NAVIGATED',
+  /** Sent by bridge.content.ts on load and on every yt-navigate-finish (ROADMAP §1.3).
+   * background.ts replies with `{ runAdblockCheck, runPremiumCheck }` computed from
+   * cached calibration timestamps (uses the sendResponse-callback + `return true`
+   * pattern for cross-browser MV3 async-response safety). */
+  calibrationDueQuery: 'ADSAUDITOR_CALIBRATION_DUE_QUERY',
+  /** Sent by bridge.content.ts after running an adblock and/or Premium probe; carries a
+   * partial `{ adblock?, premium? }` CalibrationState update (ROADMAP §1.3). */
+  calibrationResult: 'ADSAUDITOR_CALIBRATION_RESULT',
+} as const;
+
+/**
+ * Adblock bait-vs-control probe targets (ROADMAP §1.3, SPEC §3.4). `baitUrl` is the
+ * canonical EasyList-blocked adsbygoogle.js request, already covered by the existing
+ * `*.googlesyndication.com` host_permissions entry (CLAUDE.md invariant 7 untouched —
+ * no new permission needed). `markerParam` lets background.ts's webRequest listener
+ * recognize and drop this self-generated request before it's misread as a real ad
+ * beacon (it originates in a real tab, so the tabId<0 guard alone does not catch it).
+ * `controlUrl` is a plain YouTube endpoint no blocklist targets, used to tell "network is
+ * down" apart from "this specific request was blocked" (utils/calibration.ts
+ * interpretAdblockProbe).
+ */
+export const adblockProbe = {
+  baitUrl: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?adsauditor_probe=1',
+  markerParam: 'adsauditor_probe',
+  controlUrl: 'https://www.youtube.com/generate_204',
 } as const;
 
 /**
@@ -91,6 +128,18 @@ export const beaconUrlMatchPatterns = [
   'https://googleads.g.doubleclick.net/*',
   'https://*.googlesyndication.com/*',
 ] as const;
+
+/**
+ * Narrower single-pattern match, ROADMAP §1.3: background.ts's
+ * `webRequest.onBeforeRedirect` listener uses this (not the full 4-pattern
+ * beaconUrlMatchPatterns list) to watch for REDIRECT-style ad blocking of our own
+ * adblock bait request (adblockProbe.baitUrl) specifically — see that file's
+ * `mergeCalibrationResult` and utils/calibration.ts's interpretAdblockProbe doc comment
+ * for why a redirected-not-cancelled bait request needs this separate signal. Already
+ * covered by the existing `*.googlesyndication.com` host_permissions entry (CLAUDE.md
+ * invariant 7 untouched).
+ */
+export const googlesyndicationRedirectMatchPattern = 'https://*.googlesyndication.com/*' as const;
 
 /**
  * Plain substrings/hostnames used to classify a URL that already matched

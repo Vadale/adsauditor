@@ -14,7 +14,7 @@ Open source observatory of YouTube ad delivery: a browser extension (Chrome/Edge
 ## Current Status
 
 - Phase: **1 — extension MVP, started 2026-07-03 under a conditional GO** (owner-authorized; see `spike/RESULTS.md` §6). Phase 0 artifacts: `spike/` tool, `dataset.json`, `analyze.py`, `RESULTS.md` with provisional thresholds (§4) — green signature validated 2/2, yellow signature is a *hypothesis* pending §1.5 checklist + beta-tester data.
-- Progress: §1.1 scaffold and §1.2 detection engine done, reviewed, committed (15 classifier unit tests). Until §1.3 lands, `observerValid` defaults to false: absences surface as NO_SIGNAL, never NO_ADS. Next: §1.3 → §1.4 → §1.5 → gate (manual checklist, owner) → v0.1.0.
+- Progress: §1.1 scaffold, §1.2 detection engine, and §1.3 NO_SIGNAL calibration done, reviewed, committed (66 unit tests). Observer validity comes from `extension/utils/calibration.ts`: adblock bait probe (with redirect-to-stub detection), Premium masthead heuristic (selector unverified, degrades to not-detected), passive control-video calibration, 72 h positive-evidence window, 24 h rewatch index. Absences from invalid/uncalibrated observers surface as NO_SIGNAL with a specific cause, never NO_ADS. Next: §1.4 → §1.5 → gate (manual checklist, owner) → v0.1.0.
 - Standing constraints from the spike: rewatch frequency capping makes absence-evidence on rewatched videos worthless (classifier must flag it); control-video calibration must use fresh videos; collection instructions for humans must use full watch URLs, never bare IDs.
 - The owner runs no further manual collection; recruit beta testers for calibration (ROADMAP §2.5) before freezing Phase 2 consensus thresholds.
 

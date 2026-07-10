@@ -9,8 +9,10 @@
  * own.
  *
  * NO_SIGNAL calibration (adblock bait-fetch, Premium heuristic, control-video
- * calibration, local rewatch history) is ROADMAP §1.3: this module only consumes the
- * resulting `observerValid` / `recentlyWatched` flags via ClassifierContext.
+ * calibration, local rewatch history) lives in utils/calibration.ts (ROADMAP §1.3):
+ * this module only consumes the resulting `observerValidity` / `recentlyWatched` fields
+ * via ClassifierContext, and never ranks the four ObserverInvalidCause values against
+ * each other — that priority order is calibration.ts's resolveObserverValidity's job.
  */
 import { adPlacementKinds } from './selectors';
 import type {
@@ -146,7 +148,7 @@ function finalize(
  * | present | not seen | — | ADS_SERVED (decision made, playback not observed) |
  * | absent | not seen | absent | NO_ADS only if the observer is valid |
  * | absent | seen | seen | Anomaly (SSAI suspected) -> ADS_SERVED, B/C take precedence |
- * | — | — | blocked/failed | Suspected adblock -> NO_SIGNAL (observerValid=false upstream) |
+ * | — | — | blocked/failed | Suspected adblock -> NO_SIGNAL (observerValidity.valid=false upstream) |
  *
  * "A absent, B not seen, C seen" is NOT a row in the table: a beacon alone (no
  * placement, no ad UI) cannot distinguish an in-player impression from unrelated ad
@@ -250,9 +252,16 @@ export function classify(
   }
 
   // Absence-of-evidence verdicts below this line are only meaningful for a calibrated
-  // observer on a fresh watch (SPEC §3.2 row 3, invariant 5).
-  if (!context.observerValid) {
-    return finalize({ state: 'NO_SIGNAL', noSignalCause: 'observer-invalid' }, 0, context);
+  // observer on a fresh watch (SPEC §3.2 row 3, invariant 5). Observer invalidity still
+  // outranks recent-rewatch: an invalid observer's rewatch is primarily an invalid
+  // observer, and calibration.ts's resolveObserverValidity has already resolved which
+  // of the four ObserverInvalidCause values applies — classify() just relays it.
+  if (!context.observerValidity.valid) {
+    return finalize(
+      { state: 'NO_SIGNAL', noSignalCause: context.observerValidity.cause },
+      0,
+      context,
+    );
   }
 
   if (context.recentlyWatched) {
