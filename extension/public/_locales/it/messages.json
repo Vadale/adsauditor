@@ -1,0 +1,222 @@
+{
+  "stateChipAdsServed": {
+    "message": "Annunci mostrati",
+    "description": "Popup state chip label for ADS_SERVED"
+  },
+  "stateChipNoAds": {
+    "message": "Nessun annuncio",
+    "description": "Popup state chip label for NO_ADS"
+  },
+  "stateChipNoSignal": {
+    "message": "Nessun segnale",
+    "description": "Popup state chip label for NO_SIGNAL"
+  },
+  "stateChipUnavailable": {
+    "message": "Non disponibile",
+    "description": "Popup state chip label for UNAVAILABLE"
+  },
+  "headlineAdsServed": {
+    "message": "In questa visione: annunci mostrati",
+    "description": "Popup headline for ADS_SERVED"
+  },
+  "headlineNoAds": {
+    "message": "Nessun annuncio osservato in questa visione.",
+    "description": "Popup headline for NO_ADS"
+  },
+  "noAdsDisclaimer": {
+    "message": "Questo NON significa necessariamente che il video sia demonetizzato.",
+    "description": "Mandatory honest-language disclaimer under the NO_ADS headline (CLAUDE.md invariant 4)"
+  },
+  "headlineNoSignal": {
+    "message": "Al momento questo browser non può produrre dati validi sull'assenza di annunci.",
+    "description": "Popup headline for NO_SIGNAL"
+  },
+  "headlineUnavailable": {
+    "message": "Video non disponibile (privato, rimosso o con restrizioni).",
+    "description": "Popup headline for UNAVAILABLE"
+  },
+  "headlineNoSession": {
+    "message": "Apri un video di YouTube per vedere il suo stato di erogazione degli annunci.",
+    "description": "Popup headline shown when there is no active watch-page session"
+  },
+  "evidenceDetailLine": {
+    "message": "Preroll: $1 · $2 mid-roll · Postroll: $3",
+    "description": "ADS_SERVED detail line; $1/$3 are yes/no words, $2 is the mid-roll count"
+  },
+  "yesWord": {
+    "message": "sì",
+    "description": "Generic affirmative used inside evidenceDetailLine"
+  },
+  "noWord": {
+    "message": "no",
+    "description": "Generic negative used inside evidenceDetailLine"
+  },
+  "ssaiAnomalyLine": {
+    "message": "È stata osservata l'interfaccia pubblicitaria senza una decisione sugli annunci nei dati del player — pattern insolito (possibile inserimento pubblicitario lato server).",
+    "description": "Shown when evidence.ssaiAnomalySuspected is true"
+  },
+  "causeAdblockSuspected": {
+    "message": "Sembra attivo un ad blocker, quindi l'assenza di annunci non può essere misurata.",
+    "description": "NO_SIGNAL cause: adblock-suspected"
+  },
+  "causePremiumSuspected": {
+    "message": "Sembra attivo YouTube Premium, quindi gli annunci non sono previsti.",
+    "description": "NO_SIGNAL cause: premium-suspected"
+  },
+  "causeUncalibrated": {
+    "message": "Non ancora calibrato: finora non è stato osservato alcun annuncio su nessun video.",
+    "description": "NO_SIGNAL cause: uncalibrated"
+  },
+  "causeCalibrationFailed": {
+    "message": "Questo browser non ha ricevuto annunci su un video di controllo noto per essere monetizzato.",
+    "description": "NO_SIGNAL cause: calibration-failed"
+  },
+  "causeRecentRewatch": {
+    "message": "Hai guardato questo video di recente — YouTube limita gli annunci ripetuti, quindi questa visione non può dimostrare nulla.",
+    "description": "NO_SIGNAL cause: recent-rewatch"
+  },
+  "causeNoPlayerResponse": {
+    "message": "Nessun dato del player è stato catturato in questa pagina.",
+    "description": "NO_SIGNAL cause: no-player-response"
+  },
+  "causeAnomalousBeaconOnly": {
+    "message": "È stato rilevato solo traffico di rete pubblicitaria, senza una decisione sugli annunci né interfaccia pubblicitaria — non sufficiente per trarre conclusioni.",
+    "description": "NO_SIGNAL cause: anomalous-beacon-only"
+  },
+  "causeGeneric": {
+    "message": "Osservatore non calibrato.",
+    "description": "Fallback for an unrecognized/future NO_SIGNAL cause value"
+  },
+  "openSettingsLink": {
+    "message": "Apri le impostazioni",
+    "description": "Button label opening the options page from a NO_SIGNAL notice"
+  },
+  "evidenceSectionTitle": {
+    "message": "Prove",
+    "description": "Popup section title for the per-source evidence list"
+  },
+  "evidenceSourcePlayerResponse": {
+    "message": "Risposta del player (A)",
+    "description": "Evidence row label for source A"
+  },
+  "evidenceSourceDom": {
+    "message": "DOM (B)",
+    "description": "Evidence row label for source B"
+  },
+  "evidenceSourceBeacons": {
+    "message": "Beacon di rete (C)",
+    "description": "Evidence row label for source C"
+  },
+  "evidencePresent": {
+    "message": "presente",
+    "description": "Evidence row marker when a source contributed to an ADS_SERVED result"
+  },
+  "evidenceAbsent": {
+    "message": "assente",
+    "description": "Evidence row marker when a source did not contribute to an ADS_SERVED result"
+  },
+  "evidenceNotApplicable": {
+    "message": "—",
+    "description": "Evidence row marker for any non-ADS_SERVED state"
+  },
+  "confidenceHigh": {
+    "message": "Alta (tutte e tre le fonti concordano)",
+    "description": "Qualitative confidence line, 3 sources"
+  },
+  "confidenceMedium": {
+    "message": "Media (due fonti)",
+    "description": "Qualitative confidence line, 2 sources"
+  },
+  "confidenceSingle": {
+    "message": "Fonte singola",
+    "description": "Qualitative confidence line, 1 source"
+  },
+  "historyTitle": {
+    "message": "Cronologia recente",
+    "description": "Popup local history section title"
+  },
+  "historySearchPlaceholder": {
+    "message": "Filtra per ID video…",
+    "description": "Placeholder for the history search input"
+  },
+  "historyEmpty": {
+    "message": "Nessun video osservato finora.",
+    "description": "Empty state when local history has no entries at all"
+  },
+  "historyNoMatches": {
+    "message": "Nessun video corrisponde a questo filtro.",
+    "description": "Empty state when the search filter matches nothing"
+  },
+  "relativeJustNow": {
+    "message": "proprio ora",
+    "description": "Relative time, under one minute ago"
+  },
+  "relativeMinutesAgo": {
+    "message": "$1 min fa",
+    "description": "Relative time in minutes; $1 is the count"
+  },
+  "relativeHoursAgo": {
+    "message": "$1 h fa",
+    "description": "Relative time in hours; $1 is the count"
+  },
+  "relativeDaysAgo": {
+    "message": "$1 g fa",
+    "description": "Relative time in days; $1 is the count"
+  },
+  "optionsHeading": {
+    "message": "AdsAuditor — Impostazioni",
+    "description": "Options page heading"
+  },
+  "optionsIntro": {
+    "message": "AdsAuditor è local-first: nulla di ciò che guardi lascia questo browser. Una telemetria aggregata e opt-in è prevista in una fase successiva e sarà disattivata di default finché non la abiliti esplicitamente.",
+    "description": "Options page intro paragraph (CLAUDE.md invariant 1)"
+  },
+  "calibrationSectionTitle": {
+    "message": "Stato della calibrazione",
+    "description": "Options page section title"
+  },
+  "calibrationAdblockLabel": {
+    "message": "Controllo ad blocker",
+    "description": "Options page calibration row label"
+  },
+  "calibrationPremiumLabel": {
+    "message": "Controllo YouTube Premium",
+    "description": "Options page calibration row label"
+  },
+  "calibrationLastPositiveLabel": {
+    "message": "Ultima prova positiva di annuncio",
+    "description": "Options page calibration row label"
+  },
+  "calibrationLastControlFailureLabel": {
+    "message": "Ultimo fallimento su video di controllo",
+    "description": "Options page calibration row label"
+  },
+  "calibrationStatusClear": {
+    "message": "Nessun blocco",
+    "description": "Adblock check result: no blocker detected"
+  },
+  "calibrationStatusBlocked": {
+    "message": "Bloccato",
+    "description": "Adblock check result: blocker detected"
+  },
+  "calibrationStatusInconclusive": {
+    "message": "Non conclusivo",
+    "description": "Adblock check result: could not determine"
+  },
+  "calibrationPremiumDetected": {
+    "message": "Rilevato",
+    "description": "Premium check result: badge found"
+  },
+  "calibrationPremiumNotDetected": {
+    "message": "Non rilevato",
+    "description": "Premium check result: badge not found"
+  },
+  "calibrationNeverChecked": {
+    "message": "Mai controllato finora",
+    "description": "Shown when a calibration check has not run yet"
+  },
+  "calibrationNever": {
+    "message": "Nessuno finora",
+    "description": "Shown when a calibration timestamp is null"
+  }
+}

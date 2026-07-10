@@ -10,6 +10,9 @@ export default defineConfig({
     name: 'AdsAuditor',
     description:
       'Observes whether YouTube is actually serving ads on the video you are watching. Local-first, opt-in telemetry.',
+    // ROADMAP §1.4: popup/options strings ship as _locales messages (English source,
+    // Italian translation) rather than hardcoded literals. Not a permission change.
+    default_locale: 'en',
     permissions: ['storage', 'webRequest'],
     host_permissions: [
       'https://www.youtube.com/*',

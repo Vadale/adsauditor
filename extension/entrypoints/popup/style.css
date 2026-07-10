@@ -1,4 +1,5 @@
-/* TODO(§1.4): dark, minimal popup design (traffic-light badge, evidence list, history). */
+/* Dark, minimal popup design (ROADMAP §1.4): state chip + honest-language headline,
+ * per-source evidence list, NO_SIGNAL notice, and searchable local history. */
 
 :root {
   color-scheme: dark;
@@ -8,15 +9,229 @@
     'Segoe UI',
     Roboto,
     sans-serif;
+  --bg: #1a1a1a;
+  --bg-elevated: #242424;
+  --border: #333333;
+  --text: rgba(255, 255, 255, 0.87);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --link: #8ab4f8;
+  --green: #1e8e3e;
+  --amber: #f9ab00;
+  --gray: #5f6368;
+  --red: #d93025;
 }
 
 body {
   margin: 0;
-  min-width: 320px;
-  background-color: #1a1a1a;
-  color: rgba(255, 255, 255, 0.87);
+  width: 360px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 13px;
 }
 
 #app {
-  padding: 1rem;
+  padding: 12px 14px 16px;
+  box-sizing: border-box;
+}
+
+.app-header {
+  margin-bottom: 10px;
+}
+
+.app-name {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.section {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.state-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.state-chip--ads-served {
+  background-color: var(--green);
+  color: #ffffff;
+}
+
+.state-chip--no-ads {
+  background-color: var(--amber);
+  color: #111111;
+}
+
+.state-chip--no-signal {
+  background-color: var(--gray);
+  color: #ffffff;
+}
+
+.state-chip--unavailable {
+  background-color: var(--red);
+  color: #ffffff;
+}
+
+/* Fallback for a state value not recognized at render time (ROADMAP §1.4 review fix) —
+ * a corrupt/legacy history entry or a version-mismatched live response, never thrown. */
+.state-chip--unknown {
+  background-color: var(--gray);
+  color: #ffffff;
+}
+
+.state-chip--small {
+  font-size: 10px;
+  padding: 1px 6px;
+  margin-bottom: 0;
+}
+
+.headline {
+  margin: 4px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.detail,
+.disclaimer,
+.ssai-note {
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.disclaimer {
+  font-style: italic;
+}
+
+.no-signal-cause {
+  margin-top: 6px;
+}
+
+.no-signal-cause p {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--link);
+  cursor: pointer;
+  padding: 4px 0;
+  font-size: 12px;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.evidence-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.evidence-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 12px;
+}
+
+.evidence-label {
+  color: var(--text-muted);
+}
+
+.confidence-line {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.history-search {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 8px;
+  font-family: inherit;
+}
+
+.history-search::placeholder {
+  color: var(--text-muted);
+}
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.history-row:last-child {
+  border-bottom: none;
+}
+
+.history-video-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--link);
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-video-id:hover {
+  text-decoration: underline;
+}
+
+.history-time {
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.history-empty {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin: 4px 0 0;
 }

@@ -34,6 +34,13 @@ import {
   googlesyndicationRedirectMatchPattern,
   runtimeMessageKinds,
 } from '../utils/selectors';
+import {
+  CALIBRATION_STORAGE_KEY,
+  LOCAL_HISTORY_KEY,
+  LOCAL_SESSIONS_FALLBACK_KEY,
+  REWATCH_INDEX_STORAGE_KEY,
+  SESSION_STORAGE_KEY,
+} from '../utils/storage-keys';
 import { isDomAdEventShape, isPlayerResponseEventShape, isRecord } from '../utils/types';
 import type {
   BeaconEvent,
@@ -42,6 +49,7 @@ import type {
   ClassifierContext,
   DetectionEvent,
   LocalHistoryEntry,
+  ObservedState,
   PlayerResponseEvent,
 } from '../utils/types';
 
@@ -73,17 +81,56 @@ interface VideoSessionState {
 
 type PersistedSessions = Record<string, VideoSessionState>;
 
-const SESSION_STORAGE_KEY = 'session:adsauditor_sessions' as const;
-const LOCAL_SESSIONS_FALLBACK_KEY = 'local:adsauditor_sessions_fallback' as const;
-const LOCAL_HISTORY_KEY = 'local:adsauditor_history' as const;
-const CALIBRATION_STORAGE_KEY = 'local:adsauditor_calibration' as const;
-const REWATCH_INDEX_STORAGE_KEY = 'local:adsauditor_rewatch_index' as const;
-
 const FLUSH_DEBOUNCE_MS = 250;
 const MAX_HISTORY_ENTRIES = 50; // ROADMAP §1.4 local history cap
 
 function isPlayerResponseEvent(event: DetectionEvent): event is PlayerResponseEvent {
   return event.source === 'PLAYER_RESPONSE';
+}
+
+// ---------------------------------------------------------------------------------
+// Icon badge, per tab (ROADMAP §1.4). Extension-owned UI, not YouTube-facing, so these
+// colors do NOT belong in utils/selectors.ts (that file is reserved for YouTube-facing
+// selectors/JSON paths and this extension's own cross-world protocol constants).
+// ---------------------------------------------------------------------------------
+const BADGE_COLOR_BY_STATE: Record<ObservedState, string> = {
+  ADS_SERVED: '#1e8e3e',
+  NO_ADS: '#f9ab00',
+  NO_SIGNAL: '#5f6368',
+  UNAVAILABLE: '#d93025',
+};
+
+/**
+ * Deterministic short text per state, rather than a single-space badge relying on color
+ * alone: whether a colored badge renders clearly with no text on both Chrome and
+ * Firefox cannot be verified here (no browser to run this in) — the ROADMAP §1.5 manual
+ * checklist verifies actual badge rendering on both. Distinguishable text is the safe
+ * default regardless of that outcome.
+ */
+const BADGE_TEXT_BY_STATE: Record<ObservedState, string> = {
+  ADS_SERVED: 'AD',
+  NO_ADS: '0',
+  NO_SIGNAL: '?',
+  UNAVAILABLE: '✕',
+};
+
+async function setTabBadge(tabId: number, state: ObservedState): Promise<void> {
+  try {
+    await browser.action.setBadgeBackgroundColor({ tabId, color: BADGE_COLOR_BY_STATE[state] });
+    await browser.action.setBadgeText({ tabId, text: BADGE_TEXT_BY_STATE[state] });
+  } catch (err) {
+    // The tab can close between classify() finishing and this call running; nothing to
+    // recover from here.
+    console.warn(`[AdsAuditor] Failed to set badge for tab ${tabId}`, err);
+  }
+}
+
+async function clearTabBadge(tabId: number): Promise<void> {
+  try {
+    await browser.action.setBadgeText({ tabId, text: '' });
+  } catch (err) {
+    console.warn(`[AdsAuditor] Failed to clear badge for tab ${tabId}`, err);
+  }
 }
 
 // ---------------------------------------------------------------------------------
@@ -316,6 +363,17 @@ async function flushTabs(tabIds: number[]): Promise<void> {
       const result = classify(session.events, buildClassifierContext(session, calibration));
       await appendLocalHistory(session.videoId, result);
 
+      // ROADMAP §1.4 review fix: this flush was scheduled (scheduleFlush's 250ms
+      // debounce) while the tab was still on this session's video, but the tab can
+      // SPA-navigate away before the debounce fires. If it did, handlePageNavigated
+      // already cleared the badge for wherever the tab is now — setting it here
+      // unconditionally would overwrite that clear with a stale verdict for a page the
+      // tab has already left, and since SPA navigations are same-document the browser
+      // never repaints/clears the badge on its own to correct it.
+      if (session.currentPageVideoId === session.videoId) {
+        await setTabBadge(tabId, result.state);
+      }
+
       if (result.state === 'ADS_SERVED') {
         calibration.lastPositiveEvidenceAt = Date.now();
       }
@@ -409,6 +467,18 @@ async function handlePageNavigated(tabId: number, pageVideoId: string | null): P
     await evaluateSessionEndControl(session);
   }
 
+  if (pageVideoId !== session.videoId) {
+    // ROADMAP §1.4 review fix: clear on ANY departure from this session's video, not
+    // just a departure to a non-watch page. A same-tab switch to a DIFFERENT video also
+    // needs this — otherwise, if the new video never produces a single event (e.g. a
+    // YouTube markup change silently breaks all three capture paths, or the new video
+    // genuinely has no ads and beacons are dropped by the videoId guard), the OLD
+    // video's badge would sit there, unrelated to anything on screen, for the entire
+    // new viewing. The new video's own flush (scheduleFlush) re-sets the badge to its
+    // own state moments later in the normal path, once it has something to classify.
+    void clearTabBadge(tabId);
+  }
+
   session.currentPageVideoId = pageVideoId;
   session.updatedAt = Date.now();
   enqueueWrite(() => persistSessionsMap(sessions));
@@ -499,6 +569,52 @@ async function handleCalibrationDueQuery(
   if (premiumDue) premiumCheckClaimedAt = now;
 
   sendResponse({ runAdblockCheck: adblockDue, runPremiumCheck: premiumDue });
+}
+
+/**
+ * Popup <-> background tab-state query (ROADMAP §1.4, runtimeMessageKinds.tabStateQuery).
+ * Unlike every other message kind handled below, this one can arrive with NO
+ * `sender.tab` — the popup is an extension page, not a content script — so the caller
+ * validates and unwraps `tabId` from the message itself (see the onMessage listener)
+ * before this runs. Classification is computed on demand, the same way flushTabs()
+ * does it, rather than cached: the popup wants the freshest possible read, not
+ * whatever was true at the last debounced flush.
+ */
+async function handleTabStateQuery(
+  tabId: number,
+  sendResponse: (response?: unknown) => void,
+): Promise<void> {
+  try {
+    const sessions = await getSessionsMap();
+    const session = sessions.get(tabId);
+    if (!session || session.videoId === null) {
+      sendResponse(null);
+      return;
+    }
+    // ROADMAP §1.4 review fix: sessions survive navigation (they're only replaced or
+    // torn down elsewhere), so `session.videoId` alone can name a video the tab isn't
+    // even showing anymore — e.g. watch page -> homepage leaves the session in place
+    // with currentPageVideoId now null. Without this check the popup would still say
+    // "On this viewing: ads served" for a page that has no video at all.
+    //
+    // KNOWN GAP this doesn't cover: a full cross-document navigation away from
+    // youtube.com (to an unrelated site) tears down bridge.content.ts without ever
+    // sending a final pageNavigated — the yt-navigate-finish event it relies on only
+    // fires for in-SPA transitions, not page unloads — so currentPageVideoId is never
+    // updated for that case and this guard can't see it. Accepted residual: documented
+    // here rather than solved, since detecting it would need a heuristic (e.g. a
+    // last-seen-activity timeout) of its own, out of scope for §1.4.
+    if (session.currentPageVideoId !== session.videoId) {
+      sendResponse(null);
+      return;
+    }
+    const calibration = await readCalibrationState();
+    const result = classify(session.events, buildClassifierContext(session, calibration));
+    sendResponse({ videoId: session.videoId, result });
+  } catch (err) {
+    console.error(`[AdsAuditor] tabStateQuery failed for tab ${tabId}`, err);
+    sendResponse(null);
+  }
 }
 
 /**
@@ -607,6 +723,24 @@ export default defineBackground(() => {
   // Registered synchronously for the same MV3 wake-reliability reason as above.
   browser.runtime.onMessage.addListener((message: unknown, sender, sendResponse) => {
     if (!isRecord(message) || typeof message.kind !== 'string') return undefined;
+
+    if (message.kind === runtimeMessageKinds.tabStateQuery) {
+      // CRITICAL: handled BEFORE the `sender.tab?.id` check below. The popup is an
+      // extension page, not a content script — its messages carry no `sender.tab` at
+      // all, so the generic check would silently drop this one. Extension pages are
+      // trusted senders, but the caller-supplied tabId is still shape-validated (a
+      // finite number) since it isn't derived from `sender.tab` here.
+      const queryTabId = message.tabId;
+      if (typeof queryTabId !== 'number' || !Number.isFinite(queryTabId)) {
+        sendResponse(null);
+        return undefined;
+      }
+      // Async response: sendResponse-callback + `return true`, same cross-browser MV3
+      // pattern as calibrationDueQuery below.
+      void handleTabStateQuery(queryTabId, sendResponse);
+      return true;
+    }
+
     const tabId = sender.tab?.id;
     if (tabId === undefined || tabId < 0) return undefined;
 

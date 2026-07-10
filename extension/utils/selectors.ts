@@ -88,6 +88,12 @@ export const runtimeMessageKinds = {
   /** Sent by bridge.content.ts after running an adblock and/or Premium probe; carries a
    * partial `{ adblock?, premium? }` CalibrationState update (ROADMAP §1.3). */
   calibrationResult: 'ADSAUDITOR_CALIBRATION_RESULT',
+  /** Sent by the popup (ROADMAP §1.4) with `{ tabId }` — NOT a content-script message,
+   * so it carries no `sender.tab`; background.ts must handle it before the
+   * `sender.tab?.id` check every other kind here relies on. Replies with
+   * `{ videoId, result } | null` (sendResponse-callback + `return true`, same
+   * cross-browser async pattern as calibrationDueQuery). */
+  tabStateQuery: 'ADSAUDITOR_TAB_STATE_QUERY',
 } as const;
 
 /**
