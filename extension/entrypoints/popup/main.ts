@@ -10,8 +10,15 @@
 import './style.css';
 import { runtimeMessageKinds } from '../../utils/selectors';
 import { formatRelativeTime } from '../../utils/relative-time';
-import { confidenceMessageKeyForSourceCount } from '../../utils/evidence-summary';
-import { LOCAL_HISTORY_KEY } from '../../utils/storage-keys';
+import {
+  adPlaybackObserved,
+  confidenceMessageKeyForSourceCount,
+} from '../../utils/evidence-summary';
+import { buildLocalExport } from '../../utils/local-export';
+import type { LocalExport } from '../../utils/local-export';
+import { EMPTY_CALIBRATION_STATE } from '../../utils/calibration';
+import type { CalibrationState } from '../../utils/calibration';
+import { CALIBRATION_STORAGE_KEY, LOCAL_HISTORY_KEY } from '../../utils/storage-keys';
 import { isRecord } from '../../utils/types';
 import type {
   AdEvidenceDetail,
@@ -100,6 +107,34 @@ function noSignalCauseMessageKey(cause: NoSignalCause | undefined): I18nMessageK
   return 'causeGeneric';
 }
 
+/** Same defensive pattern as applyStateChip: `state` is a value read back out of
+ * chrome.storage, only *typed* as ObservedState — an unrecognized string (legacy/
+ * mismatched-version data) falls back to the raw string rather than indexing
+ * STATE_CHIP_MESSAGE_KEY with an unknown key. */
+function stateLabel(state: ObservedState): string {
+  return state in STATE_CHIP_MESSAGE_KEY
+    ? browser.i18n.getMessage(STATE_CHIP_MESSAGE_KEY[state])
+    : state;
+}
+
+/**
+ * Finds the informative (state !== 'NO_SIGNAL') history entry for `videoId`, if one is
+ * stored (ROADMAP §1.6, owner-reported rewatch bug). History is deduped to at most one
+ * entry per videoId (utils/local-history.ts), and upsertLocalHistoryEntry() never lets a
+ * NO_SIGNAL observation overwrite an existing informative one for the same video. A
+ * stored NO_SIGNAL entry therefore usually means no informative entry existed — though
+ * not with certainty: the 50-entry cap can evict an old informative entry, after which
+ * a later NO_SIGNAL stores fresh. The consequence is only a missing "last valid
+ * observation" line. Returns null in that case: there is nothing valid to show.
+ */
+function findLastInformativeHistoryEntry(
+  entries: LocalHistoryEntry[],
+  videoId: string,
+): LocalHistoryEntry | null {
+  const entry = entries.find((e) => e.videoId === videoId);
+  return entry && entry.state !== 'NO_SIGNAL' ? entry : null;
+}
+
 async function queryActiveTabState(): Promise<TabStateResponse | null> {
   try {
     // Tab id is available WITHOUT the "tabs" permission (CLAUDE.md invariant 7); url/
@@ -157,14 +192,19 @@ function renderEvidenceSection(evidence: AdEvidenceDetail | null): void {
     : '';
 }
 
-function renderCurrentState(state: TabStateResponse | null): void {
+function renderCurrentState(
+  state: TabStateResponse | null,
+  historyEntries: LocalHistoryEntry[],
+): void {
   const chipEl = document.getElementById('state-chip') as HTMLElement;
   const headlineEl = document.getElementById('state-headline') as HTMLElement;
   const detailEl = document.getElementById('state-detail') as HTMLElement;
   const disclaimerEl = document.getElementById('state-disclaimer') as HTMLElement;
   const ssaiEl = document.getElementById('state-ssai') as HTMLElement;
+  const adDecisionNoteEl = document.getElementById('state-ad-decision-note') as HTMLElement;
   const causeSectionEl = document.getElementById('no-signal-cause') as HTMLElement;
   const causeTextEl = document.getElementById('no-signal-cause-text') as HTMLElement;
+  const lastValidEl = document.getElementById('last-valid-observation') as HTMLElement;
   const evidenceSectionEl = document.getElementById('evidence-section') as HTMLElement;
 
   chipEl.hidden = true;
@@ -174,8 +214,12 @@ function renderCurrentState(state: TabStateResponse | null): void {
   disclaimerEl.textContent = '';
   ssaiEl.hidden = true;
   ssaiEl.textContent = '';
+  adDecisionNoteEl.hidden = true;
+  adDecisionNoteEl.textContent = '';
   causeSectionEl.hidden = true;
   causeTextEl.textContent = '';
+  lastValidEl.hidden = true;
+  lastValidEl.textContent = '';
 
   if (!state) {
     evidenceSectionEl.hidden = true;
@@ -191,19 +235,37 @@ function renderCurrentState(state: TabStateResponse | null): void {
   applyStateChip(chipEl, result.state);
 
   if (result.state === 'ADS_SERVED') {
-    headlineEl.textContent = browser.i18n.getMessage('headlineAdsServed');
     const evidence = result.evidence ?? null;
-    if (evidence) {
-      detailEl.hidden = false;
-      detailEl.textContent = browser.i18n.getMessage('evidenceDetailLine', [
-        browser.i18n.getMessage(evidence.preroll ? 'yesWord' : 'noWord'),
-        String(evidence.midrolls),
-        browser.i18n.getMessage(evidence.postroll ? 'yesWord' : 'noWord'),
-      ]);
-      if (evidence.ssaiAnomalySuspected) {
-        ssaiEl.hidden = false;
-        ssaiEl.textContent = browser.i18n.getMessage('ssaiAnomalyLine');
+    // ROADMAP §1.6 owner-reported fix: SPEC §3.2 table row 2 ("decision made, playback
+    // not observed") is still correctly ADS_SERVED, but showing the SAME "ads served"
+    // copy in both cases overstates what was actually witnessed when source A's ad
+    // decision has no DOM/beacon corroboration at all. Defensive fallback to "observed"
+    // (the pre-existing, unconditional copy) when evidence itself is missing — that
+    // should never happen for a real ADS_SERVED result (see AdEvidenceDetail's doc
+    // comment), so it is not a case worth inventing new behavior for.
+    const playbackObserved = evidence ? adPlaybackObserved(evidence.sources) : true;
+
+    if (playbackObserved) {
+      headlineEl.textContent = browser.i18n.getMessage('headlineAdsServed');
+      if (evidence) {
+        detailEl.hidden = false;
+        detailEl.textContent = browser.i18n.getMessage('evidenceDetailLine', [
+          browser.i18n.getMessage(evidence.preroll ? 'yesWord' : 'noWord'),
+          String(evidence.midrolls),
+          browser.i18n.getMessage(evidence.postroll ? 'yesWord' : 'noWord'),
+        ]);
+        if (evidence.ssaiAnomalySuspected) {
+          ssaiEl.hidden = false;
+          ssaiEl.textContent = browser.i18n.getMessage('ssaiAnomalyLine');
+        }
       }
+    } else {
+      // Never assert anything about the creator's earnings either way (CLAUDE.md
+      // invariant 4) — the note only explains what WE measure (an ad-delivery
+      // decision), not what it implies about monetization.
+      headlineEl.textContent = browser.i18n.getMessage('headlineAdDecisionOnly');
+      adDecisionNoteEl.hidden = false;
+      adDecisionNoteEl.textContent = browser.i18n.getMessage('adDecisionOnlyNote');
     }
     renderEvidenceSection(evidence);
   } else if (result.state === 'NO_ADS') {
@@ -217,6 +279,19 @@ function renderCurrentState(state: TabStateResponse | null): void {
     causeTextEl.textContent = browser.i18n.getMessage(
       noSignalCauseMessageKey(result.noSignalCause),
     );
+
+    // ROADMAP §1.6 owner-reported fix: a rewatch (or any other NO_SIGNAL cause) on a
+    // video this browser already has an informative verdict for must not look like that
+    // verdict evaporated — see findLastInformativeHistoryEntry's doc comment for why
+    // history is guaranteed to still hold it.
+    const lastValid = findLastInformativeHistoryEntry(historyEntries, state.videoId);
+    if (lastValid) {
+      lastValidEl.hidden = false;
+      lastValidEl.textContent = browser.i18n.getMessage('lastValidObservation', [
+        stateLabel(lastValid.state),
+        formatRelativeTime(lastValid.observedAt),
+      ]);
+    }
     renderEvidenceSection(null);
   } else {
     // UNAVAILABLE
@@ -273,6 +348,67 @@ function renderHistory(entries: LocalHistoryEntry[], filter: string): void {
   );
 }
 
+// ---------------------------------------------------------------------------------
+// "Export JSON" (ROADMAP §1.7) — the local counterpart of the Phase 0 spike tool's
+// export button (spike/popup.js): Blob + object URL + a clicked, DOM-attached
+// `<a download>`. No `downloads` permission (CLAUDE.md invariant 7), no network call —
+// the file is written straight to the user's downloads via the browser's own save
+// mechanism, and sharing it onward is a separate, manual, voluntary action.
+// ---------------------------------------------------------------------------------
+
+function exportFilename(now: Date): string {
+  const pad = (n: number): string => String(n).padStart(2, '0');
+  const datePart = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  const timePart = `${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+  return `adsauditor-export-${datePart}T${timePart}.json`;
+}
+
+/** The revoke is deliberately delayed rather than immediate: some browsers can cancel
+ * an in-flight download if the object URL backing it is revoked too soon after
+ * anchor.click() returns (same timing the spike tool used — spike/popup.js). */
+const OBJECT_URL_REVOKE_DELAY_MS = 10_000;
+
+function triggerJsonDownload(payload: LocalExport): void {
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = exportFilename(new Date());
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(url), OBJECT_URL_REVOKE_DELAY_MS);
+}
+
+/**
+ * Reads history + calibration fresh from storage at click time (not whatever was cached
+ * at popup load — the user may have watched something new in the meantime) and builds
+ * the shareable export (utils/local-export.ts). Works with an empty history: an empty
+ * list is still a truthful, exportable snapshot ("nothing observed yet"), so this never
+ * refuses to export on that basis alone — only a genuine storage-read failure is worth
+ * surfacing, and even then only as a console warning (the button's disabled state,
+ * managed in init(), is the user-visible signal for a broken read).
+ */
+async function handleExportClick(): Promise<void> {
+  try {
+    const [history, calibration] = await Promise.all([
+      storage.getItem<LocalHistoryEntry[]>(LOCAL_HISTORY_KEY),
+      storage.getItem<CalibrationState>(CALIBRATION_STORAGE_KEY),
+    ]);
+    const payload = buildLocalExport(
+      history ?? [],
+      calibration ?? EMPTY_CALIBRATION_STATE,
+      browser.runtime.getManifest().version,
+      Date.now(),
+    );
+    triggerJsonDownload(payload);
+  } catch (err) {
+    console.warn('[AdsAuditor] Export JSON failed', err);
+  }
+}
+
 async function init(): Promise<void> {
   document.getElementById('evidence-title')!.textContent =
     browser.i18n.getMessage('evidenceSectionTitle');
@@ -286,14 +422,38 @@ async function init(): Promise<void> {
     browser.runtime.openOptionsPage();
   });
 
+  const exportButton = document.getElementById('export-json-button') as HTMLButtonElement;
+  exportButton.textContent = browser.i18n.getMessage('exportJson');
+  exportButton.title = browser.i18n.getMessage('exportJsonTooltip');
+  exportButton.addEventListener('click', () => {
+    void handleExportClick();
+  });
+
   let historyEntries: LocalHistoryEntry[] = [];
   searchInput.addEventListener('input', () => {
     renderHistory(historyEntries, searchInput.value);
   });
 
-  const [state, entries] = await Promise.all([queryActiveTabState(), loadHistory()]);
-  renderCurrentState(state);
-  historyEntries = entries;
+  // History is awaited BEFORE rendering the current-video state (ROADMAP §1.6):
+  // renderCurrentState's NO_SIGNAL branch looks up the current video in history to
+  // surface a preserved earlier informative verdict, so it needs historyEntries
+  // populated first, not the previous fire-and-forget-then-backfill order.
+  let state: TabStateResponse | null = null;
+  try {
+    const results = await Promise.all([queryActiveTabState(), loadHistory()]);
+    state = results[0];
+    historyEntries = results[1];
+  } catch (err) {
+    // queryActiveTabState() already catches its own failures and resolves null (see its
+    // own try/catch) — landing here means loadHistory()'s storage.getItem() rejected
+    // outright, something more fundamental than "no history yet". ROADMAP §1.7: Export
+    // JSON works fine with a genuinely empty history, but a file built while we can't
+    // even confirm storage is readable would misrepresent "we don't know" as "nothing
+    // observed" — disable the button rather than export a possibly-misleading empty file.
+    console.warn('[AdsAuditor] Failed to load popup state', err);
+    exportButton.disabled = true;
+  }
+  renderCurrentState(state, historyEntries);
   renderHistory(historyEntries, searchInput.value);
 }
 

@@ -377,6 +377,14 @@ export interface ClassifierContext extends VideoContext {
  * carry more than SPEC §3.3's minimal schema. When Phase 2 telemetry is implemented, it
  * MUST build its own separate minimal object from scratch — never serialize this type
  * directly onto the wire (CLAUDE.md invariant 2).
+ *
+ * SCHEMA CHANGE (ROADMAP §1.7, "Export JSON"): `durationS` was added deliberately for
+ * the local diagnostic export (utils/local-export.ts) — 8-minute midroll-eligibility
+ * analysis on a shared export needs the video's duration. Adding/removing a field here
+ * is EXPECTED to break test/storage-payload.test.ts's LOCAL_HISTORY_ENTRY_KEYS table and
+ * its representative-object expectations; that failure is the invariant-2 gate doing its
+ * job, not a bug — updating the test consciously alongside the schema (as done for this
+ * field) is the intended workflow, not something to work around.
  */
 export interface LocalHistoryEntry {
   videoId: string;
@@ -384,4 +392,8 @@ export interface LocalHistoryEntry {
   state: ObservedState;
   evidence?: AdEvidenceDetail;
   noSignalCause?: NoSignalCause;
+  /** Video duration in seconds, copied from ClassificationResult.videoDurationS.
+   * Optional: entries persisted before this field existed lack it, and old entries are
+   * never backfilled — the export (and any future reader) must tolerate its absence. */
+  durationS?: number;
 }

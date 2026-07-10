@@ -17,7 +17,15 @@
   },
   "headlineAdsServed": {
     "message": "In questa visione: annunci mostrati",
-    "description": "Popup headline for ADS_SERVED"
+    "description": "Popup headline for ADS_SERVED, when playback was actually observed (source B/C corroboration)"
+  },
+  "headlineAdDecisionOnly": {
+    "message": "Decisione pubblicitaria presente nei dati del player — nessun annuncio osservato durante questa visione.",
+    "description": "Popup headline for ADS_SERVED when only source A (the player response's ad decision) was seen, with no DOM/beacon corroboration that an ad actually played (ROADMAP §1.6)"
+  },
+  "adDecisionOnlyNote": {
+    "message": "Questo può accadere anche su video o canali non monetizzati dal creator: l'estensione osserva la decisione di YouTube sull'erogazione degli annunci, mai se il creator guadagna.",
+    "description": "Honest-language note shown under headlineAdDecisionOnly (CLAUDE.md invariant 4)"
   },
   "headlineNoAds": {
     "message": "Nessun annuncio osservato in questa visione.",
@@ -87,6 +95,10 @@
     "message": "Osservatore non calibrato.",
     "description": "Fallback for an unrecognized/future NO_SIGNAL cause value"
   },
+  "lastValidObservation": {
+    "message": "Ultima osservazione valida: $1 ($2)",
+    "description": "Shown under a NO_SIGNAL cause notice when an earlier informative (non-NO_SIGNAL) observation for this same video is preserved in local history (ROADMAP §1.6, owner-reported rewatch bug); $1 is the state chip label, $2 is a relative time"
+  },
   "openSettingsLink": {
     "message": "Apri le impostazioni",
     "description": "Button label opening the options page from a NO_SIGNAL notice"
@@ -138,6 +150,14 @@
   "historySearchPlaceholder": {
     "message": "Filtra per ID video…",
     "description": "Placeholder for the history search input"
+  },
+  "exportJson": {
+    "message": "Esporta JSON",
+    "description": "Button label for the local diagnostic export (ROADMAP §1.7)"
+  },
+  "exportJsonTooltip": {
+    "message": "Scarica un file diagnostico locale (cronologia e stato di calibrazione). Non viene inviato nulla: il file resta su questo dispositivo e condividerlo con il progetto è del tutto manuale e volontario.",
+    "description": "Tooltip/title for the Export JSON button, honest register (CLAUDE.md invariant 1)"
   },
   "historyEmpty": {
     "message": "Nessun video osservato finora.",

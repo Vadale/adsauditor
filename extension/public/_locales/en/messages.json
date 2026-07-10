@@ -17,7 +17,15 @@
   },
   "headlineAdsServed": {
     "message": "On this viewing: ads served",
-    "description": "Popup headline for ADS_SERVED"
+    "description": "Popup headline for ADS_SERVED, when playback was actually observed (source B/C corroboration)"
+  },
+  "headlineAdDecisionOnly": {
+    "message": "Ad decision present in the player data — no ad was observed playing during this viewing.",
+    "description": "Popup headline for ADS_SERVED when only source A (the player response's ad decision) was seen, with no DOM/beacon corroboration that an ad actually played (ROADMAP §1.6)"
+  },
+  "adDecisionOnlyNote": {
+    "message": "This can also happen on videos or channels that are not monetized by their creator: the extension observes YouTube's ad-delivery decision, never whether the creator earns.",
+    "description": "Honest-language note shown under headlineAdDecisionOnly (CLAUDE.md invariant 4)"
   },
   "headlineNoAds": {
     "message": "No ads observed on this viewing.",
@@ -87,6 +95,10 @@
     "message": "Observer not calibrated.",
     "description": "Fallback for an unrecognized/future NO_SIGNAL cause value"
   },
+  "lastValidObservation": {
+    "message": "Last valid observation: $1 ($2)",
+    "description": "Shown under a NO_SIGNAL cause notice when an earlier informative (non-NO_SIGNAL) observation for this same video is preserved in local history (ROADMAP §1.6, owner-reported rewatch bug); $1 is the state chip label, $2 is a relative time"
+  },
   "openSettingsLink": {
     "message": "Open settings",
     "description": "Button label opening the options page from a NO_SIGNAL notice"
@@ -138,6 +150,14 @@
   "historySearchPlaceholder": {
     "message": "Filter by video ID…",
     "description": "Placeholder for the history search input"
+  },
+  "exportJson": {
+    "message": "Export JSON",
+    "description": "Button label for the local diagnostic export (ROADMAP §1.7)"
+  },
+  "exportJsonTooltip": {
+    "message": "Downloads a local diagnostic file (history + calibration status). Nothing is sent anywhere — the file stays on this device, and sharing it with the project is entirely manual and voluntary.",
+    "description": "Tooltip/title for the Export JSON button, honest register (CLAUDE.md invariant 1)"
   },
   "historyEmpty": {
     "message": "No videos observed yet.",

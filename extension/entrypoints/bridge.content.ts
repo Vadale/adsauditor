@@ -340,8 +340,16 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
   notifyPageNavigated();
   requestCalibrationDue();
 
-  // --- SPA navigation: re-attempt attach (no-op once attached) + re-prime state --
-  ctx.addEventListener(document, YT_NAVIGATE_FINISH_EVENT, () => {
+  /**
+   * Shared by the yt-navigate-finish listener and the bfcache 'pageshow' listener below
+   * (ROADMAP §1.6): a bfcache restore resurrects the page without re-running
+   * document_start scripts or ever firing yt-navigate-finish (that event is specific to
+   * YouTube's own SPA router, which a bfcache restore bypasses entirely), so it needs
+   * exactly the same recovery as an ordinary SPA navigation — re-announce the page,
+   * re-check calibration due-ness, and re-attach/re-prime the MutationObserver if
+   * YouTube tore down and recreated #movie_player while the page was frozen.
+   */
+  function handleNavigationOrRestore(): void {
     notifyPageNavigated();
     requestCalibrationDue();
 
@@ -364,6 +372,18 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
       const el = document.getElementById(selectors.moviePlayerId);
       if (el) primeObserverState(el);
     }
+  }
+
+  // --- SPA navigation: re-attempt attach (no-op once attached) + re-prime state --
+  ctx.addEventListener(document, YT_NAVIGATE_FINISH_EVENT, handleNavigationOrRestore);
+
+  // --- bfcache restore: treat exactly like a fresh navigation (ROADMAP §1.6) -----
+  // See interceptor.content.ts's matching 'pageshow' listener for the same rationale:
+  // event.persisted === true means this 'pageshow' fired because the page was restored
+  // from the back/forward cache, not a normal load.
+  ctx.addEventListener(window, 'pageshow', (event: PageTransitionEvent) => {
+    if (!event.persisted) return;
+    handleNavigationOrRestore();
   });
 }
 

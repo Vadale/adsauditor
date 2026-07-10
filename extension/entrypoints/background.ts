@@ -27,7 +27,11 @@ import {
 } from '../utils/calibration';
 import type { AdblockStatus, CalibrationState } from '../utils/calibration';
 import { isControlVideo } from '../utils/control-videos';
-import { buildLocalHistoryEntry } from '../utils/local-history';
+import {
+  MAX_HISTORY_ENTRIES,
+  buildLocalHistoryEntry,
+  upsertLocalHistoryEntry,
+} from '../utils/local-history';
 import {
   adblockProbe,
   beaconUrlFragments,
@@ -83,7 +87,6 @@ interface VideoSessionState {
 type PersistedSessions = Record<string, VideoSessionState>;
 
 const FLUSH_DEBOUNCE_MS = 250;
-const MAX_HISTORY_ENTRIES = 50; // ROADMAP §1.4 local history cap
 
 /**
  * Security audit finding M2: the shape guards in utils/types.ts validate TYPES but not
@@ -238,11 +241,12 @@ function enqueueWrite(task: () => Promise<void>): void {
 
 async function appendLocalHistory(videoId: string, result: ClassificationResult): Promise<void> {
   const existing = (await storage.getItem<LocalHistoryEntry[]>(LOCAL_HISTORY_KEY)) ?? [];
-  const withoutThisVideo = existing.filter((entry) => entry.videoId !== videoId);
-  // Single construction path, kept in a pure module so the invariant-2 payload test
-  // exercises the real persisted shape (utils/local-history.ts).
+  // Single construction + merge path, kept in a pure module so the invariant-2 payload
+  // test exercises the real persisted shape AND so the rewatch-preservation rule
+  // (ROADMAP §1.6, owner-reported bug) is exercised the same way in production and in
+  // tests — see upsertLocalHistoryEntry's doc comment (utils/local-history.ts).
   const entry = buildLocalHistoryEntry(videoId, result, Date.now());
-  const next = [entry, ...withoutThisVideo].slice(0, MAX_HISTORY_ENTRIES);
+  const next = upsertLocalHistoryEntry(existing, entry, MAX_HISTORY_ENTRIES);
   await storage.setItem(LOCAL_HISTORY_KEY, next);
 }
 
@@ -490,11 +494,21 @@ async function handlePageNavigated(tabId: number, pageVideoId: string | null): P
   const session = sessions.get(tabId);
   if (!session) return;
 
-  if (session.videoId !== null && pageVideoId !== session.videoId) {
+  const departing = pageVideoId !== session.videoId;
+
+  // Stamp the tab's current page BEFORE any await below (§1.6 review finding):
+  // handlePageNavigated is invoked unserialized (void), so a LATER navigation's handler
+  // can run to completion inside our awaits. Stamping last would roll
+  // currentPageVideoId back to a page the tab already left — re-attributing homepage
+  // beacons to this session (the exact misattribution this field exists to prevent).
+  session.currentPageVideoId = pageVideoId;
+  session.updatedAt = Date.now();
+
+  if (session.videoId !== null && departing) {
     await evaluateSessionEndControl(session);
   }
 
-  if (pageVideoId !== session.videoId) {
+  if (departing) {
     // ROADMAP §1.4 review fix: clear on ANY departure from this session's video, not
     // just a departure to a non-watch page. A same-tab switch to a DIFFERENT video also
     // needs this — otherwise, if the new video never produces a single event (e.g. a
@@ -504,10 +518,26 @@ async function handlePageNavigated(tabId: number, pageVideoId: string | null): P
     // new viewing. The new video's own flush (scheduleFlush) re-sets the badge to its
     // own state moments later in the normal path, once it has something to classify.
     void clearTabBadge(tabId);
+  } else if (pageVideoId !== null) {
+    // ROADMAP §1.6 owner-reported fix: the tab RETURNED to this session's own video
+    // (browser back/forward, including a bfcache restore — see interceptor.content.ts's
+    // and bridge.content.ts's 'pageshow' listeners). The badge was cleared by the branch
+    // above when the tab first left this video, and fast back/forward can outpace every
+    // new detection event for this navigation entirely (SPA back-navigation reuses
+    // YouTube's cached player response with no /youtubei/v1/player fetch to intercept),
+    // which would otherwise leave the badge blank indefinitely instead of just briefly.
+    // Re-classify the session's ALREADY-accumulated events immediately — no need to wait
+    // for a new event that may never come — and re-set the badge to match.
+    const calibration = await readCalibrationState();
+    // Re-check after the await: a later navigation's handler may have moved the tab off
+    // this video while calibration was being read — painting now would restore a stale
+    // badge over that handler's clear (same staleness class as the flush-path guard).
+    if (session.currentPageVideoId === pageVideoId) {
+      const result = classify(session.events, buildClassifierContext(session, calibration));
+      void setTabBadge(tabId, result.state);
+    }
   }
 
-  session.currentPageVideoId = pageVideoId;
-  session.updatedAt = Date.now();
   enqueueWrite(() => persistSessionsMap(sessions));
 }
 

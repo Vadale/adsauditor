@@ -53,7 +53,23 @@ interface YouTubePlayerElement extends HTMLElement {
 
 const INITIAL_PLAYER_RESPONSE_RETRY_MS = 300;
 const INITIAL_PLAYER_RESPONSE_MAX_RETRIES = 20; // ~6s window: ytInitialPlayerResponse may not exist yet at document_start
-const CONFIRMATION_READ_DELAY_MS = 4000; // let the (new) video's player response settle before the on-demand read
+/**
+ * Confirmation-read retry ladder (ROADMAP §1.6, owner-reported "fast back/forward"
+ * bug): a single read at a fixed delay was too slow AND too sparse — SPA back-navigation
+ * can make YouTube reuse its cached player response with no /youtubei/v1/player fetch to
+ * intercept at all (path 2 never fires), so path 3's on-demand getPlayerResponse() read
+ * is sometimes the ONLY chance to observe a video's ad decision, and a single miss (user
+ * navigates on before the one scheduled read fires) meant no source-A signal for that
+ * viewing whatsoever.
+ *
+ * Early reads may return the PREVIOUS video's cached response (getPlayerResponse() can
+ * lag the URL change) — this is safe to fire anyway: background.ts's handleIncomingEvent
+ * drops any PLAYER_RESPONSE event whose videoId doesn't match its own pageVideoId, and
+ * classify() defensively re-applies the same filter, so a stale read is discarded
+ * downstream rather than corrupting the new video's session. That safety net is exactly
+ * what makes firing an aggressive ladder like this safe.
+ */
+const CONFIRMATION_READ_DELAYS_MS = [500, 1000, 2000, 4000] as const;
 const CONTENT_TIME_POLL_MS = 500; // granularity for the "last known content time" sample (SPEC §3.2)
 const BRIDGE_TOKEN_RETRY_MS = 200;
 const BRIDGE_TOKEN_MAX_RETRIES = 25;
@@ -267,22 +283,41 @@ function main(): void {
   }) as typeof window.fetch;
 
   // --- Path 3: movie_player.getPlayerResponse() on-demand confirmation read ------
-  let confirmationTimer: ReturnType<typeof setTimeout> | null = null;
-  function scheduleConfirmationRead(delayMs: number): void {
-    if (confirmationTimer) clearTimeout(confirmationTimer);
-    confirmationTimer = setTimeout(() => {
-      const el = getMoviePlayerElement();
-      if (el && typeof el.getPlayerResponse === 'function') {
-        try {
-          const pr = el.getPlayerResponse();
-          if (pr) emitPlayerResponseEvent(pr, 'getPlayerResponse');
-        } catch (err) {
-          console.warn('[AdsAuditor] getPlayerResponse confirmation read failed', err);
-        }
-      }
-    }, delayMs);
+  // Retry ladder (ROADMAP §1.6) — see CONFIRMATION_READ_DELAYS_MS's doc comment above
+  // for why a single fixed-delay read was replaced with several.
+  let confirmationTimers: ReturnType<typeof setTimeout>[] = [];
+
+  function cancelConfirmationLadder(): void {
+    confirmationTimers.forEach(clearTimeout);
+    confirmationTimers = [];
   }
-  scheduleConfirmationRead(CONFIRMATION_READ_DELAY_MS); // covers the first video too
+
+  function runConfirmationLadderStep(): void {
+    const el = getMoviePlayerElement();
+    if (!el || typeof el.getPlayerResponse !== 'function') return;
+    try {
+      const pr = el.getPlayerResponse();
+      if (!pr) return;
+      const event = buildPlayerResponseEvent(pr, 'getPlayerResponse');
+      postToBridge(bridgeMessageTypes.playerResponse, event);
+      if (event.videoId !== null && event.videoId === event.pageVideoId) {
+        // This read's videoId already matches the CURRENT page (pageVideoId is read
+        // fresh at build time, same as any other capture path) — no reason to keep
+        // polling the remaining rungs of this navigation's ladder.
+        cancelConfirmationLadder();
+      }
+    } catch (err) {
+      console.warn('[AdsAuditor] getPlayerResponse confirmation-ladder read failed', err);
+    }
+  }
+
+  function scheduleConfirmationLadder(): void {
+    cancelConfirmationLadder();
+    confirmationTimers = CONFIRMATION_READ_DELAYS_MS.map((delayMs) =>
+      setTimeout(runConfirmationLadderStep, delayMs),
+    );
+  }
+  scheduleConfirmationLadder(); // covers the first video too
 
   // ---------------------------------------------------------------------------------
   // Content-time sampler: samples getCurrentTime() every CONTENT_TIME_POLL_MS, but only
@@ -311,14 +346,29 @@ function main(): void {
   setInterval(sampleContentTimeIfNotInAd, CONTENT_TIME_POLL_MS);
 
   // --- SPA navigation: reset per-video MAIN-world state --------------------------
-  document.addEventListener(YT_NAVIGATE_FINISH_EVENT, () => {
+  function resetStaleStateForNavigation(): void {
     // Explicitly tell the bridge its last-known content time is stale: without this, an
     // ad that starts immediately on the NEW video (e.g. autoplay-to-next with an instant
     // preroll) would otherwise be attributed the PREVIOUS video's last sampled content
     // time — silently mistyped as a mid-roll instead of a preroll. The next
     // sampleContentTimeIfNotInAd() tick repopulates it with a fresh, correct value.
     postToBridge(bridgeMessageTypes.contentTimeSample, { contentTimeSeconds: null });
-    scheduleConfirmationRead(CONFIRMATION_READ_DELAY_MS);
+    scheduleConfirmationLadder();
+  }
+  document.addEventListener(YT_NAVIGATE_FINISH_EVENT, resetStaleStateForNavigation);
+
+  // --- bfcache restore: treat exactly like a fresh navigation (ROADMAP §1.6) -----
+  // A back/forward-cache restore resurrects the whole page (and this MAIN-world JS
+  // realm — window.__adsauditorInterceptorLoaded above is NOT reset, it was merely
+  // frozen and thawed, not reloaded) WITHOUT re-running document_start scripts and
+  // WITHOUT YouTube's own SPA router ever firing YT_NAVIGATE_FINISH_EVENT — that event
+  // is specific to YouTube's client-side navigation, which a bfcache restore bypasses
+  // entirely. Without this listener, returning to a bfcache-eligible watch page via
+  // browser back/forward would leave the content-time sample stale and start no fresh
+  // confirmation ladder at all.
+  window.addEventListener('pageshow', (event: PageTransitionEvent) => {
+    if (!event.persisted) return;
+    resetStaleStateForNavigation();
   });
 }
 

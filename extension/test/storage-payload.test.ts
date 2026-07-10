@@ -54,13 +54,19 @@ import type {
 // ---------------------------------------------------------------------------------
 
 /** Breaks `npm run typecheck` the moment LocalHistoryEntry gains or loses a field
- * (docs/ROADMAP.md §1.4's local-history shape, CLAUDE.md invariant 2). */
+ * (docs/ROADMAP.md §1.4's local-history shape, CLAUDE.md invariant 2).
+ *
+ * `durationS` (ROADMAP §1.7, "Export JSON") was added deliberately and this table was
+ * updated alongside it, consciously — that is the intended workflow for a schema
+ * change, not a gap being patched over. If this table ever needs updating again, that's
+ * this same gate doing its job, not a bug in the test. */
 const LOCAL_HISTORY_ENTRY_KEYS = {
   videoId: true,
   observedAt: true,
   state: true,
   evidence: true,
   noSignalCause: true,
+  durationS: true,
 } satisfies Record<keyof LocalHistoryEntry, true>;
 
 /** Breaks `npm run typecheck` the moment AdEvidenceDetail (the shape of
@@ -92,9 +98,9 @@ describe('storage-payload invariant — compile-time exhaustive key tables', () 
   // failure. Asserting Object.keys() here just gives `vitest run` something to report
   // when someone runs only `npm test` and skips `npm run typecheck`: a passing assertion
   // here is NOT proof the type-level gate exists — the satisfies clauses above are.
-  it('LOCAL_HISTORY_ENTRY_KEYS lists exactly the 5 documented LocalHistoryEntry keys', () => {
+  it('LOCAL_HISTORY_ENTRY_KEYS lists exactly the 6 documented LocalHistoryEntry keys', () => {
     expect(Object.keys(LOCAL_HISTORY_ENTRY_KEYS).sort()).toEqual(
-      ['evidence', 'noSignalCause', 'observedAt', 'state', 'videoId'].sort(),
+      ['durationS', 'evidence', 'noSignalCause', 'observedAt', 'state', 'videoId'].sort(),
     );
   });
 
@@ -165,7 +171,14 @@ const REPRESENTATIVE_VIDEO_CONTEXT: VideoContext = {
   extensionVersion: '0.1.0',
 };
 
-const EXPECTED_LOCAL_HISTORY_KEYS = ['evidence', 'noSignalCause', 'observedAt', 'state', 'videoId']
+const EXPECTED_LOCAL_HISTORY_KEYS = [
+  'durationS',
+  'evidence',
+  'noSignalCause',
+  'observedAt',
+  'state',
+  'videoId',
+]
   .slice()
   .sort();
 const EXPECTED_AD_EVIDENCE_KEYS = [
@@ -188,7 +201,7 @@ const EXPECTED_VIDEO_CONTEXT_KEYS = [
   .sort();
 
 describe('storage-payload invariant — LocalHistoryEntry runtime shape', () => {
-  it('an ADS_SERVED entry has exactly {videoId, observedAt, state, evidence, noSignalCause} and nothing more', () => {
+  it('an ADS_SERVED entry has exactly {videoId, observedAt, state, evidence, noSignalCause, durationS} and nothing more', () => {
     // buildLocalHistoryEntry always assigns noSignalCause (sometimes to undefined), so
     // Object.keys sees it — an omitted key would silently under-count and let a REAL
     // extra field slip past this exact check.
@@ -197,7 +210,7 @@ describe('storage-payload invariant — LocalHistoryEntry runtime shape', () => 
     );
   });
 
-  it('a NO_SIGNAL entry (evidence undefined, noSignalCause set) has exactly the same 5 keys', () => {
+  it('a NO_SIGNAL entry (evidence undefined, noSignalCause set) has exactly the same 6 keys', () => {
     expect(Object.keys(REPRESENTATIVE_NO_SIGNAL_ENTRY).sort()).toEqual(EXPECTED_LOCAL_HISTORY_KEYS);
   });
 
@@ -205,13 +218,15 @@ describe('storage-payload invariant — LocalHistoryEntry runtime shape', () => 
     // chrome.storage.local serializes via structured-clone-like JSON semantics; a
     // round-trip is the closest browser-free proxy for "what a read-back entry actually
     // looks like". `undefined`-valued keys (noSignalCause on the ADS_SERVED entry) drop
-    // out of JSON, same as they would from a real storage.local round-trip.
+    // out of JSON, same as they would from a real storage.local round-trip — durationS
+    // is a real number (1920, from ADS_SERVED_RESULT.videoDurationS) so, unlike
+    // noSignalCause, it survives the round-trip.
     const roundTripped = JSON.parse(JSON.stringify(REPRESENTATIVE_ADS_SERVED_ENTRY)) as Record<
       string,
       unknown
     >;
     expect(Object.keys(roundTripped).sort()).toEqual(
-      ['evidence', 'observedAt', 'state', 'videoId'].sort(),
+      ['durationS', 'evidence', 'observedAt', 'state', 'videoId'].sort(),
     );
   });
 

@@ -1,11 +1,13 @@
 /**
- * confidenceMessageKeyForSourceCount() unit tests (docs/ROADMAP.md §1.4/§1.5): pure
- * function, no browser dependency (utils/evidence-summary.ts). Pins the exact bucketing
- * — including the defensive out-of-[0,3]-range behavior the function's own doc comment
- * describes — rather than the range classify() is documented to actually produce.
+ * confidenceMessageKeyForSourceCount() / adPlaybackObserved() unit tests (docs/ROADMAP.md
+ * §1.4/§1.5/§1.6): pure functions, no browser dependency (utils/evidence-summary.ts).
+ * confidenceMessageKeyForSourceCount pins the exact bucketing — including the defensive
+ * out-of-[0,3]-range behavior the function's own doc comment describes — rather than the
+ * range classify() is documented to actually produce.
  */
 import { describe, expect, it } from 'vitest';
-import { confidenceMessageKeyForSourceCount } from '../utils/evidence-summary';
+import { adPlaybackObserved, confidenceMessageKeyForSourceCount } from '../utils/evidence-summary';
+import type { EvidenceSource } from '../utils/types';
 
 describe('confidenceMessageKeyForSourceCount — the three real source counts classify() can produce', () => {
   it('3 (all of PLAYER_RESPONSE/DOM/BEACON agree) → confidenceHigh', () => {
@@ -36,5 +38,17 @@ describe('confidenceMessageKeyForSourceCount — defensive behavior outside the 
 
   it('a negative count clamps to confidenceSingle (the >=3 and ===2 checks both fail) rather than throwing', () => {
     expect(confidenceMessageKeyForSourceCount(-1)).toBe('confidenceSingle');
+  });
+});
+
+describe('adPlaybackObserved — witnessed playback (DOM/BEACON) vs decision-only (PLAYER_RESPONSE) (ROADMAP §1.6)', () => {
+  it.each([
+    [['DOM'], true],
+    [['BEACON'], true],
+    [['PLAYER_RESPONSE'], false],
+    [['PLAYER_RESPONSE', 'DOM'], true],
+    [[], false],
+  ] as [EvidenceSource[], boolean][])('%j → %s', (sources, expected) => {
+    expect(adPlaybackObserved(sources)).toBe(expected);
   });
 });

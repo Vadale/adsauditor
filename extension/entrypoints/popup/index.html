@@ -21,8 +21,10 @@
         <p id="state-detail" class="detail" hidden></p>
         <p id="state-disclaimer" class="disclaimer" hidden></p>
         <p id="state-ssai" class="ssai-note" hidden></p>
+        <p id="state-ad-decision-note" class="ad-decision-note" hidden></p>
         <div id="no-signal-cause" class="no-signal-cause" hidden>
           <p id="no-signal-cause-text"></p>
+          <p id="last-valid-observation" class="last-valid-observation" hidden></p>
           <button id="open-settings-button" type="button" class="link-button"></button>
         </div>
       </section>
@@ -35,7 +37,10 @@
 
       <section class="section">
         <h2 id="history-title" class="section-title"></h2>
-        <input id="history-search" type="text" class="history-search" />
+        <div class="history-toolbar">
+          <input id="history-search" type="text" class="history-search" />
+          <button id="export-json-button" type="button" class="export-button"></button>
+        </div>
         <ul id="history-list" class="history-list"></ul>
         <p id="history-empty" class="history-empty" hidden></p>
       </section>
