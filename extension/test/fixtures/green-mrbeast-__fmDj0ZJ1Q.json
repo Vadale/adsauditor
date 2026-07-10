@@ -1,0 +1,234 @@
+{
+  "_meta": {
+    "description": "REAL capture, converted to DetectionEvent shapes. Do not hand-edit the events without updating this file's source pointers below.",
+    "sourceExport": "spike/exports/adsauditor-spike-export-2026-07-02T21-05-37-727Z.json",
+    "video": "__fmDj0ZJ1Q — MrBeast, ~32 min (spike/RESULTS.md §2 row 3, 'green (high)')",
+    "session": "logged-in, watched twice ~5.5 min apart in the same spike session",
+    "sourceRecords": [
+      {
+        "timestamp": "2026-07-02T20:53:39.572Z",
+        "type": "player_response",
+        "capturePath": "initial",
+        "note": "First load: 1 preroll + 14 midroll + 1 postroll placements (count 16) — RESULTS.md's '1/14/1'."
+      },
+      {
+        "timestamp": "2026-07-02T20:55:12.109Z",
+        "type": "dom_ad_event",
+        "event": "ad-showing-start",
+        "note": "Midroll played at content time ~707s (RESULTS.md: 'midrolls played at 707s and 781s')."
+      },
+      {
+        "timestamp": "2026-07-02T20:59:15.188Z",
+        "type": "player_response",
+        "capturePath": "initial",
+        "note": "Reload ~5.5 min later: identical 14 midroll + 1 postroll placements but the preroll placement is GONE (count 15) — RESULTS.md's '0/14/1' and the exact rewatch-frequency-capping effect documented in RESULTS.md §3.5. This is the real-data case for classify()'s union-preroll/latest-midroll-count rule."
+      },
+      {
+        "timestamp": "2026-07-02T20:59:15.826Z",
+        "type": "dom_ad_event",
+        "event": "ad-showing-start",
+        "note": "Midroll played at content time 781s, during the reload viewing."
+      }
+    ],
+    "eventOrderNote": "The `events` array below is ordered by real capturedAt (first load PR -> first midroll DOM -> reload PR -> second midroll DOM), not grouped by source — the first DOM ad sits chronologically between the two player_response reads. classify() is unaffected: it takes the LAST item in ARRAY ORDER among PLAYER_RESPONSE-filtered events as 'latest', and the reload response (20:59:15.188Z) is genuinely the chronologically later of the two placement-bearing reads either way, so it remains last after filtering regardless of where the DOM events are interleaved.",
+    "omittedFromExport": [
+      "A third full-set player_response pair at 2026-07-02T20:58:53.880Z (initial) / 20:58:58.066Z (getPlayerResponse), count 16, identical to the first load — redundant duplicate evidence, same rationale as the getPlayerResponse read below.",
+      "getPlayerResponse confirmation reads at 2026-07-02T20:53:43.808Z (count 16, identical adPlacements to the 20:53:39.572Z 'initial' read kept above) and 2026-07-02T20:58:58.066Z (part of the redundant reload pair above) — redundant duplicates of an already-kept placement-bearing read.",
+      "Fetch-path noise immediately following EACH 'initial'/'getPlayerResponse' read above (pageVideoId=__fmDj0ZJ1Q but a different/absent videoId): 2-3 records per read with videoId=null and note='no videoDetails' (malformed/prefetch reads with no videoDetails at all), one with videoId='ux' (2-character garbage from a non-canonical sibling endpoint — the /youtubei/v1/player/ad_break-class issue classifier.ts's summarizePlacementCounts doc comment describes), and one with an 11-character videoId that is an ad creative's OWN player response through the identical /youtubei/v1/player endpoint (dLCrtedz3dd at 20:53:39.627Z for the first load, W6kd21OkYpJ at 20:58:53.898Z for the omitted duplicate reload, c0xteAmUzvh at 20:59:15.423Z for the reload kept above). All real but exactly what the real pipeline drops: classify() and background.ts's handleIncomingEvent both filter on videoId !== pageVideoId (or a missing videoId) before an event would ever reach a session — omitted here for the identical reason, not fabricated absence.",
+      "Paired ad-interrupting-start events (millisecond-identical to the ad-showing-start timestamps above, spike-verified pairing) — redundant with the ad-showing-start events kept above.",
+      "ad-showing-end/ad-interrupting-end pairs for both midrolls (~707.3s and ~781s content time) — real but add no classification-relevant information here: since source A placements are present, classify() takes the placementsPresent branch and never calls typeDomEventsByContentTime (the only place DOM event kind/content-time matters); DOM evidence only needs to exist at all (domAdSeen = domAdEvents.length > 0) to add 'DOM' to sources, which the two ad-showing-start events already do."
+    ],
+    "conversionNotes": [
+      "adPlacements[].offsetStartMs/offsetEndMs converted from the raw export's strings to numbers (see green-mrbeast-iYlODtkyw_I.json's conversionNotes for the same protobuf-JSON int64-as-string quirk).",
+      "No BEACON events captured by the Phase 0 spike tool (see green-mrbeast-iYlODtkyw_I.json)."
+    ],
+    "expectedClassification": "ADS_SERVED, preroll=true (from the first read, unioned across responses despite the reload dropping it), midrolls=14 (latest placement-bearing read), postroll=true, sources=[PLAYER_RESPONSE, DOM] — matches RESULTS.md §2 row 3."
+  },
+  "events": [
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "initial",
+      "pageVideoId": "__fmDj0ZJ1Q",
+      "videoId": "__fmDj0ZJ1Q",
+      "durationSeconds": 1927,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [
+        { "kind": "AD_PLACEMENT_KIND_START", "offsetStartMs": 0, "offsetEndMs": -1 },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 187254,
+          "offsetEndMs": 322472
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 322472,
+          "offsetEndMs": 448133
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 448133,
+          "offsetEndMs": 570800
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 570800,
+          "offsetEndMs": 758109
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 758109,
+          "offsetEndMs": 862623
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 862623,
+          "offsetEndMs": 990050
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 990050,
+          "offsetEndMs": 1097242
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1097242,
+          "offsetEndMs": 1200589
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1200589,
+          "offsetEndMs": 1307347
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1307347,
+          "offsetEndMs": 1403433
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1403433,
+          "offsetEndMs": 1550280
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1550280,
+          "offsetEndMs": 1657580
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1657580,
+          "offsetEndMs": 1807166
+        },
+        { "kind": "AD_PLACEMENT_KIND_MILLISECONDS", "offsetStartMs": 1807166, "offsetEndMs": -1 },
+        { "kind": "AD_PLACEMENT_KIND_END", "offsetStartMs": -1, "offsetEndMs": -1 }
+      ],
+      "adSlots": [],
+      "playerAds": [{ "type": "playerLegacyDesktopWatchAdsRenderer" }],
+      "capturedAt": 1783025619572
+    },
+    {
+      "source": "DOM",
+      "kind": "ad-showing-start",
+      "watchUrlVideoId": "__fmDj0ZJ1Q",
+      "contentTimeSeconds": 706.959244,
+      "capturedAt": 1783025712109
+    },
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "initial",
+      "pageVideoId": "__fmDj0ZJ1Q",
+      "videoId": "__fmDj0ZJ1Q",
+      "durationSeconds": 1927,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 187254,
+          "offsetEndMs": 322472
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 322472,
+          "offsetEndMs": 448133
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 448133,
+          "offsetEndMs": 570800
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 570800,
+          "offsetEndMs": 758109
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 758109,
+          "offsetEndMs": 862623
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 862623,
+          "offsetEndMs": 990050
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 990050,
+          "offsetEndMs": 1097242
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1097242,
+          "offsetEndMs": 1200589
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1200589,
+          "offsetEndMs": 1307347
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1307347,
+          "offsetEndMs": 1403433
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1403433,
+          "offsetEndMs": 1550280
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1550280,
+          "offsetEndMs": 1657580
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1657580,
+          "offsetEndMs": 1807166
+        },
+        { "kind": "AD_PLACEMENT_KIND_MILLISECONDS", "offsetStartMs": 1807166, "offsetEndMs": -1 },
+        { "kind": "AD_PLACEMENT_KIND_END", "offsetStartMs": -1, "offsetEndMs": -1 }
+      ],
+      "adSlots": [
+        { "slotType": "SLOT_TYPE_PLAYER_BYTES" },
+        { "slotType": "SLOT_TYPE_ABOVE_FEED" },
+        { "slotType": "SLOT_TYPE_ABOVE_FEED" },
+        { "slotType": "SLOT_TYPE_IN_PLAYER" },
+        { "slotType": "SLOT_TYPE_IN_PLAYER" }
+      ],
+      "playerAds": [{ "type": "playerLegacyDesktopWatchAdsRenderer" }],
+      "capturedAt": 1783025955188
+    },
+    {
+      "source": "DOM",
+      "kind": "ad-showing-start",
+      "watchUrlVideoId": "__fmDj0ZJ1Q",
+      "contentTimeSeconds": 781,
+      "capturedAt": 1783025955826
+    }
+  ]
+}

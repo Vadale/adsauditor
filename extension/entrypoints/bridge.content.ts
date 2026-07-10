@@ -43,6 +43,15 @@ const MOVIE_PLAYER_ATTACH_MAX_RETRIES = 30; // ~15s window covering the initial 
 const PREMIUM_CHECK_RETRY_MS = 500;
 const PREMIUM_CHECK_MAX_RETRIES = 20; // ~10s window for the masthead to render
 
+/** Real YouTube ad UI uses a small, fixed set of `.ytp-ad-*` class names
+ * (spike-verified) — this cap only exists to bound a hostile page script that mutates
+ * the DOM under `#movie_player` with attacker-minted unique class names matching
+ * selectors.adBadgeElements, which would otherwise grow seenBadgeClassNames (and the
+ * resulting per-sighting `ad-badge-seen` forwards to background.ts) without bound
+ * (security audit finding M2). Per-video-session, not permanent: primeObserverState()
+ * clears the set on every yt-navigate-finish. */
+const MAX_SEEN_BADGE_CLASS_NAMES = 200;
+
 function getWatchUrlVideoId(): string | null {
   try {
     return new URLSearchParams(window.location.search).get('v');
@@ -177,6 +186,12 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
     // Dedupe per video session (spike lesson (c): the spike logged 168 duplicate
     // sightings of 24 useful events without this).
     if (seenBadgeClassNames.has(className)) return;
+    if (seenBadgeClassNames.size >= MAX_SEEN_BADGE_CLASS_NAMES) {
+      // See MAX_SEEN_BADGE_CLASS_NAMES's doc comment: once full, stop forwarding NEW
+      // badge sightings for the rest of this video session rather than growing the
+      // dedupe set (and the resulting message volume to background.ts) without bound.
+      return;
+    }
     seenBadgeClassNames.add(className);
     forwardDomAdEvent('ad-badge-seen');
   }

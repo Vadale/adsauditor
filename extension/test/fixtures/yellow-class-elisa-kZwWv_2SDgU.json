@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "description": "REAL capture, converted to DetectionEvent shapes. Do not hand-edit the events without updating this file's source pointers below.",
+    "sourceExport": "spike/exports/adsauditor-spike-export-2026-07-02T21-05-37-727Z.json",
+    "video": "kZwWv_2SDgU — Elisa True Crime, ~138 min (spike/RESULTS.md §2 row 4, 'yellow-class (low, off-dataset)')",
+    "session": "logged-in",
+    "note": "This is the hypothesized LIMITED signature (spike/RESULTS.md §3 finding 4, §4): uncalibrated, single low-confidence channel, direction not proof. classify() and this test assert only the observed DETAIL (preroll/midrolls/postroll/density) — the client NEVER infers a 'yellow' verdict (SPEC §1.1, §3.3): that inference happens server-side, with calibrated thresholds, not here.",
+    "sourceRecords": [
+      {
+        "timestamp": "2026-07-02T21:02:57.920Z",
+        "type": "dom_ad_event",
+        "event": "ad-showing-start",
+        "note": "RESULTS.md: 'one ad at t=0 (from adSlots)'. Source A's placements have NO preroll kind, but the DOM saw an ad start at content time 0. classify() gives source A precedence when placements are present (SPEC §3.2 table: 'present' rows use A's own preroll/midroll/postroll split; B only overrides when A is absent, row 4) — so this fixture's expected preroll stays FALSE, straight from the placement data, despite this DOM sighting. Chronologically FIRST (21:02:57.920Z), ~4.7s before the confirmation read below — the `events` array below is ordered by real capturedAt, not by source."
+      },
+      {
+        "timestamp": "2026-07-02T21:03:02.593Z",
+        "type": "player_response",
+        "capturePath": "getPlayerResponse",
+        "note": "Only placement-bearing response captured: 0 preroll, 5 midroll, 1 postroll placements (count 6, no AD_PLACEMENT_KIND_START) — RESULTS.md's '0/5/1'."
+      }
+    ],
+    "conversionNotes": [
+      "adPlacements[].offsetStartMs/offsetEndMs converted from the raw export's strings to numbers (see green-mrbeast-iYlODtkyw_I.json's conversionNotes for the same protobuf-JSON int64-as-string quirk).",
+      "No BEACON events captured by the Phase 0 spike tool (see green-mrbeast-iYlODtkyw_I.json).",
+      "41 ad-badge-element-seen sightings for kZwWv_2SDgU in this export (spike/exports/adsauditor-spike-export-2026-07-02T21-05-37-727Z.json — re-counted; 168 is iYlODtkyw_I's badge count in the OTHER export, spike/exports/adsauditor-spike-export-2026-07-02T20-42-17-215Z.json) omitted as redundant with the one ad-showing-start event kept above (see green-mrbeast-iYlODtkyw_I.json's omittedFromExport rationale)."
+    ],
+    "expectedClassification": "ADS_SERVED, preroll=false, midrolls=5, postroll=true, midrollDensityPerMinute = 5 / (8271/60) ≈ 0.0363/min (RESULTS.md §3 finding 4: 'midroll density 0.036/min, ≈12x sparser than greens'), sources=[PLAYER_RESPONSE, DOM]."
+  },
+  "events": [
+    {
+      "source": "DOM",
+      "kind": "ad-showing-start",
+      "watchUrlVideoId": "kZwWv_2SDgU",
+      "contentTimeSeconds": 0,
+      "capturedAt": 1783026177920
+    },
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "getPlayerResponse",
+      "pageVideoId": "kZwWv_2SDgU",
+      "videoId": "kZwWv_2SDgU",
+      "durationSeconds": 8271,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 1482372,
+          "offsetEndMs": 2678409
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 2678409,
+          "offsetEndMs": 4382105
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 4382105,
+          "offsetEndMs": 6684466
+        },
+        {
+          "kind": "AD_PLACEMENT_KIND_MILLISECONDS",
+          "offsetStartMs": 6684466,
+          "offsetEndMs": 7846965
+        },
+        { "kind": "AD_PLACEMENT_KIND_MILLISECONDS", "offsetStartMs": 7846965, "offsetEndMs": -1 },
+        { "kind": "AD_PLACEMENT_KIND_END", "offsetStartMs": -1, "offsetEndMs": -1 }
+      ],
+      "adSlots": [
+        { "slotType": "SLOT_TYPE_PLAYER_BYTES" },
+        { "slotType": "SLOT_TYPE_ABOVE_FEED" },
+        { "slotType": "SLOT_TYPE_ABOVE_FEED" },
+        { "slotType": "SLOT_TYPE_IN_PLAYER" },
+        { "slotType": "SLOT_TYPE_IN_PLAYER" }
+      ],
+      "playerAds": [{ "type": "playerLegacyDesktopWatchAdsRenderer" }],
+      "capturedAt": 1783026182593
+    }
+  ]
+}

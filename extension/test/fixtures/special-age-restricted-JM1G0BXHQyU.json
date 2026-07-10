@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "description": "REAL capture, converted to DetectionEvent shapes. Do not hand-edit the events without updating this file's source pointers below.",
+    "sourceExport": "spike/exports/adsauditor-spike-export-2026-07-02T21-05-37-727Z.json",
+    "video": "JM1G0BXHQyU — age-restricted trailer, 2 min (spike/RESULTS.md §2 row 6, 'special (high)')",
+    "session": "logged-in (adult account) — the only session this video was captured in",
+    "note": "IMPORTANT — encodes reality, does not fabricate: the real capture's playabilityStatusValue is 'OK' in every record (the observer was logged in as an adult, per RESULTS.md §2's 'session: logged-in (adult)'; RESULTS.md §3 finding 6 notes 'Age-restricted (logged-in adult): zero placements' as the observed behavior). There is NO logged-out capture of this video in any spike export, so no record ever carried playabilityStatus LOGIN_REQUIRED for it. Per the task's own conditional instruction, since the real data does not contain that variant, this fixture does NOT synthesize a LOGIN_REQUIRED/UNAVAILABLE case for this video — fixtures.test.ts asserts only the real NO_ADS-shaped absence. Generic (non-fixture-backed) playabilityStatus!=='OK' -> UNAVAILABLE coverage already exists in classifier.test.ts.",
+    "sourceRecords": [
+      {
+        "timestamp": "2026-07-02T21:00:01.769Z",
+        "type": "player_response",
+        "capturePath": "initial",
+        "note": "adPlacements empty (count 0), playabilityStatusValue 'OK' — 'absent' per RESULTS.md."
+      },
+      {
+        "timestamp": "2026-07-02T21:00:05.889Z",
+        "type": "player_response",
+        "capturePath": "getPlayerResponse",
+        "note": "Confirmation read, same result."
+      }
+    ],
+    "omittedFromExport": [
+      "No dom_ad_event records exist for this video in the raw export (verified: zero DOM records with watchUrlVideoId JM1G0BXHQyU) — 'none' DOM ads played, matching RESULTS.md's 'absent' / 'none' row. Nothing trimmed there; there is no DOM evidence to include.",
+      "Fetch-path noise immediately following the 'initial' read (pageVideoId=JM1G0BXHQyU but a different/absent videoId): three records at 2026-07-02T21:00:01.804Z-21:00:01.811Z with videoId=null and note='no videoDetails' (malformed/prefetch reads with no videoDetails at all), one with videoId='ux' (2-character garbage from a non-canonical sibling endpoint — the /youtubei/v1/player/ad_break-class issue classifier.ts's summarizePlacementCounts doc comment describes), and one with an 11-character videoId (4qnNRUoV5Ag at 21:00:01.820Z) that is an ad creative's OWN player response through the identical /youtubei/v1/player endpoint. All real but exactly what the real pipeline drops: classify() and background.ts's handleIncomingEvent both filter on videoId !== pageVideoId (or a missing videoId) before an event would ever reach a session — omitted here for the identical reason, not fabricated absence."
+    ],
+    "conversionNotes": [
+      "No BEACON events captured by the Phase 0 spike tool (see green-mrbeast-iYlODtkyw_I.json)."
+    ],
+    "expectedClassification": "playabilityStatus is 'OK' and all evidence is absent (no placements, no DOM, no beacon). With a valid, non-rewatch (fresh) observer -> NO_ADS, matching RESULTS.md's observed 'zero placements' for this special case."
+  },
+  "events": [
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "initial",
+      "pageVideoId": "JM1G0BXHQyU",
+      "videoId": "JM1G0BXHQyU",
+      "durationSeconds": 120,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [],
+      "adSlots": [],
+      "playerAds": [],
+      "capturedAt": 1783026001769
+    },
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "getPlayerResponse",
+      "pageVideoId": "JM1G0BXHQyU",
+      "videoId": "JM1G0BXHQyU",
+      "durationSeconds": 120,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [],
+      "adSlots": [],
+      "playerAds": [],
+      "capturedAt": 1783026005889
+    }
+  ]
+}

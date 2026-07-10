@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "description": "REAL capture, converted to DetectionEvent shapes. Do not hand-edit the events without updating this file's source pointers below.",
+    "sourceExport": "spike/exports/adsauditor-spike-export-2026-07-02T21-05-37-727Z.json",
+    "video": "iwW3qjvkFZE — ZGN channel, removed from YPP 04/2026, ~2.5 min (spike/RESULTS.md §2 row 7, 'special (high)')",
+    "session": "logged-in",
+    "note": "RESULTS.md §3 finding 6: a channel removed from YouTube Partner Program for inauthentic content showed zero placements, contradicting the 'YouTube may serve ads on non-YPP channels anyway' assumption (n=1). Also incidentally the shortest fixture video (154s, well under the 8-minute midroll-eligibility threshold from SPEC §4.1/spike/RESULTS.md §4) — classify() itself applies no duration threshold (that inference is server-side), so this is not asserted as a distinct branch, just noted for context.",
+    "sourceRecords": [
+      {
+        "timestamp": "2026-07-02T21:00:58.045Z",
+        "type": "player_response",
+        "capturePath": "initial",
+        "note": "adPlacements empty (count 0), playabilityStatusValue 'OK' — 'absent' per RESULTS.md."
+      },
+      {
+        "timestamp": "2026-07-02T21:01:02.280Z",
+        "type": "player_response",
+        "capturePath": "getPlayerResponse",
+        "note": "Confirmation read, same result."
+      }
+    ],
+    "omittedFromExport": [
+      "A second near-identical load/reload pair exists in the raw export at 2026-07-02T21:02:46.519Z / 21:02:50.898Z (same video, same result: adPlacements empty) — omitted as redundant duplicate evidence. No dom_ad_event records exist for this video in either load.",
+      "Fetch-path noise immediately following EACH 'initial' read (pageVideoId=iwW3qjvkFZE but a different/absent videoId), for both the kept load and the omitted duplicate reload: three records per load with videoId=null and note='no videoDetails' (malformed/prefetch reads with no videoDetails at all), one with videoId='ux' (2-character garbage from a non-canonical sibling endpoint — the /youtubei/v1/player/ad_break-class issue classifier.ts's summarizePlacementCounts doc comment describes), and one with an 11-character videoId that is an ad creative's OWN player response through the identical /youtubei/v1/player endpoint (hIrmRSR3K8b at 21:00:58.112Z for the kept load, DFQaUUPmLh6 at 21:02:46.740Z for the omitted duplicate reload). All real but exactly what the real pipeline drops: classify() and background.ts's handleIncomingEvent both filter on videoId !== pageVideoId (or a missing videoId) before an event would ever reach a session — omitted here for the identical reason, not fabricated absence."
+    ],
+    "conversionNotes": [
+      "No BEACON events captured by the Phase 0 spike tool (see green-mrbeast-iYlODtkyw_I.json)."
+    ],
+    "expectedClassification": "playabilityStatus is 'OK' and all evidence is absent (no placements, no DOM, no beacon). With a valid, non-rewatch (fresh) observer -> NO_ADS, matching RESULTS.md's observed 'zero placements' for this special case."
+  },
+  "events": [
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "initial",
+      "pageVideoId": "iwW3qjvkFZE",
+      "videoId": "iwW3qjvkFZE",
+      "durationSeconds": 154,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [],
+      "adSlots": [],
+      "playerAds": [],
+      "capturedAt": 1783026058045
+    },
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "getPlayerResponse",
+      "pageVideoId": "iwW3qjvkFZE",
+      "videoId": "iwW3qjvkFZE",
+      "durationSeconds": 154,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [],
+      "adSlots": [],
+      "playerAds": [],
+      "capturedAt": 1783026062280
+    }
+  ]
+}

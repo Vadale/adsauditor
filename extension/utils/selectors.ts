@@ -122,6 +122,17 @@ export const adblockProbe = {
 export const PLAYER_ENDPOINT_PATHNAME = '/youtubei/v1/player';
 
 /**
+ * YouTube video ID format: 11 characters, URL-safe base64 alphabet. This has been
+ * stable since YouTube's inception — this is the one place to relax it if that ever
+ * changes. Used by utils/types.ts's runtime shape guards to reject video-id fields
+ * (pageVideoId, videoId, watchUrlVideoId) that don't look like a real YouTube ID —
+ * part of hardening the MAIN-world postMessage trust boundary, where a hostile page
+ * script can read the session token (page-readable by design) and post arbitrary
+ * well-shaped events (security audit finding M2).
+ */
+export const VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
+
+/**
  * Source C beacon URL match patterns (Chrome match-pattern syntax) — background.ts's
  * `webRequest.onBeforeRequest` filter (SPEC §3.2). Must stay within CLAUDE.md invariant
  * 7's host permissions (youtube.com, doubleclick.net, googlesyndication.com); adding a

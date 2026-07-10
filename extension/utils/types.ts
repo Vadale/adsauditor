@@ -2,8 +2,10 @@
  * Shared types for the extension (docs/SPEC.md §3.3).
  *
  * Keep this file free of browser/DB imports — classifier.ts and the consensus function
- * depend on it and must stay pure.
+ * depend on it and must stay pure. Importing utils/selectors.ts is fine (plain data, no
+ * browser/DB dependency of its own — see that file's own header comment).
  */
+import { VIDEO_ID_PATTERN } from './selectors';
 
 /**
  * Observed states reported by the client — facts, not interpretations (SPEC §3.3).
@@ -137,72 +139,119 @@ export interface BeaconEvent {
 export type DetectionEvent = PlayerResponseEvent | DomAdEvent | BeaconEvent;
 
 // ---------------------------------------------------------------------------------
-// Runtime shape guards (ROADMAP §1.2 review round). Used at both the MAIN -> ISOLATED
-// postMessage boundary (bridge.content.ts, before forwarding) and the content ->
-// background runtime-message boundary (background.ts, before persisting into a
-// session) to validate-and-drop malformed events. A malformed event that slips through
-// (e.g. `adPlacements: [null]` instead of `AdPlacementItem[]`) would otherwise throw
-// inside classify() on every future flush of that tab, permanently poisoning its
-// session. Pure, no browser dependency — safe to import from any world/context.
+// Runtime shape guards (ROADMAP §1.2 review round; hardened per the pre-release
+// security audit, finding M2). Used at both the MAIN -> ISOLATED postMessage boundary
+// (bridge.content.ts, before forwarding) and the content -> background runtime-message
+// boundary (background.ts, before persisting into a session) to validate-and-drop
+// malformed events. A malformed event that slips through (e.g. `adPlacements: [null]`
+// instead of `AdPlacementItem[]`) would otherwise throw inside classify() on every
+// future flush of that tab, permanently poisoning its session.
+//
+// M2: the session token these boundaries rely on is page-readable BY DESIGN (SPEC
+// §3.2), so a hostile page script can post arbitrary WELL-SHAPED events — the type
+// checks alone don't bound their SIZE. Without the length/count/finiteness bounds
+// below, an attacker could exhaust storage.session's quota (unbounded strings/arrays)
+// or CPU-amplify classify() (arrays with hundreds of thousands of items). These bounds
+// are protocol-shape limits (this extension's own message shape), not YouTube-facing
+// values, so they live here rather than utils/selectors.ts.
+//
+// Pure, no browser dependency — safe to import from any world/context.
 // ---------------------------------------------------------------------------------
+
+/** Protocol-shape bound: no real free-text field (playabilityStatus, an
+ * adPlacements[].kind, etc.) is anywhere near this long — this only exists to cap what
+ * a forged event can make storage.session hold. */
+const MAX_STRING_FIELD_LENGTH = 256;
+
+/** Protocol-shape bound: real captures carry at most ~20 placement/slot/ad items per
+ * player response (spike/RESULTS.md); 200 leaves generous headroom while still bounding
+ * a forged event's array fields (unbounded arrays here are both a storage-quota and a
+ * classify()-CPU amplification vector — finding M2). */
+const MAX_EVENT_ARRAY_ITEMS = 200;
 
 export function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
 }
 
-function isStringOrNull(value: unknown): value is string | null {
-  return typeof value === 'string' || value === null;
+/** Bounded, not just typed: an unbounded string is itself part of finding M2 (storage
+ * quota exhaustion). */
+function isBoundedStringOrNull(value: unknown, maxLength: number): value is string | null {
+  return value === null || (typeof value === 'string' && value.length <= maxLength);
 }
 
-function isNumberOrNull(value: unknown): value is number | null {
-  return typeof value === 'number' || value === null;
+/** Video-id fields (pageVideoId, videoId, watchUrlVideoId) must be null or look like a
+ * real YouTube video id (utils/selectors.ts VIDEO_ID_PATTERN) — finding M2: type-only
+ * validation would still accept an attacker-forged arbitrary-length string here. */
+function isVideoIdOrNull(value: unknown): value is string | null {
+  return value === null || (typeof value === 'string' && VIDEO_ID_PATTERN.test(value));
+}
+
+/** typeof-only checks accept NaN/Infinity (`typeof NaN === 'number'`), either of which
+ * would corrupt downstream arithmetic (midroll density, offset math) — finding M2. */
+function isFiniteNumberOrNull(value: unknown): value is number | null {
+  return value === null || (typeof value === 'number' && Number.isFinite(value));
+}
+
+/** Same finiteness requirement as isFiniteNumberOrNull, for fields that are always
+ * required (never null) — e.g. capturedAt. */
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
 }
 
 function isBooleanOrNull(value: unknown): value is boolean | null {
   return typeof value === 'boolean' || value === null;
 }
 
+/** Caps the array itself (length) in addition to validating each item's shape — an
+ * array of otherwise well-shaped items is still an amplification vector if unbounded
+ * (finding M2). */
+function isBoundedArrayOf<T>(
+  value: unknown,
+  maxItems: number,
+  itemGuard: (item: unknown) => item is T,
+): value is T[] {
+  return Array.isArray(value) && value.length <= maxItems && value.every(itemGuard);
+}
+
 function isAdPlacementItemShape(value: unknown): value is AdPlacementItem {
   return (
     isRecord(value) &&
-    isStringOrNull(value.kind) &&
-    isNumberOrNull(value.offsetStartMs) &&
-    isNumberOrNull(value.offsetEndMs)
+    isBoundedStringOrNull(value.kind, MAX_STRING_FIELD_LENGTH) &&
+    isFiniteNumberOrNull(value.offsetStartMs) &&
+    isFiniteNumberOrNull(value.offsetEndMs)
   );
 }
 
 function isAdSlotItemShape(value: unknown): value is AdSlotItem {
-  return isRecord(value) && isStringOrNull(value.slotType);
+  return isRecord(value) && isBoundedStringOrNull(value.slotType, MAX_STRING_FIELD_LENGTH);
 }
 
 function isPlayerAdItemShape(value: unknown): value is PlayerAdItem {
-  return isRecord(value) && isStringOrNull(value.type);
+  return isRecord(value) && isBoundedStringOrNull(value.type, MAX_STRING_FIELD_LENGTH);
 }
 
 const CAPTURE_PATHS: readonly CapturePath[] = ['initial', 'fetch', 'getPlayerResponse'];
 
 /** Deep shape validation: every field's runtime type is checked, not just the `source`
- * discriminant — arrays must actually be arrays of well-shaped items, strings must be
- * string-or-null (never e.g. a number that happens to coerce). */
+ * discriminant — arrays must actually be arrays of well-shaped items (and bounded in
+ * count), strings must be string-or-null and bounded in length (never e.g. a number
+ * that happens to coerce, or an attacker-sized megabyte string). */
 export function isPlayerResponseEventShape(value: unknown): value is PlayerResponseEvent {
   return (
     isRecord(value) &&
     value.source === 'PLAYER_RESPONSE' &&
     typeof value.capturePath === 'string' &&
     (CAPTURE_PATHS as readonly string[]).includes(value.capturePath) &&
-    isStringOrNull(value.pageVideoId) &&
-    isStringOrNull(value.videoId) &&
-    isNumberOrNull(value.durationSeconds) &&
-    isStringOrNull(value.playabilityStatus) &&
+    isVideoIdOrNull(value.pageVideoId) &&
+    isVideoIdOrNull(value.videoId) &&
+    isFiniteNumberOrNull(value.durationSeconds) &&
+    isBoundedStringOrNull(value.playabilityStatus, MAX_STRING_FIELD_LENGTH) &&
     isBooleanOrNull(value.isLiveContent) &&
     isBooleanOrNull(value.isLoggedIn) &&
-    Array.isArray(value.adPlacements) &&
-    value.adPlacements.every(isAdPlacementItemShape) &&
-    Array.isArray(value.adSlots) &&
-    value.adSlots.every(isAdSlotItemShape) &&
-    Array.isArray(value.playerAds) &&
-    value.playerAds.every(isPlayerAdItemShape) &&
-    typeof value.capturedAt === 'number'
+    isBoundedArrayOf(value.adPlacements, MAX_EVENT_ARRAY_ITEMS, isAdPlacementItemShape) &&
+    isBoundedArrayOf(value.adSlots, MAX_EVENT_ARRAY_ITEMS, isAdSlotItemShape) &&
+    isBoundedArrayOf(value.playerAds, MAX_EVENT_ARRAY_ITEMS, isPlayerAdItemShape) &&
+    isFiniteNumber(value.capturedAt)
   );
 }
 
@@ -220,9 +269,9 @@ export function isDomAdEventShape(value: unknown): value is DomAdEvent {
     value.source === 'DOM' &&
     typeof value.kind === 'string' &&
     (DOM_AD_EVENT_KINDS as readonly string[]).includes(value.kind) &&
-    isStringOrNull(value.watchUrlVideoId) &&
-    isNumberOrNull(value.contentTimeSeconds) &&
-    typeof value.capturedAt === 'number'
+    isVideoIdOrNull(value.watchUrlVideoId) &&
+    isFiniteNumberOrNull(value.contentTimeSeconds) &&
+    isFiniteNumber(value.capturedAt)
   );
 }
 

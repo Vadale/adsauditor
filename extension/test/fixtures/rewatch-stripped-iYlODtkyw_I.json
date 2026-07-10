@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "description": "REAL capture, converted to DetectionEvent shapes. Do not hand-edit the events without updating this file's source pointers below.",
+    "sourceExport": "spike/exports/adsauditor-spike-export-2026-07-02T20-42-17-215Z.json",
+    "video": "iYlODtkyw_I — MrBeast, ~35 min (spike/RESULTS.md §2 row 2, rewatched ≥3x, 'green (high)' by ground truth)",
+    "session": "logged-in, rewatch (this browser had already watched this exact video ≥3-4 times)",
+    "note": "spike/RESULTS.md §3 finding 5: rewatch-frequency capping stripped ALL placements server-side for this session, even though the video is a confirmed green (the SAME video, watched fresh and logged-out minutes later in the same export, shows the full '1/18/1' signature — see green-mrbeast-iYlODtkyw_I.json). This is the real-data proof that absence-of-evidence on a rewatch is worthless: CLAUDE.md invariant 5 and classify()'s 'recent-rewatch' NO_SIGNAL cause exist specifically to keep this from being misread as NO_ADS.",
+    "sourceRecords": [
+      {
+        "timestamp": "2026-07-02T20:34:11.490Z",
+        "type": "player_response",
+        "capturePath": "initial",
+        "note": "adPlacements empty (count 0) — 'absent' per RESULTS.md."
+      },
+      {
+        "timestamp": "2026-07-02T20:34:15.656Z",
+        "type": "player_response",
+        "capturePath": "getPlayerResponse",
+        "note": "Confirmation read, same result: adPlacements empty."
+      }
+    ],
+    "omittedFromExport": [
+      "No dom_ad_event records exist for this session in the raw export (verified: zero DOM records timestamped before 2026-07-02T20:38:00Z, when the logged-out/fresh session for the same video begins) — 'none' DOM ads played, matching RESULTS.md's 'absent' / 'none' row exactly. Nothing was trimmed here; there is simply no DOM evidence to include.",
+      "Fetch-path noise immediately preceding the 'initial' read (pageVideoId=iYlODtkyw_I but a different/absent videoId), at 2026-07-02T20:34:11.457Z-20:34:11.468Z: three records with videoId=null and note='no videoDetails' (malformed/prefetch reads with no videoDetails at all), one with videoId='ux' (2-character garbage from a non-canonical sibling endpoint — the /youtubei/v1/player/ad_break-class issue classifier.ts's summarizePlacementCounts doc comment describes), and one with an 11-character videoId (hQUUT8qHIxJ) that is an ad creative's OWN player response through the identical /youtubei/v1/player endpoint. All real but exactly what the real pipeline drops: classify() and background.ts's handleIncomingEvent both filter on videoId !== pageVideoId (or a missing videoId) before an event would ever reach a session — omitted here for the identical reason, not fabricated absence."
+    ],
+    "conversionNotes": [
+      "No BEACON events captured by the Phase 0 spike tool (see green-mrbeast-iYlODtkyw_I.json)."
+    ],
+    "expectedClassification": "Absence of ANY evidence (no placements, no DOM, no beacon). With ClassifierContext.recentlyWatched=true (this browser watched this exact videoId recently) → NO_SIGNAL 'recent-rewatch', NEVER NO_ADS (CLAUDE.md invariant 5). With recentlyWatched=false + a valid observer, the SAME zero-evidence events would classify NO_ADS instead — demonstrating why the rewatch flag is load-bearing and not just documentation."
+  },
+  "events": [
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "initial",
+      "pageVideoId": "iYlODtkyw_I",
+      "videoId": "iYlODtkyw_I",
+      "durationSeconds": 2104,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [],
+      "adSlots": [],
+      "playerAds": [],
+      "capturedAt": 1783024451490
+    },
+    {
+      "source": "PLAYER_RESPONSE",
+      "capturePath": "getPlayerResponse",
+      "pageVideoId": "iYlODtkyw_I",
+      "videoId": "iYlODtkyw_I",
+      "durationSeconds": 2104,
+      "playabilityStatus": "OK",
+      "isLiveContent": false,
+      "isLoggedIn": true,
+      "adPlacements": [],
+      "adSlots": [],
+      "playerAds": [],
+      "capturedAt": 1783024455656
+    }
+  ]
+}

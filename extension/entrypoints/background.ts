@@ -27,6 +27,7 @@ import {
 } from '../utils/calibration';
 import type { AdblockStatus, CalibrationState } from '../utils/calibration';
 import { isControlVideo } from '../utils/control-videos';
+import { buildLocalHistoryEntry } from '../utils/local-history';
 import {
   adblockProbe,
   beaconUrlFragments,
@@ -84,8 +85,34 @@ type PersistedSessions = Record<string, VideoSessionState>;
 const FLUSH_DEBOUNCE_MS = 250;
 const MAX_HISTORY_ENTRIES = 50; // ROADMAP §1.4 local history cap
 
+/**
+ * Security audit finding M2: the shape guards in utils/types.ts validate TYPES but not
+ * volume, and the session token they gate on is page-readable by design (SPEC §3.2) —
+ * a hostile page script can post unlimited WELL-SHAPED events, which would otherwise
+ * exhaust storage.session's quota and CPU-amplify every classify() call on this tab.
+ * Real sessions hold a handful of events per navigation (a few player-response reads, a
+ * few DOM transitions/beacons); 500 leaves generous headroom.
+ *
+ * Drop-OLDEST on overflow is safe: classify() only ever reads the LATEST
+ * placement-bearing player response (see classifier.ts's decision order) and unions
+ * preroll/postroll across all placement-bearing responses it's given — losing the very
+ * oldest events first can only cost preroll/postroll union coverage from long before the
+ * cap was ever reached, never the latest (authoritative) midroll count.
+ */
+const MAX_SESSION_EVENTS = 500;
+
 function isPlayerResponseEvent(event: DetectionEvent): event is PlayerResponseEvent {
   return event.source === 'PLAYER_RESPONSE';
+}
+
+/** Appends an event to a session's buffer, then trims from the front if it overflows
+ * MAX_SESSION_EVENTS — see that constant's doc comment for why dropping the oldest
+ * events is safe for classify()'s purposes. */
+function pushSessionEvent(session: VideoSessionState, event: DetectionEvent): void {
+  session.events.push(event);
+  if (session.events.length > MAX_SESSION_EVENTS) {
+    session.events.splice(0, session.events.length - MAX_SESSION_EVENTS);
+  }
 }
 
 // ---------------------------------------------------------------------------------
@@ -212,13 +239,9 @@ function enqueueWrite(task: () => Promise<void>): void {
 async function appendLocalHistory(videoId: string, result: ClassificationResult): Promise<void> {
   const existing = (await storage.getItem<LocalHistoryEntry[]>(LOCAL_HISTORY_KEY)) ?? [];
   const withoutThisVideo = existing.filter((entry) => entry.videoId !== videoId);
-  const entry: LocalHistoryEntry = {
-    videoId,
-    observedAt: Date.now(),
-    state: result.state,
-    evidence: result.evidence,
-    noSignalCause: result.noSignalCause,
-  };
+  // Single construction path, kept in a pure module so the invariant-2 payload test
+  // exercises the real persisted shape (utils/local-history.ts).
+  const entry = buildLocalHistoryEntry(videoId, result, Date.now());
   const next = [entry, ...withoutThisVideo].slice(0, MAX_HISTORY_ENTRIES);
   await storage.setItem(LOCAL_HISTORY_KEY, next);
 }
@@ -375,6 +398,10 @@ async function flushTabs(tabIds: number[]): Promise<void> {
       }
 
       if (result.state === 'ADS_SERVED') {
+        // Security audit note: this signal is page-influenceable (a hostile page script
+        // can forge placement-bearing player responses, within the type/size guards in
+        // utils/types.ts) — Phase 2 ingest must never trust ANY client-attested field,
+        // this one included; server-side verification/consensus is what makes it safe.
         calibration.lastPositiveEvidenceAt = Date.now();
       }
       rewatchIndex[session.videoId] = Date.now();
@@ -409,7 +436,7 @@ async function handleIncomingEvent(tabId: number, event: DetectionEvent): Promis
     // the session video's watch page (see VideoSessionState.currentPageVideoId).
     if (!existing || existing.videoId === null) return;
     if (existing.currentPageVideoId !== existing.videoId) return;
-    existing.events.push(event);
+    pushSessionEvent(existing, event);
     existing.updatedAt = Date.now();
     scheduleFlush(tabId);
     return;
@@ -445,7 +472,7 @@ async function handleIncomingEvent(tabId: number, event: DetectionEvent): Promis
   if (event.source === 'PLAYER_RESPONSE') {
     session.currentPageVideoId = event.pageVideoId;
   }
-  session.events.push(event);
+  pushSessionEvent(session, event);
   session.updatedAt = Date.now();
   sessions.set(tabId, session);
 
@@ -730,6 +757,13 @@ export default defineBackground(() => {
       // all, so the generic check would silently drop this one. Extension pages are
       // trusted senders, but the caller-supplied tabId is still shape-validated (a
       // finite number) since it isn't derived from `sender.tab` here.
+      //
+      // Security audit note: because this branch runs before the sender.tab gate, it is
+      // also reachable by any of this extension's own content scripts (e.g. one tab's
+      // bridge.content.ts could query a DIFFERENT tab's state by naming its tabId).
+      // Accepted as low-severity/informational: the response is only
+      // `{videoId, result} | null` — the same ad-observation state that tabId's own page
+      // could already show its viewer — and this handler writes nothing anywhere.
       const queryTabId = message.tabId;
       if (typeof queryTabId !== 'number' || !Number.isFinite(queryTabId)) {
         sendResponse(null);
