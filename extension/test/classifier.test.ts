@@ -268,49 +268,45 @@ describe('classify — §1.2 review regressions', () => {
  * verdict to ADS_SERVED via SPEC §3.2 row 4 — even though nothing was ever actually
  * shown to the viewer.
  *
- * AGREED FIX encoded below (NOT YET SHIPPED — see CLAUDE.md: every field bug becomes a
- * test fixture before it is fixed):
+ * FINAL RULE (round 2 of the same field bug — round 1's "badge-only → NO_SIGNAL
+ * 'anomalous-ad-ui-only'" over-corrected, because the scaffolding appears on
+ * essentially EVERY video, which made NO_ADS unreachable in practice and silenced the
+ * project's core verdict):
  *   1. "Strong" DOM evidence = any DomAdEventKind OTHER than 'ad-badge-seen' (the
  *      ad-showing/ad-interrupting class transitions, which only toggle during a real
- *      ad break). 'ad-badge-seen' alone is weak/ambient.
+ *      ad break). 'ad-badge-seen' is DIAGNOSTICS ONLY: it contributes nothing to the
+ *      verdict — no "B seen", no 'DOM' source entry, and no blocking of any kind.
  *   2. Placements present → ADS_SERVED as before, but `sources` includes 'DOM' ONLY
- *      when strong DOM evidence exists — badge-only no longer contributes the DOM
- *      source (it was also silently inflating the §1.6 "playback observed" headline).
+ *      when strong DOM evidence exists.
  *   3. A absent + strong DOM → ADS_SERVED with ssaiAnomalySuspected, unchanged (SPEC
  *      §3.2 row 4). The badge-only→preroll rule is REMOVED entirely: bridge.content.ts's
  *      attach-time classList priming already covers "ad already showing when the
  *      observer attached" with a synthesized real start event.
- *   4. A absent + badge sightings ONLY (no strong DOM), with or without a beacon → a
- *      NEW NoSignalCause, 'anomalous-ad-ui-only' — NEVER ADS_SERVED. Critically, this
- *      BLOCKS the NO_ADS fall-through even for an otherwise valid, fresh (non-rewatch)
- *      observer: an ambiguous ambient DOM signal proves neither presence nor absence of
- *      an ad, so a confident NO_ADS would be just as dishonest as the ADS_SERVED bug was.
- *   5. A absent + beacons only, no DOM at all → NO_SIGNAL 'anomalous-beacon-only',
- *      unchanged (already covered above in "NO_SIGNAL discipline").
- *
- * 'anomalous-ad-ui-only' does not exist on the NoSignalCause union in utils/types.ts yet
- * — deliberately not added here (production code is out of scope for a test-first field
- * bug fixture). Referencing it as a plain string literal below is intentional: it may or
- * may not satisfy `tsc --noEmit` depending on how strictly `toBe`'s generic narrows
- * against `NoSignalCause | undefined`, but it does NOT block `vitest run` either way —
- * Vitest transpiles test files via esbuild without type-checking them (the same
- * reasoning test/storage-payload.test.ts's header comment documents for its `satisfies`
- * gate), which is what lets these tests actually RUN and FAIL for the right reason
- * (current classifier.ts still returns ADS_SERVED) instead of being silently skipped.
+ *   4. A absent + badge sightings ONLY, valid fresh observer → NO_ADS: this is the
+ *      truthful verdict for an ad-free video (the badge sightings are scaffolding
+ *      noise). The validity/rewatch gates still guard this fall-through as always.
+ *   5. Beacons behave as before ('anomalous-beacon-only' when they are the only
+ *      signal); a badge sighting does not mask them.
  */
-describe('classify — FIELD BUG 2026-07-11: ad-badge-seen scaffolding must not flip ADS_SERVED', () => {
-  it('A absent + badge-only DOM, valid fresh observer → NO_SIGNAL anomalous-ad-ui-only (REPLACES the old "anomaly preroll" expectation — that was the bug)', () => {
+describe('classify — FIELD BUG 2026-07-11: ad-badge-seen scaffolding is diagnostics-only', () => {
+  it('A absent + badge-only DOM, valid fresh observer → NO_ADS (scaffolding noise must not mask the core verdict)', () => {
     const result = classify([playerResponse(), domEvent('ad-badge-seen', 0)], context());
-    expect(result.noSignalCause).toBe('anomalous-ad-ui-only');
-    expect(result.state).toBe('NO_SIGNAL');
-    expect(result.state).not.toBe('ADS_SERVED');
-    expect(result.state).not.toBe('NO_ADS');
+    expect(result.state).toBe('NO_ADS');
   });
 
-  it('A absent + badge-only DOM + a beacon, valid fresh observer → still NO_SIGNAL anomalous-ad-ui-only (badge-only blocks the fall-through even with a beacon present)', () => {
+  it('A absent + badge-only DOM + a beacon, valid fresh observer → NO_SIGNAL anomalous-beacon-only (badge is invisible; the beacon rule applies as if it were beacon-only)', () => {
     const result = classify([playerResponse(), domEvent('ad-badge-seen', 0), beacon()], context());
     expect(result.state).toBe('NO_SIGNAL');
-    expect(result.noSignalCause).toBe('anomalous-ad-ui-only');
+    expect(result.noSignalCause).toBe('anomalous-beacon-only');
+  });
+
+  it('A absent + badge-only DOM + recently watched → NO_SIGNAL recent-rewatch (rewatch discipline unaffected by badge noise)', () => {
+    const result = classify(
+      [playerResponse(), domEvent('ad-badge-seen', 0)],
+      context({ recentlyWatched: true }),
+    );
+    expect(result.state).toBe('NO_SIGNAL');
+    expect(result.noSignalCause).toBe('recent-rewatch');
   });
 
   it('placements present + badge-only DOM (no strong evidence) → ADS_SERVED, but sources EXCLUDE DOM', () => {

@@ -164,17 +164,14 @@ function finalize(
  *
  * "B (DOM) seen" in this table means STRONG DOM evidence only (isStrongDomEvent — any
  * DomAdEventKind other than 'ad-badge-seen': the ad-showing/ad-interrupting class
- * transitions, which only toggle during a real ad break). Field bug 2026-07-11: badge
- * sightings alone are weak/ambient — YouTube ships empty `ytp-ad-*` DOM scaffolding even
- * on non-monetized videos where no ad ever plays, so a badge-only sighting used to
- * falsely satisfy "B seen" and flip a truthful zero-placement response to ADS_SERVED via
- * the anomaly row. Now: badge-only sightings (source A absent, no strong B) neither
- * satisfy "B seen" in row 2/4's `sources` list nor the anomaly row's ADS_SERVED trigger
- * — they produce NO_SIGNAL('anomalous-ad-ui-only') instead (see that cause's own doc
- * comment in utils/types.ts), which OUTRANKS both the beacon-only NO_SIGNAL below and
- * the observer-validity/rewatch/NO_ADS fall-through: an ambiguous ambient DOM signal
- * proves neither presence nor absence of an ad, so a confident verdict either way would
- * be as dishonest as the original bug.
+ * transitions, which only toggle during a real ad break). Field bug 2026-07-11, two
+ * rounds: (round 1) badge sightings falsely satisfied "B seen" — YouTube ships empty
+ * `ytp-ad-*` DOM scaffolding even on non-monetized videos, so truthful zero-placement
+ * responses flipped to ADS_SERVED via the anomaly row. (round 2) Treating badge-only as
+ * "ambiguous → NO_SIGNAL" over-corrected: the scaffolding appears on essentially EVERY
+ * video, so blocking made NO_ADS unreachable in practice — the project's core verdict.
+ * Final rule: 'ad-badge-seen' contributes NOTHING to classification (no "B seen", no
+ * 'DOM' source entry, no blocking); it remains in the event stream as diagnostics only.
  *
  * "A absent, B not seen, C seen" is NOT a row in the table: a beacon alone (no
  * placement, no ad UI) cannot distinguish an in-player impression from unrelated ad
@@ -184,9 +181,7 @@ function finalize(
  * Observer validity (SPEC §3.2 row 3) gates ONLY the NO_ADS verdict: positive
  * placement/strong-DOM evidence is trustworthy regardless of calibration — an observed
  * placement cannot be an adblock artifact (invariant 5 concerns false NO_ADS, not
- * false ADS_SERVED). Badge-only ambient evidence is the one exception: it is never
- * trustworthy enough to produce EITHER a positive or a negative verdict, regardless of
- * observer validity.
+ * false ADS_SERVED).
  */
 export function classify(
   events: DetectionEvent[],
@@ -229,12 +224,16 @@ export function classify(
     .map((event) => summarizePlacementCounts(event.adPlacements));
   const placementsPresent = perEventCounts.length > 0;
 
-  const domAdEvents = events.filter(isDomAdEvent);
-  const strongDomEvents = domAdEvents.filter(isStrongDomEvent);
-  // domAdSeen counts ANY DOM event including badge-only sightings — needed below to
-  // distinguish "no DOM signal at all" (falls through to the beacon-only/NO_ADS checks)
-  // from "only weak/ambient badge sightings" (field bug 2026-07-11: its own branch).
-  const domAdSeen = domAdEvents.length > 0;
+  // Badge-only sightings ('ad-badge-seen') are DIAGNOSTICS ONLY and contribute nothing
+  // to the verdict below (field bug 2026-07-11, round 2): YouTube ships empty
+  // `ytp-ad-*` scaffolding on essentially EVERY video, so badge sightings are ambient
+  // noise, not evidence. Round 1 treated them as "ambiguous → NO_SIGNAL", which made
+  // NO_ADS unreachable in practice (nearly every ad-free watch carries a scaffolding
+  // sighting) — silencing the project's core capability. The dropped-start worry that
+  // motivated blocking is covered elsewhere: bridge.content.ts's attach-time priming
+  // synthesizes a real start for an ad already showing at attach, and either transition
+  // of a real ad break (start OR end) counts as strong evidence.
+  const strongDomEvents = events.filter(isDomAdEvent).filter(isStrongDomEvent);
   const strongDomSeen = strongDomEvents.length > 0;
   const beaconSeen = events.some(isBeaconEvent);
 
@@ -263,7 +262,7 @@ export function classify(
     // SPEC §3.2 table row 4: placements absent but STRONG ad UI was observed — likely
     // SSAI or a player-response format change. B evidence takes precedence over A's
     // silence (C may corroborate). Badge-only sightings never reach this branch (field
-    // bug 2026-07-11) — see the branch below for that case.
+    // bug 2026-07-11) — they are ignored entirely, see the comment above.
     const { preroll, midrolls, postroll } = typeDomEventsByContentTime(
       strongDomEvents,
       context.durationS,
@@ -278,17 +277,6 @@ export function classify(
       midrolls,
       context,
     );
-  }
-
-  if (domAdSeen) {
-    // Field bug 2026-07-11: placements absent, only WEAK (badge-only) DOM evidence —
-    // YouTube's empty `ytp-ad-*` scaffolding on non-monetized videos matches
-    // 'ad-badge-seen' with no ad ever playing. This ambiguous ambient signal proves
-    // neither presence nor absence of an ad, so it must win over BOTH the beacon-only
-    // NO_SIGNAL below and the observer-validity/rewatch/NO_ADS fall-through further down
-    // — regardless of whether a beacon also fired, and regardless of observer validity
-    // (a confident NO_ADS here would be exactly as dishonest as the ADS_SERVED bug was).
-    return finalize({ state: 'NO_SIGNAL', noSignalCause: 'anomalous-ad-ui-only' }, 0, context);
   }
 
   if (beaconSeen) {

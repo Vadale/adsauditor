@@ -25,7 +25,8 @@
       "playability OK, zero placements",
       "channel publicly non-monetized, no ad played"
     ],
-    "expectedClassification": "Under the AGREED FIX (not yet shipped): state NO_SIGNAL, noSignalCause 'anomalous-ad-ui-only' — never ADS_SERVED, never NO_ADS, even for a valid fresh (non-rewatch) observer. Under CURRENT classifier.ts (as of this fixture's authoring): state ADS_SERVED, evidence {preroll: true, midrolls: 0, postroll: false, sources: ['DOM'], ssaiAnomalySuspected: true} — this is the bug being reproduced; the fixtures.test.ts assertion below is written against the FIX and is expected to FAIL until the coder ships it."
+    "expectedClassification": "state NO_ADS for a valid, fresh (non-rewatch) observer — the truthful verdict for a non-monetized video where no ad played; NO_SIGNAL 'recent-rewatch' when recentlyWatched is true. Never ADS_SERVED. (History: the original unfixed classifier returned ADS_SERVED {preroll: true, sources: ['DOM'], ssaiAnomalySuspected: true} on these events; round 1 of the fix returned NO_SIGNAL 'anomalous-ad-ui-only', retired in round 2.)",
+    "agreedFixSpec": "FINAL RULE (round 2, 2026-07-11): 'ad-badge-seen' sightings are diagnostics-only and contribute nothing to classification — no ADS_SERVED (round-1 bug: empty ytp-ad-* scaffolding misread as a preroll), no 'DOM' source entry, and no blocking either (round-1 over-correction: the scaffolding appears on essentially every video, so treating badge-only as 'ambiguous NO_SIGNAL' made NO_ADS unreachable in practice). Strong DOM evidence remains the ad-showing/ad-interrupting class transitions only."
   },
   "events": [
     {

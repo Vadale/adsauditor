@@ -242,24 +242,15 @@ describe('classify — FIELD BUG 2026-07-11: ad-badge-seen scaffolding falsely f
   // Fixture is RECONSTRUCTED from the owner's popup bug report, NOT a spike capture —
   // see field-badge-scaffolding-I3oUjpmda7g.json's _meta.PROVENANCE. Two videos were
   // reported (I3oUjpmda7g, j61hDDHfphM) with the identical evidence pattern; only the
-  // first was built as a fixture (coordinator's instruction).
+  // first was built as a fixture.
   //
-  // THIS TEST IS EXPECTED TO FAIL against the CURRENT, unfixed classifier.ts: today,
-  // source A absent + any DOM event with no matching *-start (badge-only) is treated as
-  // an ambient "preroll" and returns ADS_SERVED (classifier.ts's typeDomEventsByContentTime
-  // badge-only rule) — that is precisely the reported bug: a non-monetized channel's empty
-  // ytp-ad-* DOM scaffolding was misread as "ad playing". The assertions below encode the
-  // AGREED FIX (a new noSignalCause 'anomalous-ad-ui-only'), not current behavior — do not
-  // "fix" this test to match today's output; production is what must change (CLAUDE.md:
-  // every field bug becomes a test fixture before it is fixed).
-  //
-  // 'anomalous-ad-ui-only' does not exist on the NoSignalCause union in utils/types.ts yet
-  // (intentionally not added here — production code is out of scope for this fixture);
-  // referencing it as a plain string literal is deliberate so this file still type-checks
-  // as "no overlap" only on this one comparison, without blocking `vitest run` (Vitest
-  // transpiles via esbuild and does not type-check test files — the same reasoning
-  // test/storage-payload.test.ts's header comment documents for its `satisfies` gate).
-  it('I3oUjpmda7g: A absent + badge-only DOM, valid FRESH non-rewatch observer → NO_SIGNAL anomalous-ad-ui-only (never ADS_SERVED, never NO_ADS)', () => {
+  // FINAL RULE (round 2 — round 1's "badge-only → NO_SIGNAL 'anomalous-ad-ui-only'"
+  // over-corrected, because the empty ytp-ad-* scaffolding appears on essentially EVERY
+  // video, making NO_ADS unreachable in practice): 'ad-badge-seen' is diagnostics-only
+  // and contributes nothing to the verdict. For this fixture — a real non-monetized
+  // video where no ad played, watched fresh by a valid observer — the truthful verdict
+  // is NO_ADS, never ADS_SERVED.
+  it('I3oUjpmda7g: A absent + badge-only DOM, valid FRESH non-rewatch observer → NO_ADS (never ADS_SERVED)', () => {
     const result = classify(
       fieldBadgeScaffolding.events,
       contextFromFixture(fieldBadgeScaffolding, {
@@ -267,9 +258,18 @@ describe('classify — FIELD BUG 2026-07-11: ad-badge-seen scaffolding falsely f
         recentlyWatched: false,
       }),
     );
-    expect(result.noSignalCause).toBe('anomalous-ad-ui-only');
+    expect(result.state).toBe('NO_ADS');
+  });
+
+  it('I3oUjpmda7g: same events on a REWATCH → NO_SIGNAL recent-rewatch (absence on a rewatch still proves nothing)', () => {
+    const result = classify(
+      fieldBadgeScaffolding.events,
+      contextFromFixture(fieldBadgeScaffolding, {
+        observerValidity: { valid: true },
+        recentlyWatched: true,
+      }),
+    );
     expect(result.state).toBe('NO_SIGNAL');
-    expect(result.state).not.toBe('ADS_SERVED');
-    expect(result.state).not.toBe('NO_ADS');
+    expect(result.noSignalCause).toBe('recent-rewatch');
   });
 });
