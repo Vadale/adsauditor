@@ -7,14 +7,16 @@ kept on your own device.
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 ![local-first · no telemetry](https://img.shields.io/badge/local--first-no%20telemetry-brightgreen)
 
-> **Status: Phase 1 (extension MVP) — code-complete, not yet released.** The
-> three-source detection engine, NO_SIGNAL self-calibration, and the popup/badge/options
-> UI (English source, Italian locale) are implemented, reviewed, and covered by unit
-> tests, including fixtures captured from real player-response data during the project's
-> validation spike. What's still outstanding is a manual release checklist on Chrome and
-> Firefox — the gate for tagging `v0.1.0`. Nothing is published to a store yet, and no
-> data leaves the browser except the two calibration probes described below and in
-> [`docs/PRIVACY.md`](docs/PRIVACY.md).
+> **Status: v0.1.0 released.** The three-source detection engine, NO_SIGNAL
+> self-calibration, and the popup/badge/options UI (English source, Italian locale) are
+> implemented, reviewed, and covered by unit tests, including fixtures captured from
+> real player-response data during the project's validation spike. The release
+> checklist was executed end-to-end in a real Chromium (driven browser, live YouTube):
+> known-green, ad-free, unavailable, adblocker-active, rapid SPA navigation, and a full
+> network census all pass. **The Firefox build compiles and passes the automated suite
+> but has not yet been verified in a real Firefox — treat it as experimental for now.**
+> Nothing is published to a store yet, and no data leaves the browser except the two
+> calibration probes described below and in [`docs/PRIVACY.md`](docs/PRIVACY.md).
 
 ![AdsAuditor popup](docs/assets/popup-dark.png)
 *The popup on a video that served ads: state, evidence per source, and qualitative

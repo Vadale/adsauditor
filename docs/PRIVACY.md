@@ -1,6 +1,6 @@
 # AdsAuditor — Privacy Policy
 
-*Last updated: 2026-07-11, for the local-only extension, pre-release. AdsAuditor ships
+*Last updated: 2026-07-11, for the local-only extension, v0.1.0. AdsAuditor ships
 today with no backend and no telemetry (see §4 below). This document will be revised
 again before any store listing, and rewritten from scratch before any future telemetry
 code ships, if it ever does.*
