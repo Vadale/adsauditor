@@ -49,3 +49,7 @@ jobs:
             extension/.output/*-firefox.zip
             extension/.output/*-sources.zip
           if-no-files-found: error
+          # upload-artifact@v4 excludes dot-directories by default, and WXT's output
+          # dir is `.output` — without this the step finds zero files (first real CI
+          # run, 2026-07-11).
+          include-hidden-files: true
