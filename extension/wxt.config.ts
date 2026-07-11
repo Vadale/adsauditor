@@ -9,7 +9,7 @@ export default defineConfig({
   manifest: {
     name: 'AdsAuditor',
     description:
-      'Observes whether YouTube is actually serving ads on the video you are watching. Local-first, opt-in telemetry.',
+      'Observes whether the YouTube video you are watching is actually serving ads. Local-only, no telemetry.',
     // ROADMAP §1.4: popup/options strings ship as _locales messages (English source,
     // Italian translation) rather than hardcoded literals. Not a permission change.
     default_locale: 'en',
@@ -26,9 +26,10 @@ export default defineConfig({
         // world: "MAIN" content scripts require Firefox >= 128 (docs/SPEC.md §3.2).
         strict_min_version: '128.0',
         // TODO(§5.1): AMO requires `data_collection_permissions` for new extensions
-        // (since 2025-11-03) — wxt build -b firefox currently warns about this. Fill it
-        // in once the opt-in telemetry payload (§2.4) and docs/PRIVACY.md exist; do not
-        // suppress the warning before then.
+        // (since 2025-11-03) — wxt build -b firefox currently warns about this. The
+        // extension collects nothing (local-only, no telemetry — docs/PRIVACY.md), so
+        // this should declare "none" at AMO submission time; do not suppress the
+        // warning before wiring that declaration.
       },
     },
   },

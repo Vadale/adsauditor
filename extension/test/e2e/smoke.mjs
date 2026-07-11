@@ -4,7 +4,7 @@
 import { chromium } from 'playwright';
 import path from 'node:path';
 
-const EXT = '/Users/alessandrovadala/DOCUDESK/youtube_monetization/extension/.output/chrome-mv3';
+const EXT = path.join(import.meta.dirname, '../../.output/chrome-mv3');
 const PROFILE = path.join(import.meta.dirname, 'profile');
 const GREEN = 'https://www.youtube.com/watch?v=mvcesPWvUIc'; // Veritasium, control list
 const ADFREE = 'https://www.youtube.com/watch?v=j61hDDHfphM'; // Elisa uncensored, owner-reported
