@@ -1,17 +1,16 @@
-/* Dark, minimal options page (ROADMAP §1.4), matching the popup's palette. */
+/* Dark options page (ROADMAP §1.4, restyled owner request 2026-07-11), matching the
+ * popup's palette — visually reminiscent of YouTube's dark mode but strictly
+ * trademark-safe (no logo, no play-button glyph, no wordmark imitation). */
 
 :root {
   color-scheme: dark;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  --bg: #1a1a1a;
-  --border: #333333;
-  --text: rgba(255, 255, 255, 0.87);
-  --text-muted: rgba(255, 255, 255, 0.6);
+  font-family: 'Roboto', 'Arial', sans-serif;
+
+  --bg: #0f0f0f;
+  --surface: #212121;
+  --border: #303030;
+  --text: #f1f1f1;
+  --text-secondary: #aaaaaa;
 }
 
 body {
@@ -24,28 +23,47 @@ body {
 #app {
   max-width: 640px;
   margin: 0 auto;
-  padding: 24px 20px;
+  padding: 32px 20px;
   box-sizing: border-box;
 }
 
+.app-header {
+  margin-bottom: 20px;
+}
+
 .options-heading {
-  font-size: 18px;
-  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text);
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.card:last-child {
+  margin-bottom: 0;
 }
 
 .options-intro {
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin: 0 0 24px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
 }
 
-.section-title {
-  font-size: 12px;
+.card-title {
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--text-muted);
-  margin: 0 0 12px;
+  color: var(--text-secondary);
+  margin: 0 0 14px;
 }
 
 .calibration-list {
@@ -55,20 +73,29 @@ body {
 .calibration-row {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   gap: 16px;
-  padding: 8px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border);
 }
 
 .calibration-row:last-child {
   border-bottom: none;
+  padding-bottom: 0;
+}
+
+.calibration-row:first-child {
+  padding-top: 0;
 }
 
 .calibration-row dt {
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  font-size: 13px;
 }
 
 .calibration-row dd {
   margin: 0;
   text-align: right;
+  font-weight: 500;
+  color: var(--text);
 }

@@ -175,7 +175,12 @@ function renderEvidenceSection(evidence: AdEvidenceDetail | null): void {
       label.textContent = browser.i18n.getMessage(labelKey);
 
       const marker = document.createElement('span');
-      marker.className = 'evidence-marker';
+      const markerModifier = evidence
+        ? sources.includes(source)
+          ? 'evidence-marker--present'
+          : 'evidence-marker--absent'
+        : 'evidence-marker--na';
+      marker.className = `evidence-marker ${markerModifier}`;
       marker.textContent = evidence
         ? browser.i18n.getMessage(sources.includes(source) ? 'evidencePresent' : 'evidenceAbsent')
         : browser.i18n.getMessage('evidenceNotApplicable');
@@ -225,16 +230,18 @@ function renderCurrentState(
 
   if (!state) {
     evidenceSectionEl.hidden = true;
+    headlineEl.className = 'headline headline--empty';
     headlineEl.textContent = browser.i18n.getMessage('headlineNoSession');
     renderEvidenceSection(null);
     return;
   }
 
+  headlineEl.className = 'headline';
   evidenceSectionEl.hidden = false;
   const { result } = state;
 
   chipEl.hidden = false;
-  applyStateChip(chipEl, result.state);
+  applyStateChip(chipEl, result.state, 'state-chip--large');
 
   if (result.state === 'ADS_SERVED') {
     const evidence = result.evidence ?? null;

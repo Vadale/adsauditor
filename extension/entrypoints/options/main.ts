@@ -1,8 +1,9 @@
 /**
  * Options page (ROADMAP §1.4): read-only local-first explainer + calibration status
  * readout from `local:adsauditor_calibration` (ROADMAP §1.3 debug info). NO_SIGNAL
- * notices in the popup link here. No controls yet — the opt-in telemetry toggle is
- * §2.4.
+ * notices in the popup link here. No controls: the extension is local-only with no
+ * telemetry (docs/PRIVACY.md §4) — an opt-in toggle only ever appears here if the
+ * descoped shared-observatory direction is revived.
  */
 import './style.css';
 import { EMPTY_CALIBRATION_STATE } from '../../utils/calibration';

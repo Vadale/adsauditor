@@ -1,20 +1,24 @@
-/* Dark, minimal popup design (ROADMAP §1.4): state chip + honest-language headline,
- * per-source evidence list, NO_SIGNAL notice, and searchable local history. */
+/* Dark popup design (ROADMAP §1.4, restyled owner request 2026-07-11): visually
+ * reminiscent of YouTube's dark mode (palette + pill shapes) but strictly
+ * trademark-safe — no logo, no play-button glyph, no wordmark imitation. Structure:
+ * compact header, then stacked cards (current state / evidence / history). */
 
 :root {
   color-scheme: dark;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  --bg: #1a1a1a;
-  --bg-elevated: #242424;
-  --border: #333333;
-  --text: rgba(255, 255, 255, 0.87);
-  --text-muted: rgba(255, 255, 255, 0.6);
+  font-family: 'Roboto', 'Arial', sans-serif;
+
+  /* Palette */
+  --bg: #0f0f0f;
+  --surface: #212121;
+  --border: #303030;
+  --hover: #3f3f3f;
+  --text: #f1f1f1;
+  --text-secondary: #aaaaaa;
+  --accent: #cc0000;
+  --accent-hover: #a30000;
   --link: #8ab4f8;
+
+  /* State colors — never reused for the accent/primary-action role */
   --green: #1e8e3e;
   --amber: #f9ab00;
   --gray: #5f6368;
@@ -23,7 +27,7 @@
 
 body {
   margin: 0;
-  width: 360px;
+  width: 380px;
   background-color: var(--bg);
   color: var(--text);
   font-size: 13px;
@@ -34,44 +38,72 @@ body {
   box-sizing: border-box;
 }
 
+/* ---------------------------------------------------------------------------
+ * Header — compact bar; the extension name only. The state itself lives in
+ * the large pill chip at the top of the current-state card immediately below,
+ * so it is still the first colored/prominent element the eye lands on.
+ * --------------------------------------------------------------------------- */
+
 .app-header {
   margin-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .app-name {
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-}
-
-.section {
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-}
-
-.section:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.section-title {
+  font-weight: 500;
   font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+ * Cards — shared surface for every section.
+ * --------------------------------------------------------------------------- */
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card-title {
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--text-muted);
-  margin: 0 0 8px;
+  color: var(--text-secondary);
+  margin: 0 0 10px;
 }
+
+/* ---------------------------------------------------------------------------
+ * State chip — pill-shaped (YouTube filter-chip silhouette; shape is not
+ * protectable). Large variant for the current-state card, small variant for
+ * history rows.
+ * --------------------------------------------------------------------------- */
 
 .state-chip {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 11px;
+  border-radius: 999px;
   font-weight: 600;
-  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.state-chip--large {
+  padding: 5px 14px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.state-chip--small {
+  padding: 2px 10px;
+  font-size: 10px;
 }
 
 .state-chip--ads-served {
@@ -101,16 +133,25 @@ body {
   color: #ffffff;
 }
 
-.state-chip--small {
-  font-size: 10px;
-  padding: 1px 6px;
-  margin-bottom: 0;
-}
+/* ---------------------------------------------------------------------------
+ * Current-state card body.
+ * --------------------------------------------------------------------------- */
 
 .headline {
   margin: 4px 0;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
   line-height: 1.4;
+}
+
+/* Empty-session state ("Open a YouTube video…") and other centered empty
+ * states — centered, secondary color, generous padding. */
+.headline--empty {
+  text-align: center;
+  color: var(--text-secondary);
+  font-weight: 400;
+  padding: 20px 8px;
 }
 
 .detail,
@@ -119,7 +160,7 @@ body {
 .ad-decision-note {
   margin: 4px 0;
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   line-height: 1.4;
 }
 
@@ -128,13 +169,15 @@ body {
 }
 
 .no-signal-cause {
-  margin-top: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
 }
 
 .no-signal-cause p {
   margin: 0 0 4px;
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   line-height: 1.4;
 }
 
@@ -149,6 +192,14 @@ body {
   font-family: inherit;
 }
 
+.link-button:hover {
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------------------------
+ * Evidence card.
+ * --------------------------------------------------------------------------- */
+
 .evidence-list {
   list-style: none;
   margin: 0;
@@ -157,63 +208,116 @@ body {
 
 .evidence-row {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 3px 0;
+  padding: 5px 0;
   font-size: 12px;
 }
 
 .evidence-label {
-  color: var(--text-muted);
+  color: var(--text-secondary);
+}
+
+.evidence-marker {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.evidence-marker::before {
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.evidence-marker--present {
+  color: var(--green);
+}
+
+.evidence-marker--present::before {
+  content: '\2713'; /* checkmark, decorative only — the word itself still comes from i18n */
+}
+
+.evidence-marker--absent {
+  color: var(--text-secondary);
+}
+
+.evidence-marker--absent::before,
+.evidence-marker--na::before {
+  content: '\2014'; /* em dash, decorative only */
+}
+
+.evidence-marker--na {
+  color: var(--text-secondary);
 }
 
 .confidence-line {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
+
+/* ---------------------------------------------------------------------------
+ * History card.
+ * --------------------------------------------------------------------------- */
 
 .history-toolbar {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .history-search {
   flex: 1;
   min-width: 0;
   box-sizing: border-box;
-  background-color: var(--bg-elevated);
+  background-color: var(--bg);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 5px 8px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
   font-size: 12px;
   font-family: inherit;
 }
 
 .history-search::placeholder {
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
-/* Small secondary button (ROADMAP §1.7 "Export JSON"), next to the history search
- * input — same dark minimal palette as the rest of the popup, distinct from
- * .link-button (a text-only link style used for "Open settings"). */
-.export-button {
-  flex-shrink: 0;
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
+.history-search:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Pill buttons — shared shape for actionable buttons. The accent variant is the
+ * primary action (Export JSON) and is the only place besides state chips that
+ * uses the accent red, per the "use sparingly" design rule. */
+.pill-button {
+  border-radius: 999px;
   font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
+  border: 1px solid transparent;
 }
 
-.export-button:hover:not(:disabled) {
-  border-color: var(--link);
+.pill-button--accent {
+  background-color: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.pill-button--accent:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.export-button {
+  flex-shrink: 0;
+  padding: 6px 14px;
 }
 
 .export-button:disabled {
@@ -227,19 +331,35 @@ body {
   padding: 0;
   max-height: 220px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--hover) var(--surface);
+}
+
+.history-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background-color: var(--hover);
+  border-radius: 999px;
 }
 
 .history-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 6px 8px;
+  margin: 0 -8px;
+  border-radius: 8px;
   font-size: 12px;
 }
 
-.history-row:last-child {
-  border-bottom: none;
+.history-row:hover {
+  background-color: var(--hover);
 }
 
 .history-video-id {
@@ -258,13 +378,16 @@ body {
 }
 
 .history-time {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   white-space: nowrap;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .history-empty {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 12px;
-  margin: 4px 0 0;
+  text-align: center;
+  padding: 20px 8px;
+  margin: 0;
 }
