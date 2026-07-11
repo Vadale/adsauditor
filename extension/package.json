@@ -2,7 +2,7 @@
   "name": "adsauditor-extension",
   "description": "AdsAuditor browser extension — observes YouTube ad delivery. MV3, Chrome + Firefox.",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",

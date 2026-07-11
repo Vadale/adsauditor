@@ -163,6 +163,34 @@ async function clearTabBadge(tabId: number): Promise<void> {
   }
 }
 
+/**
+ * The badge is a traffic light for the VIDEO's last-known delivery status, not a strict
+ * per-viewing indicator (field feedback 2026-07-11): a rewatch-guarded viewing
+ * (NO_SIGNAL 'recent-rewatch') falls back to the last informative verdict stored for
+ * the same video — otherwise anyone who re-opens videos they already checked (the
+ * owner's natural usage pattern) sees a gray "?" on everything, which reads as the
+ * extension being broken. The popup keeps the full per-viewing honesty: it shows the
+ * current NO_SIGNAL cause AND the "Last valid observation" line with its timestamp.
+ * Every other NO_SIGNAL cause still shows gray: those mean the observer can't measure,
+ * where implying a verdict would be dishonest.
+ */
+async function resolveBadgeDisplayState(
+  videoId: string,
+  result: ClassificationResult,
+): Promise<ObservedState> {
+  if (result.state !== 'NO_SIGNAL' || result.noSignalCause !== 'recent-rewatch') {
+    return result.state;
+  }
+  try {
+    const history = (await storage.getItem<LocalHistoryEntry[]>(LOCAL_HISTORY_KEY)) ?? [];
+    const entry = history.find((e) => e.videoId === videoId);
+    if (entry && entry.state !== 'NO_SIGNAL') return entry.state;
+  } catch (err) {
+    console.warn('[AdsAuditor] Failed to read history for badge fallback', err);
+  }
+  return result.state;
+}
+
 // ---------------------------------------------------------------------------------
 // tabId -> VideoSessionState, lazily rehydrated from storage on service-worker wake
 // (MV3: the worker is ephemeral, so this in-memory map must survive suspension via
@@ -398,7 +426,7 @@ async function flushTabs(tabIds: number[]): Promise<void> {
       // tab has already left, and since SPA navigations are same-document the browser
       // never repaints/clears the badge on its own to correct it.
       if (session.currentPageVideoId === session.videoId) {
-        await setTabBadge(tabId, result.state);
+        await setTabBadge(tabId, await resolveBadgeDisplayState(session.videoId, result));
       }
 
       if (result.state === 'ADS_SERVED') {
@@ -534,7 +562,10 @@ async function handlePageNavigated(tabId: number, pageVideoId: string | null): P
     // badge over that handler's clear (same staleness class as the flush-path guard).
     if (session.currentPageVideoId === pageVideoId) {
       const result = classify(session.events, buildClassifierContext(session, calibration));
-      void setTabBadge(tabId, result.state);
+      const displayState = await resolveBadgeDisplayState(session.videoId ?? '', result);
+      if (session.currentPageVideoId === pageVideoId) {
+        void setTabBadge(tabId, displayState);
+      }
     }
   }
 

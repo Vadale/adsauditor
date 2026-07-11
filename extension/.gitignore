@@ -24,3 +24,6 @@ web-ext.config.ts
 *.njsproj
 *.sln
 *.sw?
+
+# e2e smoke tool artifacts (test/e2e/README.md)
+test/e2e/profile
