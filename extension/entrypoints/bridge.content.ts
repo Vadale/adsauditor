@@ -79,6 +79,27 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
   // right after a navigation — see interceptor.content.ts's yt-navigate-finish handler).
   let lastKnownContentTimeSeconds: number | null = null;
 
+  /**
+   * Every runtime.sendMessage in this file goes through here. An extension
+   * reload/update — including the user toggling "Allow in incognito", which reloads
+   * the extension — orphans content scripts already injected into open tabs: their
+   * next runtime.* call throws SYNCHRONOUSLY ("Extension context invalidated") instead
+   * of returning a rejected promise, so a plain `.catch()` never sees it and it
+   * surfaces as an uncaught page error (field report 2026-07-11, YouTube search page).
+   * Reading ctx.isValid doubles as WXT's invalidation trigger: once the context is
+   * dead it aborts every ctx-registered listener/timer and disconnects the
+   * MutationObserver, so the orphaned script goes fully quiet.
+   */
+  function sendToBackground(message: Record<string, unknown>): Promise<unknown> | null {
+    if (!ctx.isValid) return null;
+    try {
+      return browser.runtime.sendMessage(message);
+    } catch {
+      // Synchronous invalidation throw — nothing to recover; ctx teardown follows.
+      return null;
+    }
+  }
+
   function forwardDomAdEvent(kind: DomAdEventKind): void {
     const event: DomAdEvent = {
       source: 'DOM',
@@ -87,9 +108,8 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
       contentTimeSeconds: lastKnownContentTimeSeconds,
       capturedAt: Date.now(),
     };
-    browser.runtime.sendMessage({ kind: runtimeMessageKinds.domAdEvent, event }).catch(() => {
-      // Extension context can be invalidated (reload during dev, or tab closing
-      // mid-flight); this is a fire-and-forget forward, nothing useful to recover here.
+    void sendToBackground({ kind: runtimeMessageKinds.domAdEvent, event })?.catch(() => {
+      // Fire-and-forget: the tab can close mid-flight; nothing useful to recover here.
     });
   }
 
@@ -111,11 +131,12 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
       // forgeable by page scripts (the token is page-readable by design), and one
       // malformed event persisted into a session would poison classify() permanently.
       if (isPlayerResponseEventShape(data.payload)) {
-        browser.runtime
-          .sendMessage({ kind: runtimeMessageKinds.playerResponseEvent, event: data.payload })
-          .catch(() => {
-            // See forwardDomAdEvent above: fire-and-forget, nothing to recover here.
-          });
+        void sendToBackground({
+          kind: runtimeMessageKinds.playerResponseEvent,
+          event: data.payload,
+        })?.catch(() => {
+          // See forwardDomAdEvent above: fire-and-forget, nothing to recover here.
+        });
       }
       return;
     }
@@ -252,14 +273,12 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
   function notifyPageNavigated(): void {
     // background.ts uses this to stop attributing videoId-less beacons to a session
     // whose watch page the tab has left (see runtimeMessageKinds.pageNavigated).
-    browser.runtime
-      .sendMessage({
-        kind: runtimeMessageKinds.pageNavigated,
-        pageVideoId: getWatchUrlVideoId(),
-      })
-      .catch(() => {
-        // Fire-and-forget, same as the event forwards above.
-      });
+    void sendToBackground({
+      kind: runtimeMessageKinds.pageNavigated,
+      pageVideoId: getWatchUrlVideoId(),
+    })?.catch(() => {
+      // Fire-and-forget, same as the event forwards above.
+    });
   }
 
   // ---------------------------------------------------------------------------------
@@ -268,11 +287,11 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
   // is told to run and reports the raw result back.
   // ---------------------------------------------------------------------------------
   function sendCalibrationResult(payload: Record<string, unknown>): void {
-    browser.runtime
-      .sendMessage({ kind: runtimeMessageKinds.calibrationResult, ...payload })
-      .catch(() => {
+    void sendToBackground({ kind: runtimeMessageKinds.calibrationResult, ...payload })?.catch(
+      () => {
         // Fire-and-forget, same as the event forwards above.
-      });
+      },
+    );
   }
 
   /** GET, no-cors/no-credentials/no-cache (SPEC §3.4 adblock probe): we only care
@@ -324,8 +343,9 @@ function main(ctx: InstanceType<typeof ContentScriptContext>): void {
   }
 
   function requestCalibrationDue(): void {
-    browser.runtime
-      .sendMessage({ kind: runtimeMessageKinds.calibrationDueQuery })
+    const query = sendToBackground({ kind: runtimeMessageKinds.calibrationDueQuery });
+    if (!query) return; // orphaned context — no probes on a dead extension's behalf
+    query
       .then((response: unknown) => {
         if (!isRecord(response)) return;
         if (response.runAdblockCheck === true) runAdblockProbe();
