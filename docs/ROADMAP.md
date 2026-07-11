@@ -4,6 +4,11 @@
 prompts for Claude Code. Follow top to bottom; each phase has a "gate" that decides
 whether to move to the next one.*
 
+**Direction update (2026-07-11)**: the owner descoped Phases 2–4 (backend, telemetry,
+dashboard, verification) to "possible future". Phase 1 (the local-only extension) plus
+§5.1-style distribution is the shipping product; the plan below is kept as design
+history.
+
 ---
 
 ## Overview

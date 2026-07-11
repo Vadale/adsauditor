@@ -1,8 +1,9 @@
 # AdsAuditor — Privacy Policy
 
-*Last updated: 2026-07-10, for the Phase 1 (extension MVP) code, pre-release. This
-document will be revised again before Phase 2 telemetry ships (see §4 below) and again
-before any store listing.*
+*Last updated: 2026-07-11, for the local-only extension, pre-release. AdsAuditor ships
+today with no backend and no telemetry (see §4 below). This document will be revised
+again before any store listing, and rewritten from scratch before any future telemetry
+code ships, if it ever does.*
 
 This is the plain-English description of what the AdsAuditor browser extension does,
 what it stores, and what — if anything — leaves your browser. It describes exactly what
@@ -86,7 +87,7 @@ Properties of both requests:
 - The response body is never read; only whether the request resolved, was rejected, or
   timed out is used.
 - These are **the only** network requests the extension makes. It does not call any
-  AdsAuditor server, because in Phase 1 there is no server — see §4.
+  AdsAuditor server, because there is no server — see §4.
 
 The extension's manifest requests host permissions only for `youtube.com`,
 `doubleclick.net`, and `googlesyndication.com` (`CLAUDE.md` invariant 7); it observes
@@ -94,12 +95,20 @@ The extension's manifest requests host permissions only for `youtube.com`,
 §3.2) but this is passive observation of requests the browser (or YouTube's page) makes
 on its own — it does not originate additional requests beyond the two probes above.
 
-## 4. What will change in Phase 2 — and won't, without your consent
+## 4. Telemetry is not planned as part of the product
 
-Phase 2 (`docs/ROADMAP.md` §2) adds an opt-in crowdsourced backend: if you explicitly
-choose to, your browser can contribute anonymous ad-delivery observations to a shared,
-public database so the project can map monetization trends across YouTube. Before any
-of that ships:
+As of this writing (2026-07-11), AdsAuditor ships as a **local-only** extension, and
+that is the direction of the project, not a temporary state waiting on a later phase.
+There is no backend, no database, and no telemetry code anywhere in the extension.
+Sharing data with the project happens only through the manual, user-initiated JSON
+export described in §2 — never automatically, and never without you choosing to send
+the file yourself.
+
+`docs/SPEC.md` and `docs/ROADMAP.md` describe an opt-in crowdsourced backend that was
+designed early in the project. It is kept in those documents as **design history and a
+possible future feature**, not a commitment and not something currently being built. If
+the project ever revives that direction, the following commitments hold before any such
+code ships:
 
 - Telemetry will be **off by default**. Turning it on will require an explicit,
   affirmative action on your part — not a pre-checked box.
@@ -113,19 +122,21 @@ of that ships:
   persists only `HMAC(IP, daily_salt)`, retained 30 days, never the raw IP
   (`docs/SPEC.md` §6, `CLAUDE.md` invariant 3).
 - **This document will be rewritten and expanded before any of that code ships** — not
-  after. If you're reading this and Phase 1 is still current, no telemetry code exists
-  in the extension at all.
+  after. If you're reading this and no telemetry section exists elsewhere in this
+  document beyond this one, no telemetry code exists in the extension at all.
 
 ## 5. What we never collect
 
-Regardless of phase or opt-in status, AdsAuditor never collects: your YouTube/Google
-identity, your browsing history outside of the current video's ad-delivery observation,
-your watch time or viewing habits, your search queries, or any identifier beyond the
-local pseudonymous UUID that Phase 2's opt-in telemetry will generate on-device.
+Regardless of whether a future opt-in telemetry feature ever ships, AdsAuditor never
+collects: your YouTube/Google identity, your browsing history outside of the current
+video's ad-delivery observation, your watch time or viewing habits, your search queries,
+or any identifier beyond a local pseudonymous UUID that such a feature would generate
+on-device, only if and when it exists.
 
 ## 6. Related documents
 
 - `docs/SPEC.md` §3.4 — NO_SIGNAL detection mechanism (why the calibration probes
   exist).
-- `docs/SPEC.md` §6 — full privacy and GDPR design for the Phase 2 backend.
+- `docs/SPEC.md` §6 — privacy and GDPR design written for the possible future
+  crowdsourced backend described in §4 above; not built, kept as design history.
 - [`README.md`](../README.md) — project overview and the "what we do NOT do" disclaimer.
