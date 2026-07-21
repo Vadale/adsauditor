@@ -1,6 +1,5 @@
 /**
- * confidenceMessageKeyForSourceCount() / adPlaybackObserved() unit tests (docs/ROADMAP.md
- * §1.4/§1.5/§1.6): pure functions, no browser dependency (utils/evidence-summary.ts).
+ * confidenceMessageKeyForSourceCount() / adPlaybackObserved() unit tests: pure functions, no browser dependency (utils/evidence-summary.ts).
  * confidenceMessageKeyForSourceCount pins the exact bucketing — including the defensive
  * out-of-[0,3]-range behavior the function's own doc comment describes — rather than the
  * range classify() is documented to actually produce.

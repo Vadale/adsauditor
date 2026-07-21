@@ -2,7 +2,7 @@
  * Pure classifier: events -> observed state (docs/SPEC.md §3.2, §3.3).
  *
  * This file and the server-side consensus function are the most-tested code in the
- * repo (CLAUDE.md) and must stay pure: no browser APIs, no DB/network imports. Every
+ * repo and must stay pure: no browser APIs, no DB/network imports. Every
  * dependency comes in as a plain argument so the function can be driven entirely from
  * Vitest fixtures (extension/test/fixtures/). Importing utils/selectors.ts and
  * utils/types.ts is fine — both are plain data with no browser/DB dependency of their

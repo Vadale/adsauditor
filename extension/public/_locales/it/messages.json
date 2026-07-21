@@ -25,7 +25,7 @@
   },
   "adDecisionOnlyNote": {
     "message": "Questo può accadere anche su video o canali non monetizzati dal creator: l'estensione osserva la decisione di YouTube sull'erogazione degli annunci, mai se il creator guadagna.",
-    "description": "Honest-language note shown under headlineAdDecisionOnly (CLAUDE.md invariant 4)"
+    "description": "Honest-language note shown under headlineAdDecisionOnly (invariant 4 (docs/INVARIANTS.md))"
   },
   "headlineNoAds": {
     "message": "Nessun annuncio osservato in questa visione.",
@@ -33,7 +33,7 @@
   },
   "noAdsDisclaimer": {
     "message": "Questo NON significa necessariamente che il video sia demonetizzato.",
-    "description": "Mandatory honest-language disclaimer under the NO_ADS headline (CLAUDE.md invariant 4)"
+    "description": "Mandatory honest-language disclaimer under the NO_ADS headline (invariant 4 (docs/INVARIANTS.md))"
   },
   "headlineNoSignal": {
     "message": "Al momento questo browser non può produrre dati validi sull'assenza di annunci.",
@@ -161,7 +161,7 @@
   },
   "exportJsonTooltip": {
     "message": "Scarica un file diagnostico locale (cronologia e stato di calibrazione). Non viene inviato nulla: il file resta su questo dispositivo e condividerlo con il progetto è del tutto manuale e volontario.",
-    "description": "Tooltip/title for the Export JSON button, honest register (CLAUDE.md invariant 1)"
+    "description": "Tooltip/title for the Export JSON button, honest register (invariant 1 (docs/INVARIANTS.md))"
   },
   "historyEmpty": {
     "message": "Nessun video osservato finora.",
@@ -193,7 +193,7 @@
   },
   "optionsIntro": {
     "message": "AdsAuditor è local-first: nulla di ciò che guardi lascia questo browser. Una telemetria aggregata e opt-in è prevista in una fase successiva e sarà disattivata di default finché non la abiliti esplicitamente.",
-    "description": "Options page intro paragraph (CLAUDE.md invariant 1)"
+    "description": "Options page intro paragraph (invariant 1 (docs/INVARIANTS.md))"
   },
   "calibrationSectionTitle": {
     "message": "Stato della calibrazione",

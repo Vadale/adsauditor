@@ -1,5 +1,5 @@
 /**
- * buildLocalExport() invariant tests (docs/ROADMAP.md §1.7, CLAUDE.md invariant 2 spirit):
+ * buildLocalExport() invariant tests (docs/SPEC.md , invariant 2 (docs/INVARIANTS.md) spirit):
  * this payload is explicitly SHAREABLE — the owner/beta testers hand this file to the dev
  * loop manually (utils/local-export.ts's own doc comment) — so its schema is locked the
  * same invariant-style way test/storage-payload.test.ts locks LocalHistoryEntry/

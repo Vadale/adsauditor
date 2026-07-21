@@ -36,7 +36,7 @@ export interface AdEvidence {
  * This is the schema that becomes (a subset of) the Phase 2 telemetry payload. Do not
  * add fields here for classifier-only or local-storage-only needs — see
  * ClassifierContext and LocalHistoryEntry below for where those belong instead
- * (CLAUDE.md invariant 2: a test must fail if the sent payload gains fields).
+ * (invariant 2 (docs/INVARIANTS.md): a test must fail if the sent payload gains fields).
  */
 export interface VideoContext {
   durationS: number;
@@ -384,7 +384,7 @@ export interface ClassifierContext extends VideoContext {
  * chrome.storage.local. This is a LOCAL STORAGE shape, not a telemetry payload: it may
  * carry more than SPEC §3.3's minimal schema. When Phase 2 telemetry is implemented, it
  * MUST build its own separate minimal object from scratch — never serialize this type
- * directly onto the wire (CLAUDE.md invariant 2).
+ * directly onto the wire (invariant 2 (docs/INVARIANTS.md)).
  *
  * SCHEMA CHANGE (ROADMAP §1.7, "Export JSON"): `durationS` was added deliberately for
  * the local diagnostic export (utils/local-export.ts) — 8-minute midroll-eligibility

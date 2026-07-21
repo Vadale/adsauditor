@@ -1,6 +1,5 @@
 /**
- * buildLocalHistoryEntry() / upsertLocalHistoryEntry() unit tests (docs/ROADMAP.md
- * §1.6/§1.7): pure functions, no browser dependency (utils/local-history.ts).
+ * buildLocalHistoryEntry() / upsertLocalHistoryEntry() unit tests: pure functions, no browser dependency (utils/local-history.ts).
  *
  * upsertLocalHistoryEntry is the owner-reported-bug fix: an uninformative NO_SIGNAL
  * observation (e.g. a rewatch within the rewatch window) must never overwrite the last

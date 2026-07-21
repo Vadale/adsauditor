@@ -25,7 +25,7 @@
   },
   "adDecisionOnlyNote": {
     "message": "This can also happen on videos or channels that are not monetized by their creator: the extension observes YouTube's ad-delivery decision, never whether the creator earns.",
-    "description": "Honest-language note shown under headlineAdDecisionOnly (CLAUDE.md invariant 4)"
+    "description": "Honest-language note shown under headlineAdDecisionOnly (invariant 4 (docs/INVARIANTS.md))"
   },
   "headlineNoAds": {
     "message": "No ads observed on this viewing.",
@@ -33,7 +33,7 @@
   },
   "noAdsDisclaimer": {
     "message": "This does NOT necessarily mean the video is demonetized.",
-    "description": "Mandatory honest-language disclaimer under the NO_ADS headline (CLAUDE.md invariant 4)"
+    "description": "Mandatory honest-language disclaimer under the NO_ADS headline (invariant 4 (docs/INVARIANTS.md))"
   },
   "headlineNoSignal": {
     "message": "This browser can't currently produce valid ad-absence data.",
@@ -161,7 +161,7 @@
   },
   "exportJsonTooltip": {
     "message": "Downloads a local diagnostic file (history + calibration status). Nothing is sent anywhere — the file stays on this device, and sharing it with the project is entirely manual and voluntary.",
-    "description": "Tooltip/title for the Export JSON button, honest register (CLAUDE.md invariant 1)"
+    "description": "Tooltip/title for the Export JSON button, honest register (invariant 1 (docs/INVARIANTS.md))"
   },
   "historyEmpty": {
     "message": "No videos observed yet.",
@@ -193,7 +193,7 @@
   },
   "optionsIntro": {
     "message": "AdsAuditor is local-first: nothing you watch leaves this browser. Opt-in, aggregated telemetry is planned for a later phase and will default to OFF until you explicitly enable it.",
-    "description": "Options page intro paragraph (CLAUDE.md invariant 1)"
+    "description": "Options page intro paragraph (invariant 1 (docs/INVARIANTS.md))"
   },
   "calibrationSectionTitle": {
     "message": "Calibration status",

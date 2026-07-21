@@ -4,7 +4,7 @@
     "sourceExport": "spike/exports/adsauditor-spike-export-2026-07-02T20-42-17-215Z.json",
     "video": "iYlODtkyw_I — MrBeast, ~35 min (spike/RESULTS.md §2 row 2, rewatched ≥3x, 'green (high)' by ground truth)",
     "session": "logged-in, rewatch (this browser had already watched this exact video ≥3-4 times)",
-    "note": "spike/RESULTS.md §3 finding 5: rewatch-frequency capping stripped ALL placements server-side for this session, even though the video is a confirmed green (the SAME video, watched fresh and logged-out minutes later in the same export, shows the full '1/18/1' signature — see green-mrbeast-iYlODtkyw_I.json). This is the real-data proof that absence-of-evidence on a rewatch is worthless: CLAUDE.md invariant 5 and classify()'s 'recent-rewatch' NO_SIGNAL cause exist specifically to keep this from being misread as NO_ADS.",
+    "note": "spike/RESULTS.md §3 finding 5: rewatch-frequency capping stripped ALL placements server-side for this session, even though the video is a confirmed green (the SAME video, watched fresh and logged-out minutes later in the same export, shows the full '1/18/1' signature — see green-mrbeast-iYlODtkyw_I.json). This is the real-data proof that absence-of-evidence on a rewatch is worthless: invariant 5 (docs/INVARIANTS.md) and classify()'s 'recent-rewatch' NO_SIGNAL cause exist specifically to keep this from being misread as NO_ADS.",
     "sourceRecords": [
       {
         "timestamp": "2026-07-02T20:34:11.490Z",
@@ -26,7 +26,7 @@
     "conversionNotes": [
       "No BEACON events captured by the Phase 0 spike tool (see green-mrbeast-iYlODtkyw_I.json)."
     ],
-    "expectedClassification": "Absence of ANY evidence (no placements, no DOM, no beacon). With ClassifierContext.recentlyWatched=true (this browser watched this exact videoId recently) → NO_SIGNAL 'recent-rewatch', NEVER NO_ADS (CLAUDE.md invariant 5). With recentlyWatched=false + a valid observer, the SAME zero-evidence events would classify NO_ADS instead — demonstrating why the rewatch flag is load-bearing and not just documentation."
+    "expectedClassification": "Absence of ANY evidence (no placements, no DOM, no beacon). With ClassifierContext.recentlyWatched=true (this browser watched this exact videoId recently) → NO_SIGNAL 'recent-rewatch', NEVER NO_ADS (invariant 5 (docs/INVARIANTS.md)). With recentlyWatched=false + a valid observer, the SAME zero-evidence events would classify NO_ADS instead — demonstrating why the rewatch flag is load-bearing and not just documentation."
   },
   "events": [
     {

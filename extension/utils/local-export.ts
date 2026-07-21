@@ -12,7 +12,7 @@
  * and observed states from the local history, plus the four-field local calibration
  * state, and NOTHING else: no browsing context beyond what's already in history, no
  * identifiers, no telemetry (this never leaves the browser except by the user's own
- * explicit download-and-share action, which stays entirely outside CLAUDE.md invariant
+ * explicit download-and-share action, which stays entirely outside invariant
  * 1's opt-in telemetry, since there is no network call anywhere in this path).
  *
  * Schema changes to this export MUST bump schemaVersion — this is a versioned file

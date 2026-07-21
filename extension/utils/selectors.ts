@@ -1,7 +1,7 @@
 /**
  * Every CSS selector, DOM id, event name, URL pattern, and JSON path used anywhere in
  * the extension lives here — and only here. When YouTube changes its markup or
- * player-response shape, this is the one file that needs a PR (CLAUDE.md).
+ * player-response shape, this is the one file that needs a PR.
  *
  * Two kinds of constants live here: (1) YouTube-facing values (its DOM, its SPA events,
  * its player-response JSON shape) and (2) this extension's own MAIN-world <-> ISOLATED
@@ -99,7 +99,7 @@ export const runtimeMessageKinds = {
 /**
  * Adblock bait-vs-control probe targets (ROADMAP §1.3, SPEC §3.4). `baitUrl` is the
  * canonical EasyList-blocked adsbygoogle.js request, already covered by the existing
- * `*.googlesyndication.com` host_permissions entry (CLAUDE.md invariant 7 untouched —
+ * `*.googlesyndication.com` host_permissions entry (invariant 7 (docs/INVARIANTS.md) untouched —
  * no new permission needed). `markerParam` lets background.ts's webRequest listener
  * recognize and drop this self-generated request before it's misread as a real ad
  * beacon (it originates in a real tab, so the tabId<0 guard alone does not catch it).
@@ -134,7 +134,7 @@ export const VIDEO_ID_PATTERN = /^[A-Za-z0-9_-]{11}$/;
 
 /**
  * Source C beacon URL match patterns (Chrome match-pattern syntax) — background.ts's
- * `webRequest.onBeforeRequest` filter (SPEC §3.2). Must stay within CLAUDE.md invariant
+ * `webRequest.onBeforeRequest` filter (SPEC §3.2). Must stay within invariant
  * 7's host permissions (youtube.com, doubleclick.net, googlesyndication.com); adding a
  * pattern here that isn't already covered by wxt.config.ts host_permissions requires the
  * explicit justification invariant 7 demands.
@@ -153,7 +153,7 @@ export const beaconUrlMatchPatterns = [
  * adblock bait request (adblockProbe.baitUrl) specifically — see that file's
  * `mergeCalibrationResult` and utils/calibration.ts's interpretAdblockProbe doc comment
  * for why a redirected-not-cancelled bait request needs this separate signal. Already
- * covered by the existing `*.googlesyndication.com` host_permissions entry (CLAUDE.md
+ * covered by the existing `*.googlesyndication.com` host_permissions entry (docs/INVARIANTS.md
  * invariant 7 untouched).
  */
 export const googlesyndicationRedirectMatchPattern = 'https://*.googlesyndication.com/*' as const;

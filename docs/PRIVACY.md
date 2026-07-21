@@ -90,7 +90,7 @@ Properties of both requests:
   AdsAuditor server, because there is no server — see §4.
 
 The extension's manifest requests host permissions only for `youtube.com`,
-`doubleclick.net`, and `googlesyndication.com` (`CLAUDE.md` invariant 7); it observes
+`doubleclick.net`, and `googlesyndication.com` (invariant 7 (docs/INVARIANTS.md)); it observes
 `webRequest` traffic to those domains to detect ad beacons (source C, `docs/SPEC.md`
 §3.2) but this is passive observation of requests the browser (or YouTube's page) makes
 on its own — it does not originate additional requests beyond the two probes above.
@@ -104,7 +104,7 @@ Sharing data with the project happens only through the manual, user-initiated JS
 export described in §2 — never automatically, and never without you choosing to send
 the file yourself.
 
-`docs/SPEC.md` and `docs/ROADMAP.md` describe an opt-in crowdsourced backend that was
+`docs/SPEC.md` describes an opt-in crowdsourced backend that was
 designed early in the project. It is kept in those documents as **design history and a
 possible future feature**, not a commitment and not something currently being built. If
 the project ever revives that direction, the following commitments hold before any such
@@ -120,7 +120,7 @@ code ships:
 - Consent will be **revocable** at any time from the options page.
 - The server will see your IP address only transiently, inside the ingest function; it
   persists only `HMAC(IP, daily_salt)`, retained 30 days, never the raw IP
-  (`docs/SPEC.md` §6, `CLAUDE.md` invariant 3).
+  (`docs/SPEC.md` §6, invariant 3 (docs/INVARIANTS.md)).
 - **This document will be rewritten and expanded before any of that code ships** — not
   after. If you're reading this and no telemetry section exists elsewhere in this
   document beyond this one, no telemetry code exists in the extension at all.

@@ -1,7 +1,7 @@
 # AdsAuditor — Phase 0 Signal Logger (spike)
 
 > **Throwaway tooling.** This is not the AdsAuditor extension. It is a minimal,
-> logging-only Manifest V3 extension built for Phase 0 of `docs/ROADMAP.md`: validating
+> logging-only Manifest V3 extension built for the project's Phase 0: validating
 > whether the observable signals (player response, ad DOM state) actually separate
 > green (regular ads) videos from yellow/limited ones. Plain JavaScript, no build step,
 > no polished UI, no telemetry, no network calls of its own. It will be deleted or
@@ -77,10 +77,10 @@ Reload the extension from `chrome://extensions` after any edit to the files.
    played for a few seconds, something upstream is broken (check the page console for
    `[AdsAuditor Spike]` warnings) — do not proceed with a silent-zero collection run.
 5. Click **Export JSON** to download all collected records as a single JSON file (for
-   the analysis step in `docs/ROADMAP.md` §0.3).
+   the analysis step in (docs/SPEC.md ).
 6. Click **Clear data** to reset `chrome.storage.local` before a new collection pass
    (e.g. before repeating the run in a private/incognito window as a logged-out user).
-7. For the logged-out pass (`docs/ROADMAP.md` §0.3: "a second pass in a
+7. For the logged-out pass (docs/SPEC.md : "a second pass in a
    private/incognito browsing window"): Chrome disables extensions in Incognito by
    default, and installing "unpacked" does not change that. Go to
    `chrome://extensions`, find this extension's card, click **Details**, and enable

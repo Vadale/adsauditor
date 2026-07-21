@@ -2,7 +2,7 @@ import { defineConfig } from 'wxt';
 
 // See https://wxt.dev/api/config.html
 //
-// CLAUDE.md invariant 7: host_permissions are limited to youtube.com, doubleclick.net,
+// invariant 7 (docs/INVARIANTS.md): host_permissions are limited to youtube.com, doubleclick.net,
 // and googlesyndication.com. Any addition requires an explicit justification in the PR.
 export default defineConfig({
   manifestVersion: 3,

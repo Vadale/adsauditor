@@ -1,5 +1,5 @@
 /**
- * Fixture-driven classify() tests (docs/ROADMAP.md §1.5): drives classify() with REAL
+ * Fixture-driven classify() tests (docs/SPEC.md ): drives classify() with REAL
  * captures from the Phase 0 spike (spike/exports/*.json), converted to DetectionEvent[]
  * in extension/test/fixtures/*.json. Each fixture's `_meta` field documents its source
  * export, the exact record timestamps used, and any real-schema-to-type-shape
@@ -11,7 +11,7 @@
  * events; this file is the real-data check ROADMAP §1.5 calls for on top of that.
  *
  * Deterministic: fixture timestamps are the real, fixed epoch-ms values captured during
- * the spike (no Date.now(), no live network — CLAUDE.md, docs/ROADMAP.md §1.5).
+ * the spike (no Date.now(), no live network — docs/SPEC.md).
  */
 import { describe, expect, it } from 'vitest';
 import { classify } from '../utils/classifier';

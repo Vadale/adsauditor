@@ -8,3 +8,16 @@ dist/
 # personal working notes, not project artifacts
 riassunto.rtf
 gemini_conversazione.md
+
+# Materiale di lavoro — solo locale, mai pubblicato
+.claude/
+CLAUDE.md
+AGENTS.md
+PLAN.md
+ROADMAP.md
+docs/ROADMAP.md
+DECISIONS.md
+HANDOFF.md
+diary/
+notes/
+AVVIO-PROGETTO-*.md

@@ -182,7 +182,6 @@ live in [`spike/RESULTS.md`](spike/RESULTS.md).
 | Document | What it's for |
 |---|---|
 | [`docs/SPEC.md`](docs/SPEC.md) | Full design reference: detection mechanism, state taxonomy, privacy design. Sections on a crowdsourced backend, public dashboard, and creator verification describe a **possible future**, not shipped code — they're kept as design history and are not built. |
-| [`docs/ROADMAP.md`](docs/ROADMAP.md) | Historical execution plan (phases 0–5). Phase 1, the local-only extension, is the shipping product; later phases are kept as design history, not commitments. |
 | [`docs/PRIVACY.md`](docs/PRIVACY.md) | Exactly what the extension collects, stores, and sends, today. |
 
 ## License

@@ -1,5 +1,5 @@
 /**
- * Shared chrome.storage key constants (docs/ROADMAP.md §1.2-§1.4).
+ * Shared chrome.storage key constants (docs/SPEC.md -§1.4).
  *
  * background.ts is the sole writer of all five keys; the popup (§1.4) and options
  * (§1.3/§1.4) pages are read-only consumers of LOCAL_HISTORY_KEY and

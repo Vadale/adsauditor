@@ -1,6 +1,6 @@
 /**
  * Service worker: per-tab VideoSession state, source C (webRequest beacons), storage
- * (docs/SPEC.md §3.2, docs/ROADMAP.md §1.2, §1.3).
+ * (docs/SPEC.md §3.2, (docs/SPEC.md , §1.3).
  *
  * MV3 constraint: webRequest listeners must be registered synchronously at the top
  * level of this file — the service worker can be terminated and woken by events, but
@@ -8,7 +8,7 @@
  * and tabs.onRemoved are registered synchronously here too, for the same reason.
  *
  * No network calls of any kind originate from this file: telemetry is Phase 2, opt-in
- * (CLAUDE.md invariant 1). Everything below reads/writes chrome.storage only. The
+ * (invariant 1 (docs/INVARIANTS.md)). Everything below reads/writes chrome.storage only. The
  * adblock bait fetch and Premium DOM probe (ROADMAP §1.3) run in bridge.content.ts,
  * which has a real tab/page context; this file only schedules them (calibrationDueQuery)
  * and records their results (calibrationResult).
@@ -770,9 +770,9 @@ async function mergeCalibrationResult(
 }
 
 export default defineBackground(() => {
-  // MV3: registered synchronously at top level (CLAUDE.md, SPEC §3.2). Observation
+  // MV3: registered synchronously at top level (docs/INVARIANTS.md, SPEC §3.2). Observation
   // only — no `blocking` extraInfoSpec, no declarativeNetRequest, URLs only, never
-  // request/response bodies (CLAUDE.md invariant 6).
+  // request/response bodies (invariant 6 (docs/INVARIANTS.md)).
   browser.webRequest.onBeforeRequest.addListener(
     (details): undefined => {
       // Never returns a BlockingResponse (no `cancel`/`redirectUrl`) — observation only.

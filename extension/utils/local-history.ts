@@ -1,6 +1,6 @@
 /**
  * Pure builder + merge logic for the persisted local-history entry (ROADMAP §1.4 popup
- * history, CLAUDE.md invariant 2). This is the SINGLE construction path for what
+ * history, invariant 2 (docs/INVARIANTS.md)). This is the SINGLE construction path for what
  * background.ts writes to local:adsauditor_history — kept pure (no browser imports) and
  * exported so test/storage-payload.test.ts locks the REAL persisted shape instead of a
  * hand-built stand-in. buildLocalHistoryEntry() copies exactly the documented

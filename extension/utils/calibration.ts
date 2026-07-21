@@ -1,5 +1,5 @@
 /**
- * Pure NO_SIGNAL calibration logic (docs/ROADMAP.md §1.3, SPEC §3.4): adblock/Premium
+ * Pure NO_SIGNAL calibration logic (docs/SPEC.md , SPEC §3.4): adblock/Premium
  * suspicion, control-video outcomes, and rewatch tracking. Same purity discipline as
  * classifier.ts — no browser/DB imports. The actual probes (bait fetch, masthead DOM
  * read, storage reads/writes) live in bridge.content.ts and background.ts; this module

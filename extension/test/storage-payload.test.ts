@@ -1,5 +1,5 @@
 /**
- * Storage/telemetry payload invariant tests (CLAUDE.md invariant 2, docs/ROADMAP.md §1.5):
+ * Storage/telemetry payload invariant tests (invariant 2 (docs/INVARIANTS.md), (docs/SPEC.md ):
  * "the telemetry/storage payload contains exactly the schema fields and nothing more...
  * A test must fail if the stored/sent payload gains fields."
  *
@@ -16,7 +16,7 @@
  *    (`tsc --noEmit`), NOT by `vitest run` — Vitest transpiles this file with esbuild,
  *    which strips types without checking them, so a `satisfies` violation here does NOT
  *    fail `npm test` by itself. Both commands are part of the required verification
- *    sequence (docs/ROADMAP.md §1.5), so this is a real, enforced gate, just not one
+ *    sequence (docs/SPEC.md ), so this is a real, enforced gate, just not one
  *    `vitest run` alone will catch — see the runtime layer below for that.
  *
  * 2. RUNTIME assertions on representative objects: `Object.keys(...)` compared against
@@ -26,7 +26,7 @@
  *    gets written"). This is what makes the invariant show up in `vitest run` output,
  *    not just `tsc --noEmit`.
  *
- *    Cross-browser caveat (CLAUDE.md targets Chrome AND Firefox): Firefox's
+ *    Cross-browser caveat (the project targets Chrome AND Firefox): Firefox's
  *    `storage.local` uses structured clone, which PRESERVES `undefined`-valued keys,
  *    unlike Chrome's JSON-drops-`undefined` semantics this file's round-trip tests
  *    assume — so a Firefox-persisted NO_SIGNAL entry would round-trip with `evidence`
@@ -54,7 +54,7 @@ import type {
 // ---------------------------------------------------------------------------------
 
 /** Breaks `npm run typecheck` the moment LocalHistoryEntry gains or loses a field
- * (docs/ROADMAP.md §1.4's local-history shape, CLAUDE.md invariant 2).
+ * (docs/SPEC.md local-history shape, invariant 2 (docs/INVARIANTS.md)).
  *
  * `durationS` (ROADMAP §1.7, "Export JSON") was added deliberately and this table was
  * updated alongside it, consciously — that is the intended workflow for a schema

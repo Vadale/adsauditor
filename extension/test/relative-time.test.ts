@@ -1,9 +1,9 @@
 /**
- * bucketRelativeTime() unit tests (docs/ROADMAP.md §1.4/§1.5): pure function, no browser
+ * bucketRelativeTime() unit tests (docs/SPEC.md /§1.5): pure function, no browser
  * dependency (utils/relative-time.ts), so it is driven directly with fixed timestamps —
  * no Date.now(), no mocks. Boundaries are asserted exactly as implemented (diffMs < N,
  * strictly-less-than on every threshold; Math.floor for the count), not as originally
- * "intended", per docs/ROADMAP.md §1.5's "pin actual behavior" instruction.
+ * "intended", per (docs/SPEC.md "pin actual behavior" instruction.
  */
 import { describe, expect, it } from 'vitest';
 import { bucketRelativeTime } from '../utils/relative-time';

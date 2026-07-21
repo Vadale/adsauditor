@@ -15,7 +15,7 @@
  *    worker.
  *
  * All CSS selectors and JSON paths come from utils/selectors.ts — never inline here
- * (CLAUDE.md).
+ *.
  */
 import { PROBE_TIMEOUT_MS, interpretAdblockProbe } from '../utils/calibration';
 import type { ProbeOutcome } from '../utils/calibration';

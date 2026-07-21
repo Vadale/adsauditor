@@ -14,7 +14,7 @@
  * strict `origin` checking and a session token published by bridge.content.ts on a DOM
  * dataset attribute (JS globals are not shared across worlds, but the DOM is).
  *
- * Observation only (CLAUDE.md invariant 6): `window.fetch` is wrapped to read a *clone*
+ * Observation only (invariant 6 (docs/INVARIANTS.md)): `window.fetch` is wrapped to read a *clone*
  * of the response; the original response returned to page code is never modified,
  * delayed, or blocked.
  */

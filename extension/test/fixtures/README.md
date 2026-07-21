@@ -1,7 +1,7 @@
 # Fixtures
 
 Real player-response JSON and DOM/beacon event captures used by `../fixtures.test.ts`
-(docs/ROADMAP.md §1.5). `classifier.test.ts` still drives `classify()` with hand-built
+(docs/SPEC.md ). `classifier.test.ts` still drives `classify()` with hand-built
 synthetic events per SPEC §3.2 table row — these fixtures are the real-data cross-check
 on top of that, converted from `spike/exports/*.json` (see `spike/RESULTS.md` §2 for the
 human-readable summary each fixture cites).

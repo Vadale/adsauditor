@@ -139,7 +139,7 @@ function findLastInformativeHistoryEntry(
 
 async function queryActiveTabState(): Promise<TabStateResponse | null> {
   try {
-    // Tab id is available WITHOUT the "tabs" permission (CLAUDE.md invariant 7); url/
+    // Tab id is available WITHOUT the "tabs" permission (invariant 7 (docs/INVARIANTS.md)); url/
     // title are intentionally never read here (they'd be undefined without it anyway).
     const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
     if (!tab || typeof tab.id !== 'number') return null;
@@ -269,7 +269,7 @@ function renderCurrentState(
         }
       }
     } else {
-      // Never assert anything about the creator's earnings either way (CLAUDE.md
+      // Never assert anything about the creator's earnings either way (docs/INVARIANTS.md
       // invariant 4) — the note only explains what WE measure (an ad-delivery
       // decision), not what it implies about monetization.
       headlineEl.textContent = browser.i18n.getMessage('headlineAdDecisionOnly');
@@ -360,7 +360,7 @@ function renderHistory(entries: LocalHistoryEntry[], filter: string): void {
 // ---------------------------------------------------------------------------------
 // "Export JSON" (ROADMAP §1.7) — the local counterpart of the Phase 0 spike tool's
 // export button (spike/popup.js): Blob + object URL + a clicked, DOM-attached
-// `<a download>`. No `downloads` permission (CLAUDE.md invariant 7), no network call —
+// `<a download>`. No `downloads` permission (invariant 7 (docs/INVARIANTS.md)), no network call —
 // the file is written straight to the user's downloads via the browser's own save
 // mechanism, and sharing it onward is a separate, manual, voluntary action.
 // ---------------------------------------------------------------------------------
